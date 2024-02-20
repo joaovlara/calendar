@@ -1,19 +1,19 @@
-import React from 'react'
-import { btnAdd } from './styles.js'
+import { BtnAdd, ContainerDraw, FormAdd } from "./styles"
 
-export const DrawGrid = () => {
+function DrawGrid() {
+    /* const ()*/
     return (
-        <>
+        <ContainerDraw>
             <button>Dark Mode</button>
-            <form>
-                <h1>Calendário de Limpeza</h1>
+            <h1>Calendário de Limpeza</h1>
+            <FormAdd>
                 <label htmlFor="">Insira o nome</label>
                 <input type="text" />
-                <btnAdd styled>Adicionar</btnAdd>
-            </form>
+                <BtnAdd styled>Adicionar</BtnAdd>
+            </FormAdd>
             <div>
                 <p>Lista de participantes</p>
-                <button>Sortear</button>
+                <BtnAdd>Sortear</BtnAdd>
                 <ul>
                     <li>Fulano</li>
                     <li>Joaozinho</li>
@@ -23,7 +23,7 @@ export const DrawGrid = () => {
                     <li>Ronaldo</li>
                 </ul>
             </div>
-        </>
+        </ContainerDraw>
     )
 }
 

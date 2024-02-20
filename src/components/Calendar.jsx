@@ -1,10 +1,13 @@
-import React from 'react'
+import { CalendarDays } from "./styles";
 
-const Calendar = () => {
+function Calendar () {
   return (
-    
-    <Container />
-  )
+  <CalendarDays>
+    <p>Janeiro</p>
+      <div>
+        Calendar code
+      </div>
+  </CalendarDays>
+  );
 }
-
 export default Calendar
