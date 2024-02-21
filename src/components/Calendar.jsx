@@ -1,13 +1,13 @@
 import { CalendarDays } from "./styles";
 
-function Calendar () {
+function Calendar() {
   return (
-  <CalendarDays>
-    <p>Janeiro</p>
+    <CalendarDays>
       <div>
-        Calendar code
+        <p>Janeiro</p>
+        <p>Calendar code</p>
       </div>
-  </CalendarDays>
+    </CalendarDays>
   );
 }
 export default Calendar

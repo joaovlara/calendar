@@ -1,28 +1,30 @@
-import { BtnAdd, ContainerDraw, FormAdd } from "./styles"
+import { BtnAdd, ContainerDraw, FormAdd, SortArea, SortList } from "./styles"
 
 function DrawGrid() {
     /* const ()*/
     return (
         <ContainerDraw>
             <button>Dark Mode</button>
-            <h1>Calendário de Limpeza</h1>
+            <p>Calendário de Limpeza</p>
             <FormAdd>
-                <label htmlFor="">Insira o nome</label>
+                <p>Insira o nome</p>
                 <input type="text" />
                 <BtnAdd styled>Adicionar</BtnAdd>
             </FormAdd>
-            <div>
-                <p>Lista de participantes</p>
-                <BtnAdd>Sortear</BtnAdd>
-                <ul>
-                    <li>Fulano</li>
-                    <li>Joaozinho</li>
-                    <li>Carlos Alberto</li>
-                    <li>Pedrinho</li>
-                    <li>Ciclano</li>
-                    <li>Ronaldo</li>
-                </ul>
-            </div>
+            <SortArea>
+                <>
+                    <p>Lista de participantes</p>
+                    <BtnAdd>Sortear</BtnAdd>
+                    <SortList>
+                        <li>A</li>
+                        <li>B</li>
+                        <li>C</li>
+                        <li>D</li>
+                        <li>E</li>
+                        <li>F</li>
+                    </SortList>
+                </>
+            </SortArea>
         </ContainerDraw>
     )
 }

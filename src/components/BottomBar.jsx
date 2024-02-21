@@ -1,17 +1,14 @@
+import { Week, WeekDays, } from "./styles"
+
 function BottomBar() {
     return (
-        <>
-            <p>Dia do Café</p>
-            <table>
-                <tr>
-                    <td>Segunda</td>
-                    <td>Terça</td>
-                    <td>Quarta</td>
-                    <td>Quinta</td>
-                    <td>Sexta</td>
-                </tr>
-            </table>
-        </>
+        <Week>
+                    <WeekDays>Segunda</WeekDays>
+                    <WeekDays>Terça</WeekDays>
+                    <WeekDays>Quarta</WeekDays>
+                    <WeekDays>Quinta</WeekDays>
+                    <WeekDays>Sexta</WeekDays>
+        </Week>
     );
 }
 

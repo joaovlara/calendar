@@ -3,33 +3,45 @@ import styled from 'styled-components'
 /* 1th separar divisões da tela*/
 
 export const Content = styled.div`
+    height: 100vh;
     display: flex;
-    justify-content: space-around;
     flex-direction: row;
     background-color: yellow;
-`;
+`
 
-export const Limpeza = styled.div`
+export const LeftContainer = styled.div`
     background-color: orange;
-    padding: 1.5%;
+    display:flex;
+    width: 35vw;
+    justify-content: center;
 `
 
 export const Grades = styled.div`
+    flex-direction: column;
     background-color: purple;
-
+    width: 100%;
 `
-/* Seração do contaiter esquerdo com formulario e botoes */
-
+/* Separação do contaiter esquerdo com formulario e botoes */
 
 export const ContainerDraw = styled.div`
-    padding: 1.5%;
+    display: flex;
+    flex-direction:column;
+    width: 75%;
+    margin-top: 30%;
 `
 export const FormAdd = styled.form`
-    display: flex;
-    padding: 5%;
-    flex-direction: column;
     background-color: rebeccapurple;
-    `
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10% 0 10% 0;
+`
+
+export const SortArea = styled.div`
+`
+export const SortList = styled.ul`
+`
+
 export const BtnAdd = styled.button`
     background-color: red;
     color: white;
@@ -38,12 +50,24 @@ export const BtnAdd = styled.button`
     border-radius: 3px;
 `
 
-/* Separação do container direito com calendário e café*/ 
+/* Separação do container direito com calendário e semana*/
 
 export const CalendarDays = styled.div`
     display: flex;
-    justify-content: center;
     border: solid 2px;
-    height: 90vh;
-    width: 100vh;
-    `
+    height: 70vh;
+`
+
+export const Week = styled.div`
+    background-color: green;
+    display: flex;
+    justify-content: center; 
+    gap: 3%;
+`
+
+export const WeekDays = styled.p`
+    display: flex;
+    background-color: red;
+    border: solid 2px;
+    padding: 30px;
+`

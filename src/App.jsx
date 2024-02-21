@@ -1,21 +1,20 @@
-import DrawGrid from "./components/DrawGrid"
-import Calendar from "./components/Calendar"
-import BottomBar from "./components/BottomBar"
-import { Content, Limpeza, Grades } from "./components/styles"
+import DrawGrid from "./components/DrawGrid";
+import Calendar from "./components/Calendar";
+import BottomBar from "./components/BottomBar";
+import { Content, Grades, Week, WeekDays, WeekTable, LeftContainer } from "./components/styles";
+import { GlobalStyle } from "./components/GlobalStyle";
+
 export function App() {
     return (
-        <>
-            <Content>
-                <Limpeza>
-                    <DrawGrid />
-                </Limpeza>
-            <Grades>                    
+        <Content>
+            <LeftContainer>
+                <DrawGrid />
+            </LeftContainer>
+            <Grades>
                 <Calendar />
                 <BottomBar />
             </Grades>
-             </Content>
-
-        </>
+        </Content>
     )
 }
 export default App
