@@ -1,30 +1,32 @@
-import { BtnAdd, ContainerDraw, FormAdd, SortArea, SortList } from "./styles"
+import { BtnAdd, BtnSort, ContainerDraw, InputText, MainH1, SortArea, SortList, TextLeft, FormAdd } from "./styles"
 
 function DrawGrid() {
     /* const ()*/
     return (
         <ContainerDraw>
-            <button>Dark Mode</button>
-            <p>Calendário de Limpeza</p>
+            <p>Dark Mode</p>
+            <MainH1>Calendário de Limpeza</MainH1>
+
+            <TextLeft>Insira o nome</TextLeft>
+
             <FormAdd>
-                <p>Insira o nome</p>
-                <input type="text" />
+                <InputText type="text" />
                 <BtnAdd styled>Adicionar</BtnAdd>
             </FormAdd>
+
+
             <SortArea>
-                <>
-                    <p>Lista de participantes</p>
-                    <BtnAdd>Sortear</BtnAdd>
-                    <SortList>
-                        <li>A</li>
-                        <li>B</li>
-                        <li>C</li>
-                        <li>D</li>
-                        <li>E</li>
-                        <li>F</li>
-                    </SortList>
-                </>
+                <TextLeft>Lista de participantes</TextLeft>
+                <BtnSort>Sortear</BtnSort>
             </SortArea>
+            <SortList>
+                <li>A</li>
+                <li>B</li>
+                <li>C</li>
+                <li>D</li>
+                <li>E</li>
+                <li>F</li>
+            </SortList>
         </ContainerDraw>
     )
 }

@@ -1,73 +1,102 @@
 import styled from 'styled-components'
 
-/* 1th separar divisões da tela*/
+/* Separação divisões da tela*/
 
 export const Content = styled.div`
     height: 100vh;
     display: flex;
     flex-direction: row;
-    background-color: yellow;
 `
-
 export const LeftContainer = styled.div`
-    background-color: orange;
     display:flex;
     width: 35vw;
+    height: 100vh;
     justify-content: center;
 `
-
 export const Grades = styled.div`
     flex-direction: column;
-    background-color: purple;
-    width: 100%;
+    height: 100vh;
+    width: 100vw;
 `
-/* Separação do contaiter esquerdo com formulario e botoes */
+/* Separação contaiter esquerdo com formulario e botoes */
 
 export const ContainerDraw = styled.div`
     display: flex;
     flex-direction:column;
     width: 75%;
     margin-top: 30%;
-`
-export const FormAdd = styled.form`
-    background-color: rebeccapurple;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 10% 0 10% 0;
-`
 
+`
 export const SortArea = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20% 0% 10% 0%;
 `
 export const SortList = styled.ul`
 `
 
-export const BtnAdd = styled.button`
+/* Separação container direito com calendário e semana*/
+
+export const CalendarDays = styled.div`
+    display: flex;
+    height: 70%;
+    border: solid 1px;
+`
+export const Week = styled.div`
+    display: flex;
+    justify-content: center; 
+    height: 30%;
+    border-left: solid 1px;
+`
+export const WeekDays = styled.p`
     background-color: red;
+    border: solid 2px;
+    padding: 3%;
+    margin: 4% 2% 4% 2%;
+`
+/* Estilo DRAWGRID*/
+
+export const InputText = styled.input`
+    margin: 4% 0% 10% 0%;
+    border: solid 1px;
+    border-radius: 5px;
+    height: 25px;
+    width: 100%;
+`
+export const FormAdd = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`
+export const BtnAdd = styled.button`
+    background-color: #B73625;
+    cursor: pointer;
     color: white;
     border: none;
     padding: 4px;
     border-radius: 3px;
+    width: 100px;
+    &:hover {
+        box-shadow: 4px 4px 0px 0px rgba(119,36,25,1);
+  }
 `
-
-/* Separação do container direito com calendário e semana*/
-
-export const CalendarDays = styled.div`
-    display: flex;
-    border: solid 2px;
-    height: 70vh;
+export const BtnSort = styled.button`
+    background-color: #B73625;
+    cursor: pointer;
+    color: white;
+    border: none;
+    padding: 4px;
+    border-radius: 3px;
+    &:hover {
+        box-shadow: 4px 4px 0px 0px rgba(119,36,25,1);
+  }
 `
-
-export const Week = styled.div`
-    background-color: green;
-    display: flex;
-    justify-content: center; 
-    gap: 3%;
+export const MainH1 = styled.h1`
+    font-size: 23px;
+    padding: 10% 0% 10% 0%;
 `
+export const TextLeft = styled.p `
+    font-size: 15px;
 
-export const WeekDays = styled.p`
-    display: flex;
-    background-color: red;
-    border: solid 2px;
-    padding: 30px;
 `
