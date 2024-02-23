@@ -1,9 +1,6 @@
-import { CalendarDays } from "./styles";
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import styled, { css } from 'styled-components';
-import { number, Frame, Header, Button, Body, Day, DayWeek } from './calendar.styles.js';
-
+import { CalendarTable, Header, Button, Body, Day, } from './styles';
 
 export function Calendar() {
 
@@ -37,7 +34,7 @@ export function Calendar() {
   const days = isLeapYear(date.getFullYear()) ? DAYS_LEAP : DAYS;
 
   return (
-    <Frame>
+    <CalendarTable>
       <Header>
         <Button onClick={() => setDate(new Date(year, month - 1, day))}>Prev</Button>
         <div>
@@ -47,9 +44,9 @@ export function Calendar() {
       </Header>
       <Body>
         {DAYS_OF_THE_WEEK.map(d => (
-          <DayWeek key={d}>
+          <Day key={d}>
             <strong>{d}</strong>
-          </DayWeek>
+          </Day>
         ))}
         {Array(days[month] + (startDay - 1))
           .fill(null)
@@ -67,8 +64,9 @@ export function Calendar() {
             );
           })}
       </Body>
-    </Frame>
+    </CalendarTable>
   );
+
 }
 
 export default Calendar

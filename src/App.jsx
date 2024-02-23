@@ -1,8 +1,7 @@
 import DrawGrid from "./components/DrawGrid";
 import Calendar from "./components/Calendar";
-import BottomBar from "./components/BottomBar";
-import { Content, Grades, Week, WeekDays, WeekTable, LeftContainer } from "./components/styles";
-import { GlobalStyle } from "./components/GlobalStyle";
+import { Content, Grades, LeftContainer } from "./components/styles";
+import { CoffeDay } from "./components/CoffeeDay";
 
 export function App() {
     return (
@@ -12,7 +11,7 @@ export function App() {
             </LeftContainer>
             <Grades>
                 <Calendar />
-                <BottomBar />
+                <CoffeDay/>
             </Grades>
         </Content>
     )
