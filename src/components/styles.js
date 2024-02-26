@@ -4,6 +4,7 @@ import styled, { css } from 'styled-components';
 
 export const Content = styled.div`
     height: 100vh;
+    width:100vw;
     display: flex;
     flex-direction: row;
 `;
@@ -14,11 +15,12 @@ export const LeftContainer = styled.div`
     height: 100vh;
     justify-content: center;
 `;
-export const Grades = styled.div`
+export const RightContainer = styled.div`
     height: 100vh;
     width: 70vw;
 `;
 /* Separação contaiter esquerdo com formulario e botoes */
+
 export const ContainerDraw = styled.div`
     display: flex;
     flex-direction:column;
@@ -33,15 +35,18 @@ export const SortArea = styled.div`
     padding: 20% 0% 10% 0%;
 `;
 export const SortList = styled.ul`
+
 `;
 /* Estilo DRAWGRID*/
 
 export const InputText = styled.input`
+    display: flex;
+    justify-content: center;
     margin: 4% 0% 10% 0%;
     border: solid 1px;
     border-radius: 5px;
     height: 25px;
-    width: 100%;
+    width: 90%;
 `
 export const FormAdd = styled.div`
     display: flex;
@@ -72,8 +77,10 @@ export const BtnSort = styled.button`
   }
 `;
 export const MainH1 = styled.h1`
-    font-size: 23px;
-    padding: 10% 0% 10% 0%;
+    display: flex;
+    justify-content: center;
+    font-size: 26px;
+    padding: 8% 0% 8% 0%;
 `;
 export const TextLeft = styled.p`
     font-size: 15px;
@@ -82,56 +89,75 @@ export const TextLeft = styled.p`
 /* Estilos do Calendar */
 
 export const CalendarTable = styled.div`
-  height: auto;
-  width: 70vw;
+  width: 100%;
   border-bottom: 1px solid black;
 `;
 export const Header = styled.div`
+  color: white;
+  gap: .5%;
   padding: 1.4%;
-  font-size: 18px;
   display: flex;
-  justify-content: space-between;
   background-color: #B73625;
+  cursor: pointer;
 `;
 export const Button = styled.div`
   cursor: pointer;
 `;
 export const Body = styled.div`
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  background-color: red;
+    display: flex;
+    flex-wrap: wrap;
 `;
+
+export const DayWeek = styled.div`
+    display: flex;
+    justify-content: flex-start;
+    padding-top: 60px;
+    border-style: solid;
+    border-width: 0px .5px .5px .0px;
+    width: 14.17%;
+    cursor: pointer;
+    `
+
 export const Day = styled.div`
-  height: 87px;
-  width: 14.2%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    justify-content: flex-end;
+    border-style: solid;
+    border-width: 0px .5px .5px .0px;
+    height: 90px;
+    width: 14.17%;
   cursor: pointer;
 
   ${props =>
         props.isToday &&
         css`
-      border: 1px solid #B73625;
+      border-color:  #B73625;
+      
     `}
 `;
 
 /* Estilos CoffeDay */
 
-export const TextCoffee = styled.p`
+export const CoffeeDiv = styled.div`
+    display: flex;
+    flex-direction:column;
     margin: 2%;
+`;
 
+export const TextCoffee = styled.p`
+    font-weight: bold;
+    padding-bottom: 4%;
 `;
 
 export const CoffeWeek = styled.div`
     display: flex;
-    justify-content: space-around;
+    flex-direction: row;
+    justify-content: space-between;
 `;
+
 export const DayCoffee = styled.span`
-    align-items: center;
     display: flex;
-    border: 1px solid lightgrey;
-    box-shadow: 2px 2px 2px #D9D9D9;    
-    width: 110px;
+    justify-content: center;
+    border: solid 1px;
+    width: 11vw;
+    height: 12vh;
 `;

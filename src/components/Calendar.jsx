@@ -1,13 +1,16 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import { CalendarTable, Header, Button, Body, Day, } from './styles';
+import { CalendarTable, Header, Button, Body, Day, DayWeek } from './styles';
+import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
+
+
 
 export function Calendar() {
 
   const DAYS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
   const DAYS_LEAP = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-  const DAYS_OF_THE_WEEK = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
-  const MONTHS = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+  const DAYS_OF_THE_WEEK = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab', 'Dom'];
+  const MONTHS = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
 
   const today = new Date();
   const [date, setDate] = useState(today);
@@ -36,17 +39,17 @@ export function Calendar() {
   return (
     <CalendarTable>
       <Header>
-        <Button onClick={() => setDate(new Date(year, month - 1, day))}>Prev</Button>
+        <SlArrowLeft onClick={() => setDate(new Date(year, month - 1, day))}></SlArrowLeft>
         <div>
-          {MONTHS[month]} {year}
+          {MONTHS[month]}
         </div>
-        <Button onClick={() => setDate(new Date(year, month + 1, day))}>Next</Button>
+        <SlArrowRight onClick={() => setDate(new Date(year, month + 1, day))}></SlArrowRight>
       </Header>
       <Body>
         {DAYS_OF_THE_WEEK.map(d => (
-          <Day key={d}>
+          <DayWeek key={d}>
             <strong>{d}</strong>
-          </Day>
+          </DayWeek>
         ))}
         {Array(days[month] + (startDay - 1))
           .fill(null)

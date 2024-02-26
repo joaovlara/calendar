@@ -1,6 +1,6 @@
 import DrawGrid from "./components/DrawGrid";
 import Calendar from "./components/Calendar";
-import { Content, Grades, LeftContainer } from "./components/styles";
+import { Content, RightContainer, LeftContainer } from "./components/styles";
 import { CoffeDay } from "./components/CoffeeDay";
 
 export function App() {
@@ -9,10 +9,10 @@ export function App() {
             <LeftContainer>
                 <DrawGrid />
             </LeftContainer>
-            <Grades>
+            <RightContainer>
                 <Calendar />
-                <CoffeDay/>
-            </Grades>
+                <CoffeDay />
+            </RightContainer>
         </Content>
     )
 }
