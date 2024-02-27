@@ -26,7 +26,6 @@ export const ContainerDraw = styled.div`
     flex-direction:column;
     width: 75%;
     margin-top: 30%;
-
 `;
 export const SortArea = styled.div`
     display: flex;
@@ -45,7 +44,7 @@ export const InputText = styled.input`
     margin: 4% 0% 10% 0%;
     border: solid 1px;
     border-radius: 5px;
-    height: 25px;
+    height: 3vh;
     width: 90%;
 `
 export const FormAdd = styled.div`
@@ -84,18 +83,17 @@ export const MainH1 = styled.h1`
 `;
 export const TextLeft = styled.p`
     font-size: 15px;
-
 `;
 /* Estilos do Calendar */
 
 export const CalendarTable = styled.div`
   width: 100%;
+  height: 70vh;
   border-bottom: 1px solid black;
 `;
 export const Header = styled.div`
   color: white;
-  gap: .5%;
-  padding: 1.4%;
+  padding: 1.7%;
   display: flex;
   background-color: #B73625;
   cursor: pointer;
@@ -111,19 +109,18 @@ export const Body = styled.div`
 export const DayWeek = styled.div`
     display: flex;
     justify-content: flex-start;
-    padding-top: 60px;
     border-style: solid;
     border-width: 0px .5px .5px .0px;
     width: 14.17%;
     cursor: pointer;
-    `
+`;
 
 export const Day = styled.div`
     display: flex;
     justify-content: flex-end;
     border-style: solid;
     border-width: 0px .5px .5px .0px;
-    height: 90px;
+    height: 10vh;
     width: 14.17%;
   cursor: pointer;
 
@@ -157,7 +154,8 @@ export const CoffeWeek = styled.div`
 export const DayCoffee = styled.span`
     display: flex;
     justify-content: center;
-    border: solid 1px;
+    border: lightblue 1px;
+    box-shadow: 0px 4px 6px 4px #747474;
     width: 11vw;
     height: 12vh;
 `;
