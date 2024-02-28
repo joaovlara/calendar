@@ -1,9 +1,7 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import { CalendarTable, Header, Button, Body, Day, DayWeek } from './styles';
+import { CalendarTable, Header, MonthP, Body, DayDiv, Day, DayWeek, StrongWeek } from './styles';
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
-
-
 
 export function Calendar() {
 
@@ -12,7 +10,6 @@ export function Calendar() {
   const DAYS_LEAP = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
   const DAYS_OF_THE_WEEK = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'];
   const MONTHS = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
-
 
   const today = new Date();
   const [date, setDate] = useState(today);
@@ -29,7 +26,7 @@ export function Calendar() {
   }, [date]);
 
   function getStartDayOfMonth(date = Date) {
-    return new Date(date.getFullYear(), date.getMonth(), 2).getDay();
+    return new Date(date.getFullYear(), date.getMonth(), 1).getDay();
   }
 
   function isLeapYear(year) {
@@ -42,33 +39,31 @@ export function Calendar() {
     <CalendarTable>
       <Header>
         <SlArrowLeft onClick={() => setDate(new Date(year, month - 1, day))}></SlArrowLeft>
-        <div>
-          {MONTHS[month]}
-        </div>
+        <MonthP> {MONTHS[month]} </MonthP>
         <SlArrowRight onClick={() => setDate(new Date(year, month + 1, day))}></SlArrowRight>
       </Header>
       <Body>
         {DAYS_OF_THE_WEEK.map(d => (
           <DayWeek key={d}>
-            <strong>{d}</strong>
+            <StrongWeek>{d}</StrongWeek>
           </DayWeek>
         ))}
         {GRID_DAYS
 
-        .fill(null)
-        .map((_, index) => {
-          const d = index - (startDay - 2);
-          return (
-            <Day
-              key={index}
-              isToday={d === today.getDate()}
-              isSelected={d === day}
-            >
-              {d > 0 && d <= days[month] ? d : ''}
-
-            </Day>
-          );
-        })}
+          .fill(null)
+          .map((_, index) => {
+            const d = index - (startDay - 1);
+            return (
+              <DayDiv
+                  key={index}
+                  isToday={d === today.getDate()}
+                  isSelected={d === day}>
+                    <Day>
+                      {d > 0 && d <= days[month] ? d : ''}
+                    </Day>
+              </DayDiv>
+            );
+          })}
       </Body>
     </CalendarTable>
   );

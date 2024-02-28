@@ -1,7 +1,7 @@
 import DrawGrid from "./components/DrawGrid";
 import Calendar from "./components/Calendar";
+import CoffeeDay from "./components/CoffeeDay";
 import { Content, RightContainer, LeftContainer } from "./components/styles";
-import { CoffeDay } from "./components/CoffeeDay";
 
 export function App() {
     return (
@@ -11,7 +11,7 @@ export function App() {
             </LeftContainer>
             <RightContainer>
                 <Calendar />
-                <CoffeDay />
+                <CoffeeDay />
             </RightContainer>
         </Content>
     )

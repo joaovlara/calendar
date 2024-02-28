@@ -9,7 +9,7 @@ export const Content = styled.div`
     flex-direction: row;
 `;
 export const LeftContainer = styled.div`
-    border-right: solid 1px;
+    border-right: outset 1px;
     display:flex;
     width: 30vw;
     height: 100vh;
@@ -19,6 +19,7 @@ export const RightContainer = styled.div`
     height: 100vh;
     width: 70vw;
 `;
+
 /* Separação contaiter esquerdo com formulario e botoes */
 
 export const ContainerDraw = styled.div`
@@ -34,8 +35,8 @@ export const SortArea = styled.div`
     padding: 20% 0% 10% 0%;
 `;
 export const SortList = styled.ul`
-
 `;
+
 /* Estilo DRAWGRID*/
 
 export const InputText = styled.input`
@@ -45,7 +46,7 @@ export const InputText = styled.input`
     border: solid 1px;
     border-radius: 5px;
     height: 3vh;
-    width: 90%;
+    width: 100%;
 `
 export const FormAdd = styled.div`
     display: flex;
@@ -53,7 +54,9 @@ export const FormAdd = styled.div`
     align-items: center;
 `;
 export const BtnAdd = styled.button`
+
     background-color: #B73625;
+    font-family: 'Montserrat';
     cursor: pointer;
     color: white;
     border: none;
@@ -65,6 +68,7 @@ export const BtnAdd = styled.button`
   }
 `;
 export const BtnSort = styled.button`
+    font-family: 'Montserrat';
     background-color: #B73625;
     cursor: pointer;
     color: white;
@@ -76,86 +80,103 @@ export const BtnSort = styled.button`
   }
 `;
 export const MainH1 = styled.h1`
+    font-family: 'Montserrat';
     display: flex;
     justify-content: center;
     font-size: 26px;
     padding: 8% 0% 8% 0%;
 `;
 export const TextLeft = styled.p`
+    font-family: 'Montserrat';
     font-size: 15px;
 `;
+
 /* Estilos do Calendar */
 
 export const CalendarTable = styled.div`
-  width: 100%;
-  height: 70vh;
-  border-bottom: 1px solid black;
+    width: 100%;
+    height: 70vh;
 `;
 export const Header = styled.div`
-  color: white;
-  padding: 1.7%;
-  display: flex;
-  background-color: #B73625;
-  cursor: pointer;
+    font-family: 'Montserrat';
+    padding-left: 1%;
+    display: flex;
+    align-items: center;
+    color: white;  
+    height: 5vh;
+    background-color: #B73625;
+    cursor: pointer;
 `;
-export const Button = styled.div`
-  cursor: pointer;
-`;
+export const MonthP = styled.p`
+    font-family: 'Montserrat';
+    
+`
 export const Body = styled.div`
     display: flex;
     flex-wrap: wrap;
 `;
-
 export const DayWeek = styled.div`
+    font-family: 'Montserrat';
     display: flex;
-    justify-content: flex-start;
-    border-style: solid;
-    border-width: 0px .5px .5px .0px;
-    width: 14.17%;
+    align-items: end;
+    border: outset 1px;
+    width: 14.07%;
+    height: 4vh;
     cursor: pointer;
 `;
-
-export const Day = styled.div`
+export const StrongWeek = styled.strong`
+    font-family: 'Montserrat';
+`
+export const DayDiv = styled.div`
+    font-family: 'Montserrat';
     display: flex;
+    align-items: flex-end;
     justify-content: flex-end;
-    border-style: solid;
-    border-width: 0px .5px .5px .0px;
+    border: outset 1px;
     height: 10vh;
-    width: 14.17%;
-  cursor: pointer;
+    width: 14.07%;
+    cursor: pointer;
 
   ${props =>
         props.isToday &&
         css`
-      border-color:  #B73625;
-      
+      border: solid 1px #B73625;
     `}
 `;
-
+export const Day = styled.p`
+    font-family: 'Montserrat';
+    margin: 4%;
+`;
 /* Estilos CoffeDay */
 
 export const CoffeeDiv = styled.div`
     display: flex;
     flex-direction:column;
-    margin: 2%;
+    margin: 3%;
 `;
-
-export const TextCoffee = styled.p`
-    font-weight: bold;
-    padding-bottom: 4%;
+export const TextCoffee = styled.strong`
+    font-family: 'Montserrat';
+    font-size: 20px;
+    padding-bottom: 2%;
 `;
-
 export const CoffeWeek = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 `;
-
 export const DayCoffee = styled.span`
     display: flex;
+    font-family: 'Montserrat';
+    padding-top: 5%;
     justify-content: center;
     border: lightblue 1px;
-    box-shadow: 0px 4px 6px 4px #747474;
+    box-shadow: 0px 4px 4px 4px #747474;
     width: 11vw;
     height: 12vh;
+
+    ${props =>
+        props.isToday &&
+        css`
+      border: solid 1px #B73625;
+    `}
 `;
