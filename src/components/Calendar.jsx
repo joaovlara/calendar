@@ -49,7 +49,6 @@ export function Calendar() {
           </DayWeek>
         ))}
         {GRID_DAYS
-
           .fill(null)
           .map((_, index) => {
             const d = index - (startDay - 1);

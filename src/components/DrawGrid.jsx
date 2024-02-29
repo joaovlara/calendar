@@ -1,10 +1,12 @@
 import { BtnAdd, BtnSort, ContainerDraw, InputText, MainH1, SortArea, SortList, TextLeft, FormAdd } from "./styles"
+import ToggleButton from "./ToggleButton"
 
 function DrawGrid() {
     /* const ()*/
     return (
         <ContainerDraw>
-            <p>Dark Mode</p>
+
+            <ToggleButton/>
             <MainH1>Calendário de Limpeza</MainH1>
             <TextLeft>Insira o nome</TextLeft>
             <FormAdd>

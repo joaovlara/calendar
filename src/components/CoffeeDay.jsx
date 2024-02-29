@@ -1,31 +1,33 @@
-import { useState, useEffect } from 'react';
-import { CoffeWeek, DayCoffee, TextCoffee, CoffeeDiv } from "./styles";
+import React, { useState, useEffect } from 'react';
+import { CoffeeWeek, DayCoffee, TextCoffee, CoffeeContainer, CoffeeDiv } from "./styles";
 
 export function CoffeeDay() {
   const today = new Date();
   const DAYS_OF_THE_WEEK = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex'];
-  const [date, setDate] = useState(today);
-  const [day, setDay] = useState(date.getDate());
-  const [dayOfWeek, setDayOfWeek] = useState(DAYS_OF_THE_WEEK[date.getDay()]);
+  const [date] = useState(today);
+  const [dayOfWeek, setDayOfWeek] = useState(date.getDay());
 
   useEffect(() => {
-    const currentDayOfWeek = DAYS_OF_THE_WEEK[date.getDay()];
-    setDayOfWeek(currentDayOfWeek);
+    setDayOfWeek(date.getDay());
   }, [date]);
 
   return (
-    <CoffeeDiv>
-      <TextCoffee>Dia do Café</TextCoffee>
-      <CoffeWeek>
-        {DAYS_OF_THE_WEEK.map(d => (
-          <div 
-            key={d} 
-            isToday={d === dayOfWeek}>
-            <DayCoffee>{d}</DayCoffee>
-          </div>
-        ))}
-      </CoffeWeek>
-    </CoffeeDiv>
+    <CoffeeContainer>
+      <TextCoffee>Dia do Café</TextCoffee>   
+      <CoffeeWeek>
+        {DAYS_OF_THE_WEEK.map((day, index) => {
+          const d = index + 1;
+          return (
+            <CoffeeDiv
+              key={d}
+              isToday={d === dayOfWeek}
+            >
+              <DayCoffee>{day}</DayCoffee>
+            </CoffeeDiv>
+          );
+        })}
+      </CoffeeWeek>
+    </CoffeeContainer>
   );
 }
 

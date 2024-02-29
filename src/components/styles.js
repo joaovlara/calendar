@@ -109,8 +109,7 @@ export const Header = styled.div`
 `;
 export const MonthP = styled.p`
     font-family: 'Montserrat';
-    
-`
+`;
 export const Body = styled.div`
     display: flex;
     flex-wrap: wrap;
@@ -149,7 +148,7 @@ export const Day = styled.p`
 `;
 /* Estilos CoffeDay */
 
-export const CoffeeDiv = styled.div`
+export const CoffeeContainer = styled.div`
     display: flex;
     flex-direction:column;
     margin: 3%;
@@ -159,24 +158,29 @@ export const TextCoffee = styled.strong`
     font-size: 20px;
     padding-bottom: 2%;
 `;
-export const CoffeWeek = styled.div`
+export const CoffeeWeek = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 `;
+
+export const CoffeeDiv = styled.div`
+    ${props =>
+        props.isToday &&
+        css`
+        border-top: solid 3px #B73625;
+        `}
+`;
+
 export const DayCoffee = styled.span`
     display: flex;
     font-family: 'Montserrat';
     padding-top: 5%;
     justify-content: center;
     border: lightblue 1px;
-    box-shadow: 0px 4px 4px 4px #747474;
+    box-shadow: 0px 2px 2px 2px #747474;
     width: 11vw;
     height: 12vh;
-
-    ${props =>
-        props.isToday &&
-        css`
-      border: solid 1px #B73625;
-    `}
 `;
+
+
