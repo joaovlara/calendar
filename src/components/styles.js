@@ -25,14 +25,16 @@ export const RightContainer = styled.div`
 export const ContainerDraw = styled.div`
     display: flex;
     flex-direction:column;
-    width: 75%;
-    margin-top: 30%;
+    width: 80%;
+    margin-top: 10%;
 `;
 export const SortArea = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     padding: 20% 0% 10% 0%;
+    width: 90%;
+
 `;
 export const SortList = styled.ul`
 `;
@@ -45,8 +47,8 @@ export const InputText = styled.input`
     margin: 4% 0% 10% 0%;
     border: solid 1px;
     border-radius: 5px;
-    height: 3vh;
-    width: 100%;
+    height: 4vh;
+    width: 85%;
 `
 export const FormAdd = styled.div`
     display: flex;
@@ -61,10 +63,11 @@ export const BtnAdd = styled.button`
     color: white;
     border: none;
     padding: 4px;
-    border-radius: 3px;
+    border-radius: 5px;
     width: 100px;
     &:hover {
-        box-shadow: 4px 4px 0px 0px rgba(119,36,25,1);
+
+        box-shadow: 4px 4px 0px 0px #772419;
   }
 `;
 export const BtnSort = styled.button`
@@ -74,19 +77,20 @@ export const BtnSort = styled.button`
     color: white;
     border: none;
     padding: 4px;
-    border-radius: 3px;
+    border-radius: 5px;
     &:hover {
-        box-shadow: 4px 4px 0px 0px rgba(119,36,25,1);
+        box-shadow: 4px 4px 0px 0px #772419;
   }
 `;
 export const MainH1 = styled.h1`
     font-family: 'Montserrat';
     display: flex;
-    justify-content: center;
-    font-size: 26px;
-    padding: 8% 0% 8% 0%;
+    font-size: 28px;
+    padding: 40% 0% 8% 0%;
 `;
 export const TextLeft = styled.p`
+    display:flex;
+    padding-left: 8%;
     font-family: 'Montserrat';
     font-size: 15px;
 `;

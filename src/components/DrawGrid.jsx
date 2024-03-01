@@ -5,7 +5,6 @@ function DrawGrid() {
     /* const ()*/
     return (
         <ContainerDraw>
-
             <ToggleButton/>
             <MainH1>Calendário de Limpeza</MainH1>
             <TextLeft>Insira o nome</TextLeft>
