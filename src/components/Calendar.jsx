@@ -54,12 +54,12 @@ export function Calendar() {
             const d = index - (startDay - 1);
             return (
               <DayDiv
-                  key={index}
-                  isToday={d === today.getDate()}
-                  isSelected={d === day}>
-                    <Day>
-                      {d > 0 && d <= days[month] ? d : ''}
-                    </Day>
+                key={index}
+                isToday={d === today.getDate()}
+                isSelected={d === day}>
+                <Day>
+                  {d > 0 && d <= days[month] ? d : ''}
+                </Day>
               </DayDiv>
             );
           })}

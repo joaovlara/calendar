@@ -7,4 +7,4 @@ export const GlobalStyle = createGlobalStyle`
         font-family: "Roboto";
         text-decoration: none;
     }
-`
+`;

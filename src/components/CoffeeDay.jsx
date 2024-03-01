@@ -13,7 +13,7 @@ export function CoffeeDay() {
 
   return (
     <CoffeeContainer>
-      <TextCoffee>Dia do Café</TextCoffee>   
+      <TextCoffee>Dia do Café</TextCoffee>
       <CoffeeWeek>
         {DAYS_OF_THE_WEEK.map((day, index) => {
           const d = index + 1;
@@ -22,7 +22,9 @@ export function CoffeeDay() {
               key={d}
               isToday={d === dayOfWeek}
             >
-              <DayCoffee>{day}</DayCoffee>
+              <DayCoffee>
+                {day}
+              </DayCoffee>
             </CoffeeDiv>
           );
         })}

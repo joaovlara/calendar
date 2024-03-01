@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styled, { css } from 'styled-components';
 
 /* Separação divisões da tela*/
@@ -150,6 +151,7 @@ export const Day = styled.p`
     font-family: 'Montserrat';
     margin: 4%;
 `;
+
 /* Estilos CoffeDay */
 
 export const CoffeeContainer = styled.div`
@@ -167,7 +169,6 @@ export const CoffeeWeek = styled.div`
     flex-direction: row;
     justify-content: space-between;
 `;
-
 export const CoffeeDiv = styled.div`
     ${props =>
         props.isToday &&
@@ -175,7 +176,6 @@ export const CoffeeDiv = styled.div`
         border-top: solid 3px #B73625;
         `}
 `;
-
 export const DayCoffee = styled.span`
     display: flex;
     font-family: 'Montserrat';
@@ -187,4 +187,13 @@ export const DayCoffee = styled.span`
     height: 12vh;
 `;
 
+/* Dark Theme */
+
+// const darkTheme = {
+//     Content: "#171717",
+//     MainH1, TextLeft, InputText, MonthP, StrongWeek, TextCoffee: "#F1F1F1",
+// };
+
+// const [theme, setTheme] = useState("Light");
+// const isDarkTheme = theme === "dark";
 

@@ -7,7 +7,6 @@ export function App() {
     return (
         <Content>
             <LeftContainer>
-                
                 <DrawGrid />
             </LeftContainer>
             <RightContainer>

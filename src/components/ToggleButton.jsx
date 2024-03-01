@@ -19,13 +19,11 @@ const Switch = styled.label`
     width: 3.5em;
     height: 2em;
 `;
-
 const InputSlider = styled.input.attrs({ type: 'checkbox' })`
      opacity: 0;
      width: 0;
      height: 0;
 `;
-
 const Slider = styled.span`
     position: absolute;
     cursor: pointer;
@@ -54,6 +52,5 @@ const Slider = styled.span`
     transform: translateX(25px);
     };
 `;
-
 
 export default ToggleButton;
