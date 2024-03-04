@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { BtnAdd, BtnSort, ContainerDraw, InputText, MainH1, SortArea, SortList, TextLeft, FormAdd } from "./styles";
-import ToggleButton from "./ToggleButton.jsx";
+import React from 'react';
+import ToggleButton from "./ToggleButton";
+import { ContainerDraw, MainH1, TextLeft, FormAdd, InputText, BtnAdd, SortArea, BtnSort, SortList } from "./styles";
 
 function DrawGrid({ toggleTheme }) {
     return (
         <ContainerDraw>
-            <ToggleButton onClick={() => toggleTheme} />
+            <ToggleButton toggleTheme={toggleTheme} />
             <MainH1>Calendário de Limpeza</MainH1>
             <TextLeft>Insira o nome</TextLeft>
             <FormAdd>
@@ -23,9 +23,8 @@ function DrawGrid({ toggleTheme }) {
                 <li>Exemplo</li>
                 <li>Exemplo</li>
                 <li>Exemplo</li>
-            </SortList>
-        </ContainerDraw>
-    )
+            </SortList>        </ContainerDraw>
+    );
 }
 
-export default DrawGrid
+export default DrawGrid;

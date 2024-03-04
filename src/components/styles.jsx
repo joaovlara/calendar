@@ -1,6 +1,23 @@
 import { useState } from 'react';
 import styled, { css } from 'styled-components';
 
+/* Themes */
+export const darkTheme = {
+    black: "#171717",
+    withe: "#f1f1f1",
+    card:"#1B1B1B",
+    shadow:"#000",
+    lines:"#747474",
+
+};
+export const lightTheme = {
+    body: "#F1F1F1",
+    shadow:"#747474",
+    lines:"#747474",
+
+
+};
+
 /* Separação divisões da tela*/
 
 export const Content = styled.div`
@@ -8,7 +25,7 @@ export const Content = styled.div`
     width:100vw;
     display: flex;
     flex-direction: row;
-    background-color: ${(props) => props.theme.body};
+    background-color: ${(props) => props.theme.black};
 
 `;
 export const LeftContainer = styled.div`
@@ -40,6 +57,7 @@ export const SortArea = styled.div`
 
 `;
 export const SortList = styled.ul`
+    color: ${(props) => props.theme.withe};
 `;
 
 /* Estilo DRAWGRID*/
@@ -57,6 +75,8 @@ export const FormAdd = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    color: ${(props) => props.theme.withe};
+
 `;
 export const BtnAdd = styled.button`
 
@@ -90,12 +110,15 @@ export const MainH1 = styled.h1`
     display: flex;
     font-size: 28px;
     padding: 40% 0% 8% 0%;
+    color: ${(props) => props.theme.withe};
 `;
 export const TextLeft = styled.p`
     display:flex;
     padding-left: 8%;
     font-family: 'Montserrat';
     font-size: 15px;
+    color: ${(props) => props.theme.withe};
+
 `;
 
 /* Estilos do Calendar */
@@ -116,6 +139,7 @@ export const Header = styled.div`
 `;
 export const MonthP = styled.p`
     font-family: 'Montserrat';
+    
 `;
 export const Body = styled.div`
     display: flex;
@@ -125,28 +149,34 @@ export const DayWeek = styled.div`
     font-family: 'Montserrat';
     display: flex;
     align-items: end;
-    border: outset 1px;
+    border: solid 1px;    
+    border-color: ${(props) => props.theme.lines};
     width: 14.07%;
     height: 4vh;
     cursor: pointer;
 `;
 export const StrongWeek = styled.strong`
     font-family: 'Montserrat';
+    color: ${(props) => props.theme.withe};
+
 `
 export const DayDiv = styled.div`
     font-family: 'Montserrat';
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;
-    border: outset 1px;
+    border: solid 1px;    
+    border-color: ${(props) => props.theme.lines};
     height: 10vh;
     width: 14.07%;
+    color: ${(props) => props.theme.withe};
+
     cursor: pointer;
 
   ${props =>
         props.isToday &&
         css`
-      border: solid 1px #B73625;
+      border-color: #B73625;
     `}
 `;
 export const Day = styled.p`
@@ -165,6 +195,8 @@ export const TextCoffee = styled.strong`
     font-family: 'Montserrat';
     font-size: 20px;
     padding-bottom: 2%;
+    color: ${(props) => props.theme.withe};
+
 `;
 export const CoffeeWeek = styled.div`
     display: flex;
@@ -184,9 +216,13 @@ export const DayCoffee = styled.span`
     padding-top: 5%;
     justify-content: center;
     border: lightblue 1px;
-    box-shadow: 0px 2px 2px 2px #747474;
+    box-shadow: 0px 2px 2px 2px ${(props) => props.theme.shadow};;
     width: 11vw;
     height: 12vh;
+    background-color: ${(props) => props.theme.card};
+
+    color: ${(props) => props.theme.withe};
+
 `;
 
 

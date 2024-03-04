@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export function ToggleButton() {
+export function ToggleButton({ toggleTheme }) {
     return (
         <Switch>
-            <InputSlider  />
+            <InputSlider type="checkbox" onChange={toggleTheme} />
             <Slider />
         </Switch>
     )
@@ -19,16 +19,18 @@ const Switch = styled.label`
     width: 3.5em;
     height: 2em;
 `;
-const InputSlider = styled.input.attrs({ type: 'checkbox' })`
+
+const InputSlider = styled.input`
      opacity: 0;
      width: 0;
      height: 0;
 `;
+
 const Slider = styled.span`
     position: absolute;
     cursor: pointer;
     inset: 0;
-    background-color: #D9D9D9;
+    background-color: #000;
     border-radius: 50px;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
@@ -45,7 +47,7 @@ const Slider = styled.span`
     };
 
     ${InputSlider}:checked + & {
-    background-color: #000;
+    background-color: #D9D9D9;
     };
 
     ${InputSlider}:checked + &::before {
