@@ -1,16 +1,16 @@
-import { BtnAdd, BtnSort, ContainerDraw, InputText, MainH1, SortArea, SortList, TextLeft, FormAdd } from "./styles"
-import ToggleButton from "./ToggleButton"
+import React, { useState } from 'react';
+import { BtnAdd, BtnSort, ContainerDraw, InputText, MainH1, SortArea, SortList, TextLeft, FormAdd } from "./styles";
+import ToggleButton from "./ToggleButton.jsx";
 
-function DrawGrid() {
-    /* const ()*/
+function DrawGrid({ toggleTheme }) {
     return (
         <ContainerDraw>
-            <ToggleButton />
+            <ToggleButton onClick={() => toggleTheme} />
             <MainH1>Calendário de Limpeza</MainH1>
             <TextLeft>Insira o nome</TextLeft>
             <FormAdd>
-                <InputText type="text" />
-                <BtnAdd styled>Adicionar</BtnAdd>
+                <InputText />
+                <BtnAdd>Adicionar</BtnAdd>
             </FormAdd>
             <SortArea>
                 <TextLeft>Lista de participantes</TextLeft>

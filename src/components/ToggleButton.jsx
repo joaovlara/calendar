@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export function ToggleButton() {
     return (
         <Switch>
-            <InputSlider />
+            <InputSlider  />
             <Slider />
         </Switch>
     )

@@ -8,6 +8,8 @@ export const Content = styled.div`
     width:100vw;
     display: flex;
     flex-direction: row;
+    background-color: ${(props) => props.theme.body};
+
 `;
 export const LeftContainer = styled.div`
     border-right: outset 1px;
@@ -187,13 +189,4 @@ export const DayCoffee = styled.span`
     height: 12vh;
 `;
 
-/* Dark Theme */
-
-// const darkTheme = {
-//     Content: "#171717",
-//     MainH1, TextLeft, InputText, MonthP, StrongWeek, TextCoffee: "#F1F1F1",
-// };
-
-// const [theme, setTheme] = useState("Light");
-// const isDarkTheme = theme === "dark";
 
