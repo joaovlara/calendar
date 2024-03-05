@@ -1,19 +1,30 @@
 import { useState } from 'react';
 import styled, { css } from 'styled-components';
+import { ReactComponent as DeleteListaWhite } from '../img/icones/DeleteListaWhite.svg';
+import { ReactComponent as DeleteListaBlack } from '../img/icones/DeleteListaBlack.svg';
+
+
+
 
 /* Themes */
 export const darkTheme = {
     black: "#171717",
     withe: "#f1f1f1",
     card:"#1B1B1B",
-    shadow:"#000",
+    shadow:"#0d0d0d",
     lines:"#747474",
 };
 export const lightTheme = {
     body: "#F1F1F1",
-    shadow:"#747474",
-    lines:"#747474",
+    shadow: "#747474",
+    lines: "#747474",
+    svg: DeleteListaBlack, 
 };
+
+export const SvgIcon = styled.svg`
+    height: 2vh;
+    fill: ${(props) => props.theme.svg}; 
+`;
 
 /* Separação divisões da tela*/
 
@@ -110,6 +121,12 @@ export const TextLeft = styled.p`
     font-family: 'Montserrat';
     font-size: 15px;
     color: ${(props) => props.theme.withe};
+`;
+
+export const ListaMemb = styled.li`
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
 `;
 
 /* Estilos do Calendar */
