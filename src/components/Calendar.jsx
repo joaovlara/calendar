@@ -67,6 +67,6 @@ export function Calendar() {
     </CalendarTable>
   );
 
-}
+};
 
-export default Calendar
+export default Calendar;

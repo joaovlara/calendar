@@ -31,6 +31,6 @@ export function CoffeeDay() {
       </CoffeeWeek>
     </CoffeeContainer>
   );
-}
+};
 
 export default CoffeeDay;

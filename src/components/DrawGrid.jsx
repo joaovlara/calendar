@@ -23,8 +23,9 @@ function DrawGrid({ toggleTheme }) {
                 <li>Exemplo</li>
                 <li>Exemplo</li>
                 <li>Exemplo</li>
-            </SortList>        </ContainerDraw>
+            </SortList>
+        </ContainerDraw>
     );
-}
+};
 
 export default DrawGrid;

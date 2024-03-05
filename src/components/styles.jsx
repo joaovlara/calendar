@@ -8,14 +8,11 @@ export const darkTheme = {
     card:"#1B1B1B",
     shadow:"#000",
     lines:"#747474",
-
 };
 export const lightTheme = {
     body: "#F1F1F1",
     shadow:"#747474",
     lines:"#747474",
-
-
 };
 
 /* Separação divisões da tela*/
@@ -26,7 +23,6 @@ export const Content = styled.div`
     display: flex;
     flex-direction: row;
     background-color: ${(props) => props.theme.black};
-
 `;
 export const LeftContainer = styled.div`
     border-right: outset 1px;
@@ -54,7 +50,6 @@ export const SortArea = styled.div`
     justify-content: space-between;
     padding: 20% 0% 10% 0%;
     width: 90%;
-
 `;
 export const SortList = styled.ul`
     color: ${(props) => props.theme.withe};
@@ -70,16 +65,14 @@ export const InputText = styled.input`
     border-radius: 5px;
     height: 4vh;
     width: 85%;
-`
+`;
 export const FormAdd = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
     color: ${(props) => props.theme.withe};
-
 `;
 export const BtnAdd = styled.button`
-
     background-color: #B73625;
     font-family: 'Montserrat';
     cursor: pointer;
@@ -89,7 +82,6 @@ export const BtnAdd = styled.button`
     border-radius: 5px;
     width: 100px;
     &:hover {
-
         box-shadow: 4px 4px 0px 0px #772419;
   }
 `;
@@ -118,7 +110,6 @@ export const TextLeft = styled.p`
     font-family: 'Montserrat';
     font-size: 15px;
     color: ${(props) => props.theme.withe};
-
 `;
 
 /* Estilos do Calendar */
@@ -158,7 +149,6 @@ export const DayWeek = styled.div`
 export const StrongWeek = styled.strong`
     font-family: 'Montserrat';
     color: ${(props) => props.theme.withe};
-
 `
 export const DayDiv = styled.div`
     font-family: 'Montserrat';
@@ -170,9 +160,7 @@ export const DayDiv = styled.div`
     height: 10vh;
     width: 14.07%;
     color: ${(props) => props.theme.withe};
-
     cursor: pointer;
-
   ${props =>
         props.isToday &&
         css`
@@ -196,7 +184,6 @@ export const TextCoffee = styled.strong`
     font-size: 20px;
     padding-bottom: 2%;
     color: ${(props) => props.theme.withe};
-
 `;
 export const CoffeeWeek = styled.div`
     display: flex;
@@ -220,9 +207,7 @@ export const DayCoffee = styled.span`
     width: 11vw;
     height: 12vh;
     background-color: ${(props) => props.theme.card};
-
     color: ${(props) => props.theme.withe};
-
 `;
 
 

@@ -5,14 +5,11 @@ import CoffeeDay from "./components/CoffeeDay";
 import { Content, RightContainer, LeftContainer, lightTheme, darkTheme } from "./components/styles";
 import { ThemeProvider } from "styled-components";
 
-
 function App() {
     const [theme, setTheme] = useState('dark');
-
     const toggleTheme = () => {
         setTheme(theme === 'dark' ? 'light' : 'dark');
     };
-
     return (
         <ThemeProvider theme={theme === 'dark' ? darkTheme : lightTheme}>
             <Content>
@@ -25,7 +22,7 @@ function App() {
                 </RightContainer>
             </Content>
         </ThemeProvider>
-    )
-}
+    );
+};
 
 export default App;
