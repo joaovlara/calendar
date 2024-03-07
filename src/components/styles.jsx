@@ -235,9 +235,10 @@ export const DayCoffee = styled.span`
 `;
 
 export const EditableText = styled.p`
+    font-size: 15px;
     display:flex;
+    justify-content: center;
     padding-top: 15%;
-    padding-left: 4%;
     font-family: 'Montserrat';
     color: ${(props) => props.theme.withe};
 `;

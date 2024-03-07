@@ -12,7 +12,7 @@ export function CoffeeDay() {
   }, [date]);
 
   const CardEdit = () => {
-    const [text, setText] = useState('Membro');
+    const [text, setText] = useState('Membro Membro');
 
 
     const handleTextChange = (event) => {
