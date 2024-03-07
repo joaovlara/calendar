@@ -1,32 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import ToggleButton from "./ToggleButton";
-import { ContainerDraw, MainH1, TextLeft, FormAdd, InputText, BtnAdd, SortArea, BtnSort, SortList, ListaMemb, SvgIcon } from "./styles";
+import { ContainerDraw, MainH1, TextLeft, FormAdd, InputText, BtnAdd, SortArea, BtnSort, SortList, ListaMemb } from "./styles";
 import { ReactComponent as DeleteListaWhite } from '../img/icones/DeleteListaWhite.svg';
 
 function DrawGrid({ toggleTheme }) {
     const [inputValue, setInputValue] = useState('');
-    const [name, setMembers] = useState([]);
+    const [members, setMembers] = useState([]);
 
     const addMember = () => {
         if (inputValue.trim() === '') {
             return;
         }
         const newMember = {
-            member: inputValue,
+            name: inputValue,
         };
-        setMembers([...name, newMember]);
+        setMembers([...members, newMember]);
         setInputValue('');
     };
 
     const deleteMember = (index) => {
-        const updatedMembers = [...name.slice(0, index), ...name.slice(index + 1)];
+        const updatedMembers = [...members.slice(0, index), ...members.slice(index + 1)];
         setMembers(updatedMembers);
     };
 
-    const sortearNome = () => {
-        const indiceSorteado = Math.floor(Math.random() * name.length);
-        const nomeSorteado = name[indiceSorteado];
-        alert(`O nome sorteado é: ${nomeSorteado.member}`);
+    const DrawName = () => {
+        const indiceSorteado = Math.floor(Math.random() * members.length);
+        const nomeSorteado = members[indiceSorteado];
+        alert(`O nome sorteado é: ${nomeSorteado.name}`);
     };
 
     return (
@@ -36,6 +36,7 @@ function DrawGrid({ toggleTheme }) {
             <TextLeft>Insira o nome</TextLeft>
             <FormAdd onSubmit={addMember}>
                 <InputText
+                    placeholder='Ex. Joao'
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
                 />
@@ -43,12 +44,12 @@ function DrawGrid({ toggleTheme }) {
             </FormAdd>
             <SortArea>
                 <TextLeft>Lista de participantes</TextLeft>
-                <BtnSort onClick={sortearNome}>Sortear</BtnSort>
+                <BtnSort onClick={DrawName}>Sortear</BtnSort>
             </SortArea>
             <SortList>
-                {name.map((member, index) => (
+                {members.map((member, index) => (
                     <ListaMemb key={index}>
-                        {member.member}
+                        {member.name}
                         <DeleteListaWhite onClick={() => deleteMember(index)} />
                     </ListaMemb>
                 ))}
@@ -58,3 +59,4 @@ function DrawGrid({ toggleTheme }) {
 }
 
 export default DrawGrid;
+

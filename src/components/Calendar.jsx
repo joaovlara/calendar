@@ -16,7 +16,7 @@ export function Calendar() {
   const [day, setDay] = useState(date.getDate());
   const [month, setMonth] = useState(date.getMonth());
   const [year, setYear] = useState(date.getFullYear());
-  const [startDay, setStartDay] = useState(getStartDayOfMonth(date));  
+  const [startDay, setStartDay] = useState(getStartDayOfMonth(date));
 
   useEffect(() => {
     setDay(date.getDate());

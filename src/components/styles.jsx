@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { ReactComponent as DeleteListaWhite } from '../img/icones/DeleteListaWhite.svg';
 import { ReactComponent as DeleteListaBlack } from '../img/icones/DeleteListaBlack.svg';
