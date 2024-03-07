@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ToggleButton from "./ToggleButton";
 import { ContainerDraw, MainH1, TextLeft, FormAdd, InputText, BtnAdd, SortArea, BtnSort, SortList, ListaMemb, SvgIcon } from "./styles";
 import { ReactComponent as DeleteListaWhite } from '../img/icones/DeleteListaWhite.svg';
 
-
 function DrawGrid({ toggleTheme }) {
     const [inputValue, setInputValue] = useState('');
-    const [members, setMembers] = useState([]);
+    const [name, setMembers] = useState([]);
 
     const addMember = () => {
         if (inputValue.trim() === '') {
@@ -15,13 +14,19 @@ function DrawGrid({ toggleTheme }) {
         const newMember = {
             member: inputValue,
         };
-        setMembers([...members, newMember]);
+        setMembers([...name, newMember]);
         setInputValue('');
     };
 
     const deleteMember = (index) => {
-        const updatedMembers = [...members.slice(0, index), ...members.slice(index + 1)];
+        const updatedMembers = [...name.slice(0, index), ...name.slice(index + 1)];
         setMembers(updatedMembers);
+    };
+
+    const sortearNome = () => {
+        const indiceSorteado = Math.floor(Math.random() * name.length);
+        const nomeSorteado = name[indiceSorteado];
+        alert(`O nome sorteado é: ${nomeSorteado.member}`);
     };
 
     return (
@@ -29,7 +34,7 @@ function DrawGrid({ toggleTheme }) {
             <ToggleButton toggleTheme={toggleTheme} />
             <MainH1>Calendário de Limpeza</MainH1>
             <TextLeft>Insira o nome</TextLeft>
-            <FormAdd>
+            <FormAdd onSubmit={addMember}>
                 <InputText
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
@@ -38,14 +43,13 @@ function DrawGrid({ toggleTheme }) {
             </FormAdd>
             <SortArea>
                 <TextLeft>Lista de participantes</TextLeft>
-                <BtnSort>Sortear</BtnSort>
+                <BtnSort onClick={sortearNome}>Sortear</BtnSort>
             </SortArea>
             <SortList>
-                {members.map((member, index) => (
-                    <ListaMemb
-                        key={index}>{member.member}
-                        <DeleteListaWhite
-                            onClick={() => deleteMember(index)} />
+                {name.map((member, index) => (
+                    <ListaMemb key={index}>
+                        {member.member}
+                        <DeleteListaWhite onClick={() => deleteMember(index)} />
                     </ListaMemb>
                 ))}
             </SortList>

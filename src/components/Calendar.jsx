@@ -16,7 +16,7 @@ export function Calendar() {
   const [day, setDay] = useState(date.getDate());
   const [month, setMonth] = useState(date.getMonth());
   const [year, setYear] = useState(date.getFullYear());
-  const [startDay, setStartDay] = useState(getStartDayOfMonth(date));
+  const [startDay, setStartDay] = useState(getStartDayOfMonth(date));  
 
   useEffect(() => {
     setDay(date.getDate());
@@ -32,7 +32,6 @@ export function Calendar() {
   function isLeapYear(year) {
     return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
   }
-
   const days = isLeapYear(date.getFullYear()) ? DAYS_LEAP : DAYS;
 
   return (
