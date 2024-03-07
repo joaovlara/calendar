@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { CoffeeWeek, DayCoffee, TextCoffee, CoffeeContainer, CoffeeDiv } from "./styles";
+import { CoffeeWeek, DayCoffee, TextCoffee, CoffeeContainer, CoffeeDiv, EditableText, CardCoffee } from "./styles";
 
 export function CoffeeDay() {
   const today = new Date();
@@ -11,26 +11,46 @@ export function CoffeeDay() {
     setDayOfWeek(date.getDay());
   }, [date]);
 
-  return (
-    <CoffeeContainer>
-      <TextCoffee>Dia do Café</TextCoffee>
-      <CoffeeWeek>
-        {DAYS_OF_THE_WEEK.map((day, index) => {
-          const d = index + 1;
-          return (
-            <CoffeeDiv
-              key={d}
-              isToday={d === dayOfWeek}
-            >
-              <DayCoffee>
-                {day}
-              </DayCoffee>
-            </CoffeeDiv>
-          );
-        })}
-      </CoffeeWeek>
-    </CoffeeContainer>
-  );
-};
+  const CardEdit = () => {
+    const [text, setText] = useState('Membro');
+
+
+    const handleTextChange = (event) => {
+      setText(event.target.innerText);
+
+    };
+
+    return (
+      <CoffeeContainer>
+        <TextCoffee>Dia do Café</TextCoffee>
+        <CoffeeWeek>
+          {DAYS_OF_THE_WEEK.map((day, index) => {
+            const d = index + 1;
+            return (
+              <CoffeeDiv
+                key={d}
+                isToday={d === dayOfWeek}
+              >
+                <CardCoffee>
+                  <DayCoffee>
+                    {day}
+                  </DayCoffee>
+                  <EditableText
+                    contentEditable
+                    onClick={handleTextChange}
+                  >
+                    {text}
+                  </EditableText>
+                </CardCoffee>
+              </CoffeeDiv>
+            );
+          })}
+        </CoffeeWeek>
+      </CoffeeContainer >
+    );
+  };
+
+  return <CardEdit />;
+}
 
 export default CoffeeDay;

@@ -10,15 +10,15 @@ import { ReactComponent as DeleteListaBlack } from '../img/icones/DeleteListaBla
 export const darkTheme = {
     black: "#171717",
     withe: "#f1f1f1",
-    card:"#1B1B1B",
-    shadow:"#0d0d0d",
-    lines:"#747474",
+    card: "#1B1B1B",
+    shadow: "#0d0d0d",
+    lines: "#747474",
 };
 export const lightTheme = {
     body: "#F1F1F1",
     shadow: "#747474",
     lines: "#747474",
-    svg: DeleteListaBlack, 
+    svg: DeleteListaBlack,
 };
 
 export const SvgIcon = styled.svg`
@@ -214,17 +214,31 @@ export const CoffeeDiv = styled.div`
         border-top: solid 3px #B73625;
         `}
 `;
-export const DayCoffee = styled.span`
+
+export const CardCoffee = styled.span`
     display: flex;
+    flex-direction: column; 
     font-family: 'Montserrat';
     padding-top: 5%;
-    justify-content: center;
     border: lightblue 1px;
     box-shadow: 0px 2px 2px 2px ${(props) => props.theme.shadow};;
     width: 11vw;
     height: 12vh;
     background-color: ${(props) => props.theme.card};
+`;
+
+export const DayCoffee = styled.span`
+    display: flex;
+    justify-content: center;
+    font-family: 'Montserrat';
     color: ${(props) => props.theme.withe};
 `;
 
+export const EditableText = styled.p`
+    display:flex;
+    padding-top: 15%;
+    padding-left: 4%;
+    font-family: 'Montserrat';
+    color: ${(props) => props.theme.withe};
+`;
 
