@@ -1,9 +1,4 @@
 import styled, { css } from 'styled-components';
-import { ReactComponent as DeleteListaWhite } from '../img/icones/DeleteListaWhite.svg';
-import { ReactComponent as DeleteListaBlack } from '../img/icones/DeleteListaBlack.svg';
-
-
-
 
 /* Themes */
 export const darkTheme = {
@@ -17,7 +12,6 @@ export const lightTheme = {
     body: "#F1F1F1",
     shadow: "#747474",
     lines: "#747474",
-    svg: DeleteListaBlack,
 };
 
 export const SvgIcon = styled.svg`

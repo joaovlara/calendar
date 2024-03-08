@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ToggleButton from "./ToggleButton";
+import { MdClose } from "react-icons/md";
 import { ContainerDraw, MainH1, TextLeft, FormAdd, InputText, BtnAdd, SortArea, BtnSort, SortList, ListaMemb } from "./styles";
-import { ReactComponent as DeleteListaWhite } from '../img/icones/DeleteListaWhite.svg';
 
 function DrawGrid({ toggleTheme }) {
     const [inputValue, setInputValue] = useState('');
@@ -50,7 +50,7 @@ function DrawGrid({ toggleTheme }) {
                 {members.map((member, index) => (
                     <ListaMemb key={index}>
                         {member.name}
-                        <DeleteListaWhite onClick={() => deleteMember(index)} />
+                        <MdClose onClick={() => deleteMember(index)} />
                     </ListaMemb>
                 ))}
             </SortList>

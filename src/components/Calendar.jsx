@@ -51,13 +51,20 @@ export function Calendar() {
           .fill(null)
           .map((_, index) => {
             const d = index - (startDay - 1);
+            const currentDate = new Date(year, month, d);
+            const isFriday = currentDate.getDay() === 5;
             return (
               <DayDiv
                 key={index}
                 isToday={d === today.getDate()}
                 isSelected={d === day}>
                 <Day>
-                  {d > 0 && d <= days[month] ? d : ''}
+                  {d > 0 && d <= days[month] ? (
+                    <>
+                      {isFriday && <span>Teste</span>} 
+                      {d}
+                    </>
+                  ) : ''}
                 </Day>
               </DayDiv>
             );
