@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import { CalendarTable, Header, MonthP, Body, DayDiv, Day, DayWeek, StrongWeek } from './styles';
+import { CalendarTable, Header, MonthP, Body, DayCard, Day, DayWeek, TextWeek, WeekContainer, DaysContainer, Dupla } from './styles';
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 
 export function Calendar() {
@@ -41,34 +41,41 @@ export function Calendar() {
         <MonthP> {MONTHS[month]} </MonthP>
         <SlArrowRight onClick={() => setDate(new Date(year, month + 1, day))}></SlArrowRight>
       </Header>
+
       <Body>
-        {DAYS_OF_THE_WEEK.map(d => (
-          <DayWeek key={d}>
-            <StrongWeek>{d}</StrongWeek>
-          </DayWeek>
-        ))}
-        {GRID_DAYS
-          .fill(null)
-          .map((_, index) => {
-            const d = index - (startDay - 1);
-            const currentDate = new Date(year, month, d);
-            const isFriday = currentDate.getDay() === 5;
-            return (
-              <DayDiv
-                key={index}
-                isToday={d === today.getDate()}
-                isSelected={d === day}>
-                <Day>
-                  {d > 0 && d <= days[month] ? (
-                    <>
-                      {isFriday && <span>Teste</span>} 
-                      {d}
-                    </>
-                  ) : ''}
-                </Day>
-              </DayDiv>
-            );
-          })}
+
+        <WeekContainer>
+          {DAYS_OF_THE_WEEK.map(d => (
+            <DayWeek key={d}>
+              <TextWeek>{d}</TextWeek>
+            </DayWeek>
+          ))}
+        </WeekContainer>
+        <DaysContainer>
+          {GRID_DAYS
+            .fill(null)
+            .map((_, index) => {
+              const d = index - (startDay - 1);
+              const currentDate = new Date(year, month, d);
+              const isFriday = currentDate.getDay() === 5;
+              return (
+                <DayCard
+                  key={index}
+                  isToday={d === today.getDate()}
+                  isSelected={d === day}>
+                  <Day>    
+                    {d > 0 && d <= days[month]? (
+                      <>
+                        {isFriday && <Dupla>TESTE</Dupla>}
+                        {d}
+                      </>
+                    ) : ''} 
+                  </Day>
+                </DayCard>
+              );
+            })}
+        </DaysContainer>
+
       </Body>
     </CalendarTable>
   );

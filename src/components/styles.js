@@ -23,7 +23,6 @@ export const SvgIcon = styled.svg`
 
 export const Content = styled.div`
     height: 100vh;
-    width:100vw;
     display: flex;
     flex-direction: row;
     background-color: ${(props) => props.theme.black};
@@ -32,7 +31,6 @@ export const LeftContainer = styled.div`
     border-right: outset 1px;
     display:flex;
     width: 30vw;
-    height: 100vh;
     justify-content: center;
 `;
 export const RightContainer = styled.div`
@@ -115,7 +113,6 @@ export const TextLeft = styled.p`
     font-size: 15px;
     color: ${(props) => props.theme.withe};
 `;
-
 export const ListaMemb = styled.li`
     display:flex;
     flex-direction: row;
@@ -125,8 +122,8 @@ export const ListaMemb = styled.li`
 /* Estilos do Calendar */
 
 export const CalendarTable = styled.div`
-    width: 100%;
     height: 70vh;
+    width: 70vw;
 `;
 export const Header = styled.div`
     font-family: 'Montserrat';
@@ -134,7 +131,7 @@ export const Header = styled.div`
     display: flex;
     align-items: center;
     color: white;  
-    height: 5vh;
+    height: 5%;
     background-color: #B73625;
     cursor: pointer;
 `;
@@ -143,32 +140,34 @@ export const MonthP = styled.p`
     
 `;
 export const Body = styled.div`
+    height: 95%;
+`;
+export const WeekContainer = styled.div`
     display: flex;
-    flex-wrap: wrap;
 `;
 export const DayWeek = styled.div`
     font-family: 'Montserrat';
-    display: flex;
-    align-items: end;
+    width: 14%;
     border: solid 1px;    
     border-color: ${(props) => props.theme.lines};
-    width: 14.07%;
-    height: 4vh;
     cursor: pointer;
 `;
-export const StrongWeek = styled.strong`
+export const TextWeek = styled.strong`
     font-family: 'Montserrat';
     color: ${(props) => props.theme.withe};
-`
-export const DayDiv = styled.div`
-    font-family: 'Montserrat';
+`;
+export const DaysContainer = styled.div`
+    display:flex;
+    flex-wrap: wrap;
+`;
+export const DayCard = styled.div`
     display: flex;
-    align-items: flex-end;
     justify-content: flex-end;
+    font-family: 'Montserrat';
+    height:10vh;
+    width: 14%;
     border: solid 1px;    
     border-color: ${(props) => props.theme.lines};
-    height: 10vh;
-    width: 14.07%;
     color: ${(props) => props.theme.withe};
     cursor: pointer;
   ${props =>
@@ -177,10 +176,16 @@ export const DayDiv = styled.div`
       border-color: #B73625;
     `}
 `;
-export const Day = styled.p`
+export const Day = styled.div`
+    display:flex;
+    align-items: flex-end;
     font-family: 'Montserrat';
     margin: 4%;
 `;
+
+export const Dupla = styled.strong`
+    background-color: green;
+`
 
 /* Estilos CoffeDay */
 
@@ -207,7 +212,6 @@ export const CoffeeDiv = styled.div`
         border-top: solid 3px #B73625;
         `}
 `;
-
 export const CardCoffee = styled.span`
     display: flex;
     flex-direction: column; 
@@ -219,14 +223,12 @@ export const CardCoffee = styled.span`
     height: 12vh;
     background-color: ${(props) => props.theme.card};
 `;
-
 export const DayCoffee = styled.span`
     display: flex;
     justify-content: center;
     font-family: 'Montserrat';
     color: ${(props) => props.theme.withe};
 `;
-
 export const EditableText = styled.p`
     font-size: 15px;
     display:flex;
@@ -235,4 +237,3 @@ export const EditableText = styled.p`
     font-family: 'Montserrat';
     color: ${(props) => props.theme.withe};
 `;
-
