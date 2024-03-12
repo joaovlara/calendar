@@ -62,15 +62,14 @@ export function Calendar() {
                 <DayCard
                   key={index}
                   isToday={d === today.getDate()}
-                  isSelected={d === day}>
-                  <Day>    
-                    {d > 0 && d <= days[month]? (
-                      <>
-                        {isFriday && <Dupla>TESTE</Dupla>}
-                        {d}
-                      </>
-                    ) : ''} 
-                  </Day>
+                  isSelected={d === day}
+                >
+                  {d > 0 && d <= days[month] ? (
+                    <>
+                      <Dupla>{isFriday && <p>TESTE</p>}</Dupla>
+                      <Day>{d}</Day>
+                    </>
+                  ) : null}
                 </DayCard>
               );
             })}

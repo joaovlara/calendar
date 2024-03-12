@@ -161,8 +161,10 @@ export const DaysContainer = styled.div`
     flex-wrap: wrap;
 `;
 export const DayCard = styled.div`
-    display: flex;
-    justify-content: flex-end;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: space-between; /* Alinha as colunas */
+    align-items: flex-end;
     font-family: 'Montserrat';
     height:10vh;
     width: 14%;
@@ -176,16 +178,17 @@ export const DayCard = styled.div`
       border-color: #B73625;
     `}
 `;
-export const Day = styled.div`
-    display:flex;
-    align-items: flex-end;
+export const Dupla = styled.p`
+    padding-left: 8%;
+    font-size: 14px;
+    font-family: 'Roboto'
+`;
+export const Day = styled.span`
     font-family: 'Montserrat';
+    display: flex;
+    justify-content: flex-end;
     margin: 4%;
 `;
-
-export const Dupla = styled.strong`
-    background-color: green;
-`
 
 /* Estilos CoffeDay */
 
