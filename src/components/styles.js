@@ -181,7 +181,7 @@ export const DayCard = styled.div`
 export const Dupla = styled.p`
     padding-left: 8%;
     font-size: 14px;
-    font-family: 'Roboto'
+    font-family: 'Roboto';
 `;
 export const Day = styled.span`
     font-family: 'Montserrat';
@@ -222,7 +222,7 @@ export const CardCoffee = styled.span`
     padding-top: 5%;
     border: lightblue 1px;
     box-shadow: 0px 2px 2px 2px ${(props) => props.theme.shadow};;
-    width: 11vw;
+    width: 12vw;
     height: 12vh;
     background-color: ${(props) => props.theme.card};
 `;
@@ -232,11 +232,16 @@ export const DayCoffee = styled.span`
     font-family: 'Montserrat';
     color: ${(props) => props.theme.withe};
 `;
-export const EditableText = styled.p`
-    font-size: 15px;
+export const MemberName = styled.div`
     display:flex;
-    justify-content: center;
-    padding-top: 15%;
-    font-family: 'Montserrat';
+    padding-top: 8%;
+    flex-wrap: wrap;
+    justify-content: space-around;
     color: ${(props) => props.theme.withe};
+`;
+
+export const EditableText = styled.p`
+    margin: 1%;
+    font-size: 15px;
+    font-family: 'Montserrat';
 `;
