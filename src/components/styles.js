@@ -163,7 +163,7 @@ export const DaysContainer = styled.div`
 export const DayCard = styled.div`
     display: grid;
     grid-template-columns: 1fr;
-    justify-content: space-between; /* Alinha as colunas */
+    justify-content: space-between;
     align-items: flex-end;
     font-family: 'Montserrat';
     height:10vh;

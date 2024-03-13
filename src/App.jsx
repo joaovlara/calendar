@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import DrawGrid from "./components/DrawGrid";
-import Calendar from "./components/Calendar";
-import CoffeeDay from "./components/CoffeeDay";
+import DrawGrid from "./components/draw/DrawGrid";
+import Calendar from "./components/calendar/Calendar";
+import CoffeeDay from "./components/coffee/CoffeeDay";
 import { Content, RightContainer, LeftContainer, lightTheme, darkTheme } from "./components/styles";
 import { ThemeProvider } from "styled-components";
 

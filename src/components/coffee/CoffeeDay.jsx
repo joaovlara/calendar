@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { CoffeeWeek, DayCoffee, TextCoffee, CoffeeContainer, CoffeeDiv, EditableText, CardCoffee } from "./styles";
+import { CoffeeWeek, DayCoffee, TextCoffee, CoffeeContainer, CoffeeDiv, EditableText, CardCoffee } from "../styles";
 
 export function CoffeeDay() {
   const today = new Date();
@@ -10,16 +10,12 @@ export function CoffeeDay() {
   useEffect(() => {
     setDayOfWeek(date.getDay());
   }, [date]);
-
+  
   const CardEdit = () => {
     const [text, setText] = useState('Membro Membro');
-
-
     const handleTextChange = (event) => {
       setText(event.target.innerText);
-
     };
-
     return (
       <CoffeeContainer>
         <TextCoffee>Dia do Café</TextCoffee>
