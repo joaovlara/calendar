@@ -15,7 +15,19 @@ export const deleteMember = (members, setMembers, index) => {
 };
 
 export const drawName = (members) => {
-    const indiceSorteado = Math.floor(Math.random() * members.length);
-    const nomeSorteado = members[indiceSorteado];
-    alert(`O nome sorteado é: ${nomeSorteado.name}`);
+    const sortedMembers = [];
+    const membersSorteados = 2;
+
+    for (let i = 0; i < membersSorteados; i++) {
+        let indiceSorteado;
+
+        do {
+            indiceSorteado = Math.floor(Math.random() * members.length);
+        } while (sortedMembers.includes(members[indiceSorteado]));
+
+        sortedMembers.push(members[indiceSorteado]);
+    }
+
+    const nomesSorteados = sortedMembers.map(member => member.name);
+    alert(`Os membros sorteados são: ${nomesSorteados.join(' e ')}`);
 };

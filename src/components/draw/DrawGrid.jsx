@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ToggleButton from "../ToggleButton";
 import { MdClose } from "react-icons/md";
 import { ContainerDraw, MainH1, TextLeft, FormAdd, InputText, BtnAdd, SortArea, BtnSort, SortList, ListaMemb } from "../styles";
@@ -7,6 +7,21 @@ import { addMember, deleteMember, drawName } from "./utils.js";
 function DrawGrid({ toggleTheme }) {
     const [inputValue, setInputValue] = useState('');
     const [members, setMembers] = useState([]);
+
+    useEffect(() => {
+        reloadMembers();
+    }, []);
+
+    const reloadMembers = () => {
+        const storedMembers = localStorage.getItem('members');
+        if (storedMembers) {
+            setMembers(JSON.parse(storedMembers));
+        }
+    };
+
+    useEffect(() => {
+        localStorage.setItem('members', JSON.stringify(members.map(member => member.name)));
+    }, [members]);
 
     return (
         <ContainerDraw>
@@ -18,16 +33,20 @@ function DrawGrid({ toggleTheme }) {
                 addMember(members, setMembers, inputValue, setInputValue);
             }}>
                 <InputText
-                    placeholder='Ex. Joao'
+                    placeholder='Ex. João'
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
                     onKeyPress={(e) => {
                         if (e.key === 'Enter') {
                             addMember(members, setMembers, inputValue, setInputValue);
+                            setInputValue('');
                         }
                     }}
                 />
-                <BtnAdd onClick={() => addMember(members, setMembers, inputValue, setInputValue)}>Adicionar</BtnAdd>
+                <BtnAdd onClick={() => {
+                    addMember(members, setMembers, inputValue, setInputValue);
+                    setInputValue('');
+                }}>Adicionar</BtnAdd>
             </FormAdd>
 
             <SortArea>
