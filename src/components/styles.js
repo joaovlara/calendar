@@ -181,6 +181,7 @@ export const DayCard = styled.div`
 export const Dupla = styled.p`
     padding-left: 8%;
     font-size: 14px;
+    background-color:red;
     font-family: 'Roboto';
 `;
 export const Day = styled.span`

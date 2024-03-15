@@ -1,9 +1,8 @@
-import * as React from 'react';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CalendarTable, Header, MonthP, Body, DayCard, Day, DayWeek, TextWeek, WeekContainer, DaysContainer, Dupla } from '../styles';
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 
-export function Calendar() {
+export function Calendar({ teams }) {
   const GRID_DAYS = Array(42);
   const DAYS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
   const DAYS_LEAP = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
@@ -16,14 +15,12 @@ export function Calendar() {
   const [month, setMonth] = useState(date.getMonth());
   const [year, setYear] = useState(date.getFullYear());
   const [startDay, setStartDay] = useState(getStartDayOfMonth(date));
-  const [duplas, setDuplas] = useState([]);
 
   useEffect(() => {
     setDay(date.getDate());
     setMonth(date.getMonth());
     setYear(date.getFullYear());
     setStartDay(getStartDayOfMonth(date));
-    generateDuplas();
   }, [date]);
 
   function getStartDayOfMonth(date = Date) {
@@ -32,15 +29,6 @@ export function Calendar() {
 
   function isLeapYear(year) {
     return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
-  }
-
-  function generateDuplas() {
-    const duplasDoMes = []; 
-    const numDuplas = Math.ceil(DAYS[month] / 7); 
-    for (let i = 0; i < numDuplas; i++) {
-      duplasDoMes.push(`Dupla ${i + 1}`);
-    }
-    setDuplas(duplasDoMes); 
   }
 
   const days = isLeapYear(date.getFullYear()) ? DAYS_LEAP : DAYS;
@@ -73,10 +61,17 @@ export function Calendar() {
                   key={index}
                   isToday={d === today.getDate()}
                   isSelected={d === day}
+                  teams={teams}
                 >
                   {d > 0 && d <= days[month] ? (
                     <>
-                      {isFriday && <Dupla>{duplas[Math.floor(d / 7)]}</Dupla>} 
+                      {isFriday && teams && teams.map((team, index) => (
+                        <Dupla key={index}>
+                          {team.name.map((member, memberIndex) => (
+                            <div key={memberIndex}>{member}</div>
+                          ))}
+                        </Dupla>
+                      ))}
                       <Day>{d}</Day>
                     </>
                   ) : null}

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import DrawGrid from "./components/draw/DrawGrid";
-import Calendar from "./components/calendar/Calendar";
+import Calendar from './components/calendar/Calendar';
 import CoffeeDay from "./components/coffee/CoffeeDay";
 import { Content, RightContainer, LeftContainer, lightTheme, darkTheme } from "./components/styles";
 import { ThemeProvider } from "styled-components";
@@ -8,8 +8,11 @@ import { ThemeProvider } from "styled-components";
 function App() {
     const [theme, setTheme] = useState('dark');
     const toggleTheme = () => {
-        setTheme(theme === 'dark' ? 'light' : 'dark');
+        setTheme(theme === 'dark' ? 'light' : 'dark');    
     };
+
+    const [teams, setTeams] = useState ([]); 
+
     return (
         <ThemeProvider theme={theme === 'dark' ? darkTheme : lightTheme}>
             <Content>
@@ -17,7 +20,7 @@ function App() {
                     <DrawGrid toggleTheme={toggleTheme} />
                 </LeftContainer>
                 <RightContainer>
-                    <Calendar />
+                    <Calendar teams={teams} />
                     <CoffeeDay />
                 </RightContainer>
             </Content>
