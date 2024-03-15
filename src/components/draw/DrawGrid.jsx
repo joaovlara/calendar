@@ -1,27 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import ToggleButton from "../ToggleButton";
 import { MdClose } from "react-icons/md";
 import { ContainerDraw, MainH1, TextLeft, FormAdd, InputText, BtnAdd, SortArea, BtnSort, SortList, ListaMemb } from "../styles";
-import { addMember, deleteMember, drawName } from "./utils.js";
+import { addMember, deleteMember } from "./utils.js";
 
-function DrawGrid({ toggleTheme }) {
+function DrawGrid({ toggleTheme, numTeams }) {
     const [inputValue, setInputValue] = useState('');
     const [members, setMembers] = useState([]);
+    const [teams, setTeams] = useState([]);
 
-    useEffect(() => {
-        reloadMembers();
-    }, []);
+    const generateTeams = () => {
+        const tempArray = [...members];
 
-    const reloadMembers = () => {
-        const storedMembers = localStorage.getItem('members');
-        if (storedMembers) {
-            setMembers(JSON.parse(storedMembers));
+        const duplas = [];
+        for (let i = 0; i < tempArray.length; i += 2) {
+            duplas.push([tempArray[i], tempArray[i + 1]]);
         }
-    };
 
-    useEffect(() => {
-        localStorage.setItem('members', JSON.stringify(members.map(member => member.name)));
-    }, [members]);
+        setTeams(duplas);
+
+        alert(`As equipes sorteadas são:\n${duplas.map((team, index) => `Equipe ${index + 1}: ${team.map(member => member.name).join(', ')}`).join('\n')}`);
+    };
 
     return (
         <ContainerDraw>
@@ -51,7 +50,7 @@ function DrawGrid({ toggleTheme }) {
 
             <SortArea>
                 <TextLeft>Lista de participantes</TextLeft>
-                <BtnSort onClick={() => drawName(members)}>Sortear</BtnSort>
+                <BtnSort onClick={generateTeams}>Sortear</BtnSort>
             </SortArea>
             <SortList>
                 {members.map((member, index) => (

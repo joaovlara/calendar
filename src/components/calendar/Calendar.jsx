@@ -4,7 +4,6 @@ import { CalendarTable, Header, MonthP, Body, DayCard, Day, DayWeek, TextWeek, W
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 
 export function Calendar() {
-
   const GRID_DAYS = Array(42);
   const DAYS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
   const DAYS_LEAP = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
@@ -17,12 +16,14 @@ export function Calendar() {
   const [month, setMonth] = useState(date.getMonth());
   const [year, setYear] = useState(date.getFullYear());
   const [startDay, setStartDay] = useState(getStartDayOfMonth(date));
+  const [duplas, setDuplas] = useState([]);
 
   useEffect(() => {
     setDay(date.getDate());
     setMonth(date.getMonth());
     setYear(date.getFullYear());
     setStartDay(getStartDayOfMonth(date));
+    generateDuplas();
   }, [date]);
 
   function getStartDayOfMonth(date = Date) {
@@ -32,6 +33,16 @@ export function Calendar() {
   function isLeapYear(year) {
     return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
   }
+
+  function generateDuplas() {
+    const duplasDoMes = []; 
+    const numDuplas = Math.ceil(DAYS[month] / 7); 
+    for (let i = 0; i < numDuplas; i++) {
+      duplasDoMes.push(`Dupla ${i + 1}`);
+    }
+    setDuplas(duplasDoMes); 
+  }
+
   const days = isLeapYear(date.getFullYear()) ? DAYS_LEAP : DAYS;
 
   return (
@@ -43,7 +54,6 @@ export function Calendar() {
       </Header>
 
       <Body>
-
         <WeekContainer>
           {DAYS_OF_THE_WEEK.map(d => (
             <DayWeek key={d}>
@@ -66,7 +76,7 @@ export function Calendar() {
                 >
                   {d > 0 && d <= days[month] ? (
                     <>
-                      <Dupla>{isFriday && <p>TESTE</p>}</Dupla>
+                      {isFriday && <Dupla>{duplas[Math.floor(d / 7)]}</Dupla>} 
                       <Day>{d}</Day>
                     </>
                   ) : null}
@@ -74,11 +84,9 @@ export function Calendar() {
               );
             })}
         </DaysContainer>
-
       </Body>
     </CalendarTable>
   );
-
 };
 
 export default Calendar;
