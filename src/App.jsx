@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import DrawGrid from "./components/draw/DrawGrid";
 import Calendar from './components/calendar/Calendar';
+import {sortPairs}  from './components/draw/utils.jsx';
 import CoffeeDay from "./components/coffee/CoffeeDay";
 import { Content, RightContainer, LeftContainer, lightTheme, darkTheme } from "./components/styles";
 import { ThemeProvider } from "styled-components";
@@ -11,16 +12,14 @@ function App() {
         setTheme(theme === 'dark' ? 'light' : 'dark');    
     };
 
-    const [teams, setTeams] = useState ([]); 
-
     return (
         <ThemeProvider theme={theme === 'dark' ? darkTheme : lightTheme}>
             <Content>
                 <LeftContainer>
-                    <DrawGrid toggleTheme={toggleTheme} />
+                <DrawGrid toggleTheme={toggleTheme} sortPairs={sortPairs} />
                 </LeftContainer>
                 <RightContainer>
-                    <Calendar teams={teams} />
+                    <Calendar />
                     <CoffeeDay />
                 </RightContainer>
             </Content>

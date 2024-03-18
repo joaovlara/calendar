@@ -2,31 +2,13 @@ import React, { useState } from 'react';
 import ToggleButton from "../ToggleButton";
 import { MdClose } from "react-icons/md";
 import { ContainerDraw, MainH1, TextLeft, FormAdd, InputText, BtnAdd, SortArea, BtnSort, SortList, ListaMemb } from "../styles";
-import { addMember, deleteMember } from "./utils.js";
-import Calendar from '../calendar/Calendar.jsx';
+import { addMember, deleteMember, sortPairs } from "./utils.jsx";
 
 function DrawGrid({ toggleTheme }) {
     const [inputValue, setInputValue] = useState('');
     const [members, setMembers] = useState([]);
-    const [teams, setTeams] = useState([]);
-
-    const generateDuplas = () => {
-        const tempArray = [...members];
-                for (let i = tempArray.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [tempArray[i], tempArray[j]] = [tempArray[j], tempArray[i]];
-        }
-        const duplas = [];
-        for (let i = 0; i < tempArray.length; i += 2) {
-            const dupla = [tempArray[i], i + 1 < tempArray.length ? tempArray[i + 1] : null];
-            duplas.push(dupla);
-        }
-    
-        setTeams(duplas);
-    
-        alert(`As equipes sorteadas são:\n${duplas.map((team, index) => `Equipe ${index + 1}: ${team.filter(member => member !== null).map(member => member.name).join(', ')}`).join('\n')}`);
-    };
-    
+    const [pairs, setPairs ] = useState([]);
+    console.log('sorteados', pairs)
 
     return (
         <ContainerDraw>
@@ -56,7 +38,7 @@ function DrawGrid({ toggleTheme }) {
 
             <SortArea>
                 <TextLeft>Lista de participantes</TextLeft>
-                <BtnSort onClick={generateDuplas}>Sortear</BtnSort>
+                <BtnSort onClick={() => setPairs(sortPairs(members))}>Sortear</BtnSort>
             </SortArea>
             <SortList>
                 {members.map((member, index) => (
