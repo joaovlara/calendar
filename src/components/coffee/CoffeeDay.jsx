@@ -1,10 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CoffeeWeek, DayCoffee, TextCoffee, CoffeeContainer, CoffeeDiv, CardCoffee, EditableText, MemberName } from "../styles";
 
 const DAYS_OF_THE_WEEK = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex'];
 
 export function CoffeeDay() {
-  const [texts, setTexts] = useState(DAYS_OF_THE_WEEK.map(() => ({ member1: 'Membro 1', member2: 'Membro 2' })));
+  const [texts, setTexts] = useState(() => {
+    const storedTexts = localStorage.getItem('coffeeTexts');
+    return storedTexts ? JSON.parse(storedTexts) : DAYS_OF_THE_WEEK.map(() => ({ member1: 'Membro 1', member2: 'Membro 2' }));
+  });
+
+  useEffect(() => {
+    localStorage.setItem('coffeeTexts', JSON.stringify(texts));
+  }, [texts]);
 
   const handleTextChange = (index, member, newText) => {
     const newtexts = [...texts];
