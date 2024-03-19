@@ -15,12 +15,14 @@ export function Calendar({ pairs }) {
   const [month, setMonth] = useState(date.getMonth());
   const [year, setYear] = useState(date.getFullYear());
   const [startDay, setStartDay] = useState(getStartDayOfMonth(date));
+  const [fridays, setFridays] = useState([]);
 
   useEffect(() => {
     setDay(date.getDate());
     setMonth(date.getMonth());
     setYear(date.getFullYear());
     setStartDay(getStartDayOfMonth(date));
+    setFridays(findFridaysInMonth(date));
   }, [date]);
 
   function getStartDayOfMonth(date = Date) {
@@ -31,7 +33,18 @@ export function Calendar({ pairs }) {
     return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
   }
 
-  const days = isLeapYear(date.getFullYear()) ? DAYS_LEAP : DAYS;
+  function findFridaysInMonth(date) {
+    const fridays = [];
+    const daysInMonth = isLeapYear(date.getFullYear()) ? DAYS_LEAP[date.getMonth()] : DAYS[date.getMonth()];
+
+    for (let i = 1; i <= daysInMonth; i++) {
+      const currentDate = new Date(date.getFullYear(), date.getMonth(), i);
+      if (currentDate.getDay() === 5) { // Sexta-feira
+        fridays.push(i);
+      }
+    }
+    return fridays;
+  }
 
   return (
     <CalendarTable>
@@ -54,8 +67,6 @@ export function Calendar({ pairs }) {
             .fill(null)
             .map((_, index) => {
               const d = index - (startDay - 1);
-              const currentDate = new Date(year, month, d);
-              const isFriday = currentDate.getDay() === 5;
 
               return (
                 <DayCard
@@ -63,18 +74,17 @@ export function Calendar({ pairs }) {
                   isToday={d === today.getDate()}
                   isSelected={d === day}
                 >
-                  {d > 0 && d <= days[month] ? (
+                  {d > 0 && d <= (isLeapYear(year) ? DAYS_LEAP[month] : DAYS[month]) ? (
                     <>
                       <Day>{d}</Day>
-                      {isFriday && pairs && pairs.length > 0 && (
+                      {fridays.includes(d) && pairs && pairs.length > 0 && (
                         <Dupla>
-                          {pairs.map((pair, pairIndex) => (
-                            <div key={pairIndex}>
-                              {pair.map((member, memberIndex) => (
-                                <div key={memberIndex}>{member.name}</div>
-                              ))}
+                          {pairs[fridays.indexOf(d)] && (
+                            <div>
+                              {pairs[fridays.indexOf(d)][0]?.name}
+                              {pairs[fridays.indexOf(d)][1]?.name && <span>, {pairs[fridays.indexOf(d)][1].name}</span>}
                             </div>
-                          ))}
+                          )}
                         </Dupla>
                       )}
                     </>
