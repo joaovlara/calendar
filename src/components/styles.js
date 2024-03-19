@@ -180,7 +180,7 @@ export const DayCard = styled.div`
 `;
 export const Dupla = styled.p`
     padding-left: 8%;
-    font-size: 14px;
+    font-size: 16px;
     font-family: 'Roboto';
 `;
 export const Day = styled.span`

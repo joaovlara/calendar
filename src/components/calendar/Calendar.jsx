@@ -39,7 +39,7 @@ export function Calendar({ pairs }) {
 
     for (let i = 1; i <= daysInMonth; i++) {
       const currentDate = new Date(date.getFullYear(), date.getMonth(), i);
-      if (currentDate.getDay() === 5) { // Sexta-feira
+      if (currentDate.getDay() === 5) {
         fridays.push(i);
       }
     }
@@ -72,21 +72,21 @@ export function Calendar({ pairs }) {
                 <DayCard
                   key={index}
                   isToday={d === today.getDate()}
-                  isSelected={d === day}
-                >
+                  isSelected={d === day}>
                   {d > 0 && d <= (isLeapYear(year) ? DAYS_LEAP[month] : DAYS[month]) ? (
                     <>
-                      <Day>{d}</Day>
                       {fridays.includes(d) && pairs && pairs.length > 0 && (
                         <Dupla>
                           {pairs[fridays.indexOf(d)] && (
-                            <div>
+                            <>
                               {pairs[fridays.indexOf(d)][0]?.name}
-                              {pairs[fridays.indexOf(d)][1]?.name && <span>, {pairs[fridays.indexOf(d)][1].name}</span>}
-                            </div>
+                              {pairs[fridays.indexOf(d)][1]?.name &&
+                              <span> {pairs[fridays.indexOf(d)][1].name}</span>}
+                            </>
                           )}
                         </Dupla>
                       )}
+                      <Day>{d}</Day>
                     </>
                   ) : null}
                 </DayCard>
