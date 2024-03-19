@@ -2,13 +2,49 @@ import React, { useState } from 'react';
 import ToggleButton from "../ToggleButton";
 import { MdClose } from "react-icons/md";
 import { ContainerDraw, MainH1, TextLeft, FormAdd, InputText, BtnAdd, SortArea, BtnSort, SortList, ListaMemb } from "../styles";
-import { addMember, deleteMember, sortPairs } from "./utils.jsx";
 
-function DrawGrid({ toggleTheme }) {
+function DrawGrid({ toggleTheme, setPairs }) {
     const [inputValue, setInputValue] = useState('');
     const [members, setMembers] = useState([]);
-    const [pairs, setPairs ] = useState([]);
-    console.log('sorteados', pairs)
+
+    const addMember = (inputValue) => {
+        if (inputValue.trim() === '') {
+            return;
+        }
+        const newMember = {
+            name: inputValue,
+        };
+        setMembers([...members, newMember]);
+        setInputValue('');
+    };
+
+    const deleteMember = (index) => {
+        const updatedMembers = [...members.slice(0, index), ...members.slice(index + 1)];
+        setMembers(updatedMembers);
+    };
+
+    const sortPairs = () => {
+        const shuffledMembers = [...members];
+        const shuffledPairs = [];
+
+        for (let i = shuffledMembers.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffledMembers[i], shuffledMembers[j]] = [shuffledMembers[j], shuffledMembers[i]];
+        }
+
+        for (let i = 0; i < shuffledMembers.length; i += 2) {
+            const pair = [shuffledMembers[i], shuffledMembers[i + 1]];
+            shuffledPairs.push(pair);
+        }
+
+        if (shuffledMembers.length % 2 !== 0) {
+            const lastPair = [shuffledMembers[shuffledMembers.length - 1]];
+            shuffledPairs.push(lastPair);
+        }
+
+        setPairs(shuffledPairs);
+        console.log('Pares sorteados:', shuffledPairs);
+    };
 
     return (
         <ContainerDraw>
@@ -17,7 +53,7 @@ function DrawGrid({ toggleTheme }) {
             <TextLeft>Insira o nome</TextLeft>
             <FormAdd onSubmit={(e) => {
                 e.preventDefault();
-                addMember(members, setMembers, inputValue, setInputValue);
+                addMember(inputValue);
             }}>
                 <InputText
                     placeholder='Ex. João'
@@ -25,26 +61,22 @@ function DrawGrid({ toggleTheme }) {
                     onChange={(e) => setInputValue(e.target.value)}
                     onKeyPress={(e) => {
                         if (e.key === 'Enter') {
-                            addMember(members, setMembers, inputValue, setInputValue);
-                            setInputValue('');
+                            addMember(inputValue);
                         }
                     }}
                 />
-                <BtnAdd onClick={() => {
-                    addMember(members, setMembers, inputValue, setInputValue);
-                    setInputValue('');
-                }}>Adicionar</BtnAdd>
+                <BtnAdd onClick={() => addMember(inputValue)}>Adicionar</BtnAdd>
             </FormAdd>
 
             <SortArea>
                 <TextLeft>Lista de participantes</TextLeft>
-                <BtnSort onClick={() => setPairs(sortPairs(members))}>Sortear</BtnSort>
+                <BtnSort onClick={sortPairs}>Sortear</BtnSort>
             </SortArea>
             <SortList>
                 {members.map((member, index) => (
                     <ListaMemb key={index}>
                         {member.name}
-                        <MdClose onClick={() => deleteMember(members, setMembers, index)} />
+                        <MdClose onClick={() => deleteMember(index)} />
                     </ListaMemb>
                 ))}
             </SortList>

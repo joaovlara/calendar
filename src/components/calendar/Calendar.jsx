@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { CalendarTable, Header, MonthP, Body, DayCard, Day, DayWeek, TextWeek, WeekContainer, DaysContainer, Dupla } from '../styles';
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
-// import { sortPairs } from "../draw/utils.js"
-
 
 export function Calendar({ pairs }) {
   const GRID_DAYS = Array(42);
@@ -58,23 +56,27 @@ export function Calendar({ pairs }) {
               const d = index - (startDay - 1);
               const currentDate = new Date(year, month, d);
               const isFriday = currentDate.getDay() === 5;
+
               return (
                 <DayCard
                   key={index}
                   isToday={d === today.getDate()}
                   isSelected={d === day}
-                  pairs={pairs} 
                 >
                   {d > 0 && d <= days[month] ? (
                     <>
-                      {isFriday && pairs && pairs.map((pair, index) => ( 
-                        <Dupla key={index}>
-                          {pair.map((member, memberIndex) => ( 
-                            <div key={memberIndex}>{member}</div>
+                      <Day>{d}</Day>
+                      {isFriday && pairs && pairs.length > 0 && (
+                        <Dupla>
+                          {pairs.map((pair, pairIndex) => (
+                            <div key={pairIndex}>
+                              {pair.map((member, memberIndex) => (
+                                <div key={memberIndex}>{member.name}</div>
+                              ))}
+                            </div>
                           ))}
                         </Dupla>
-                      ))}
-                      <Day>{d}</Day>
+                      )}
                     </>
                   ) : null}
                 </DayCard>
