@@ -44,16 +44,19 @@ export const ContainerDraw = styled.div`
     display: flex;
     flex-direction:column;
     width: 80%;
-    margin-top: 10%;
+    margin-top: 8%;
 `;
 export const SortArea = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 20% 0% 10% 0%;
+    padding: 10% 0% 10% 0%;
     width: 90%;
 `;
 export const SortList = styled.ul`
+    overflow: auto; 
+    margin-bottom: 8%;
+    height: 55vh;
     color: ${(props) => props.theme.withe};
 `;
 
@@ -62,7 +65,7 @@ export const SortList = styled.ul`
 export const InputText = styled.input`
     display: flex;
     justify-content: center;
-    margin: 4% 0% 10% 0%;
+    margin: 4% 0% 8% 0%;
     border: solid 1px;
     border-radius: 5px;
     height: 4vh;
@@ -103,7 +106,8 @@ export const MainH1 = styled.h1`
     font-family: 'Montserrat';
     display: flex;
     font-size: 28px;
-    padding: 40% 0% 8% 0%;
+    padding-top: 10%;
+    padding-bottom: 7%;
     color: ${(props) => props.theme.withe};
 `;
 export const TextLeft = styled.p`
@@ -179,6 +183,8 @@ export const DayCard = styled.div`
     `}
 `;
 export const Dupla = styled.p`
+    display: flex;
+    flex-direction: column;
     padding-left: 8%;
     font-size: 16px;
     font-family: 'Roboto';
