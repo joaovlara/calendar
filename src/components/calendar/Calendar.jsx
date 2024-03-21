@@ -16,6 +16,7 @@ export function Calendar({ pairs }) {
   const [year, setYear] = useState(date.getFullYear());
   const [startDay, setStartDay] = useState(getStartDayOfMonth(date));
   const [fridays, setFridays] = useState([]);
+  const [remainingPairs, setRemainingPairs] = useState([]);
 
   useEffect(() => {
     setDay(date.getDate());
@@ -23,7 +24,28 @@ export function Calendar({ pairs }) {
     setYear(date.getFullYear());
     setStartDay(getStartDayOfMonth(date));
     setFridays(findFridaysInMonth(date));
+    updateRemainingPairs(date);
   }, [date]);
+
+  useEffect(() => {
+    updateRemainingPairs(new Date(year, month, 1));
+  }, [month]);
+
+  function updateRemainingPairs(date) {
+    const remaining = [];
+    const daysInMonth = isLeapYear(date.getFullYear()) ? DAYS_LEAP[date.getMonth()] : DAYS[date.getMonth()];
+    const monthFridays = findFridaysInMonth(date);
+
+    if (pairs && pairs.length > monthFridays.length) {
+      const usedIndices = new Set(monthFridays);
+      for (let i = 1; i <= daysInMonth; i++) {
+        if (!usedIndices.has(i)) {
+          remaining.push(i);
+        }
+      }
+    }
+    setRemainingPairs(remaining);
+  }
 
   function getStartDayOfMonth(date = Date) {
     return new Date(date.getFullYear(), date.getMonth(), 1).getDay();
@@ -81,7 +103,16 @@ export function Calendar({ pairs }) {
                             <>
                               {pairs[fridays.indexOf(d)][0]?.name}
                               {pairs[fridays.indexOf(d)][1]?.name &&
-                              <span> {pairs[fridays.indexOf(d)][1].name}</span>}
+                                <span> {pairs[fridays.indexOf(d)][1].name}</span>}
+                            </>
+                          )}
+                        </Dupla>
+                      )}
+                      {!fridays.includes(d) && remainingPairs && remainingPairs.length > 0 && (
+                        <Dupla>
+                          {remainingPairs[remainingPairs.indexOf(d)] && (
+                            <>
+                              {remainingPairs[remainingPairs.indexOf(d)]?.name}
                             </>
                           )}
                         </Dupla>
