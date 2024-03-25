@@ -164,24 +164,28 @@ export const DaysContainer = styled.div`
     display:flex;
     flex-wrap: wrap;
 `;
+
 export const DayCard = styled.div`
-    display: grid;
-    grid-template-columns: 1fr;
-    justify-content: space-between;
-    align-items: flex-end;
-    font-family: 'Montserrat';
-    height:10vh;
-    width: 14%;
-    border: solid 1px;    
-    border-color: ${(props) => props.theme.lines};
-    color: ${(props) => props.theme.withe};
-    cursor: pointer;
-  ${props =>
-        props.isToday &&
-        css`
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: space-between;
+  align-items: flex-end;
+  font-family: 'Montserrat';
+  height: 10vh;
+  width: 14%;
+  border: solid 1px;
+  border-color: ${(props) => props.theme.lines};
+  color: ${(props) => props.theme.withe};
+  cursor: pointer;
+
+  ${(props) =>
+    props.isToday &&
+    css`
       border-color: #B73625;
     `}
 `;
+
+
 export const Dupla = styled.p`
     display: flex;
     flex-direction: column;

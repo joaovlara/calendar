@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { CalendarTable, Header, MonthP, Body, DayCard, Day, DayWeek, TextWeek, WeekContainer, DaysContainer, Dupla } from '../styles';
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
+import { isToday, addMonths, startOfMonth, endOfMonth, isFriday, isLeapYear } from 'date-fns'; 
 
 export function Calendar({ pairs }) {
   const GRID_DAYS = Array(42);
-  const DAYS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-  const DAYS_LEAP = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
   const DAYS_OF_THE_WEEK = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'];
   const MONTHS = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
 
@@ -14,7 +13,7 @@ export function Calendar({ pairs }) {
   const [day, setDay] = useState(date.getDate());
   const [month, setMonth] = useState(date.getMonth());
   const [year, setYear] = useState(date.getFullYear());
-  const [startDay, setStartDay] = useState(getStartDayOfMonth(date));
+  const [startDay, setStartDay] = useState(startOfMonth(date).getDay());
   const [fridays, setFridays] = useState([]);
   const [remainingPairs, setRemainingPairs] = useState([]);
 
@@ -22,18 +21,22 @@ export function Calendar({ pairs }) {
     setDay(date.getDate());
     setMonth(date.getMonth());
     setYear(date.getFullYear());
-    setStartDay(getStartDayOfMonth(date));
+    setStartDay(startOfMonth(date).getDay());
     setFridays(findFridaysInMonth(date));
     updateRemainingPairs(date);
   }, [date]);
 
   useEffect(() => {
-    updateRemainingPairs(new Date(year, month, 1));
-  }, [month]);
+    updateRemainingPairs(startOfMonth(new Date(year, month, 1)));
+  }, [month, year]);
+
+  function changeMonth(amount) {
+    setDate(prevDate => addMonths(prevDate, amount));
+  }
 
   function updateRemainingPairs(date) {
     const remaining = [];
-    const daysInMonth = isLeapYear(date.getFullYear()) ? DAYS_LEAP[date.getMonth()] : DAYS[date.getMonth()];
+    const daysInMonth = isLeapYear(date.getFullYear()) ? endOfMonth(date).getDate() : endOfMonth(date).getDate();
     const monthFridays = findFridaysInMonth(date);
 
     if (pairs && pairs.length > monthFridays.length) {
@@ -47,21 +50,13 @@ export function Calendar({ pairs }) {
     setRemainingPairs(remaining);
   }
 
-  function getStartDayOfMonth(date = Date) {
-    return new Date(date.getFullYear(), date.getMonth(), 1).getDay();
-  }
-
-  function isLeapYear(year) {
-    return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
-  }
-
   function findFridaysInMonth(date) {
     const fridays = [];
-    const daysInMonth = isLeapYear(date.getFullYear()) ? DAYS_LEAP[date.getMonth()] : DAYS[date.getMonth()];
+    const daysInMonth = isLeapYear(date.getFullYear()) ? endOfMonth(date).getDate() : endOfMonth(date).getDate();
 
     for (let i = 1; i <= daysInMonth; i++) {
       const currentDate = new Date(date.getFullYear(), date.getMonth(), i);
-      if (currentDate.getDay() === 5) {
+      if (isFriday(currentDate)) {
         fridays.push(i);
       }
     }
@@ -71,9 +66,9 @@ export function Calendar({ pairs }) {
   return (
     <CalendarTable>
       <Header>
-        <SlArrowLeft onClick={() => setDate(new Date(year, month - 1, day))}></SlArrowLeft>
+        <SlArrowLeft onClick={() => changeMonth(-1)}></SlArrowLeft>
         <MonthP> {MONTHS[month]} </MonthP>
-        <SlArrowRight onClick={() => setDate(new Date(year, month + 1, day))}></SlArrowRight>
+        <SlArrowRight onClick={() => changeMonth(1)}></SlArrowRight>
       </Header>
 
       <Body>
@@ -93,9 +88,9 @@ export function Calendar({ pairs }) {
               return (
                 <DayCard
                   key={index}
-                  isToday={d === today.getDate()}
-                  isSelected={d === day}>
-                  {d > 0 && d <= (isLeapYear(year) ? DAYS_LEAP[month] : DAYS[month]) ? (
+                  isToday={isToday(new Date(year, month, d))}
+                >
+                  {d > 0 && d <= (isLeapYear(year) ? endOfMonth(new Date(year, month, 1)).getDate() : endOfMonth(new Date(year, month, 1)).getDate()) ? (
                     <>
                       {fridays.includes(d) && pairs && pairs.length > 0 && (
                         <Dupla>
