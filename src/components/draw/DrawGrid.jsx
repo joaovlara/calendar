@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ToggleButton from "../ToggleButton";
 import { MdClose } from "react-icons/md";
 import { ContainerDraw, MainH1, TextLeft, FormAdd, InputText, BtnAdd, SortArea, BtnSort, SortList, ListaMemb } from "../styles";
 
 function DrawGrid({ toggleTheme, setPairs }) {
     const [inputValue, setInputValue] = useState('');
-    const [members, setMembers] = useState([]);
+    // Verifica se há membros no localStorage, senão define como um array vazio
+    const [members, setMembers] = useState(() => {
+        const storedMembers = JSON.parse(localStorage.getItem('members')) || [];
+        return storedMembers;
+    });
 
     const addMember = (inputValue) => {
         if (inputValue.trim() === '') {
@@ -45,6 +49,11 @@ function DrawGrid({ toggleTheme, setPairs }) {
         setPairs(shuffledPairs);
         console.log('Pares sorteados:', shuffledPairs);
     };
+
+    // Atualiza o localStorage sempre que houver mudanças na lista de membros
+    useEffect(() => {
+        localStorage.setItem('members', JSON.stringify(members));
+    }, [members]);
 
     return (
         <ContainerDraw>
