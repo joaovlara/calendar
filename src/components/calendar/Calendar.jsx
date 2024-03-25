@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { CalendarTable, Header, MonthP, Body, DayCard, Day, DayWeek, TextWeek, WeekContainer, DaysContainer, Dupla } from '../styles';
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
-import { isToday, addMonths, startOfMonth, endOfMonth, isFriday, isLeapYear } from 'date-fns'; 
+import { isToday, addMonths, startOfMonth, endOfMonth, isFriday, isLeapYear } from 'date-fns';
 
 export function Calendar({ pairs }) {
   const GRID_DAYS = Array(42);
@@ -45,6 +45,32 @@ export function Calendar({ pairs }) {
     return fridays;
   }
 
+  function distributePairsOverYear() {
+    const year = new Date().getFullYear();
+    const pairsPerFriday = Math.ceil(pairs.length / fridays.length);
+    const distributedPairs = {};
+
+    let pairIndex = 0;
+    for (const friday of fridays) {
+      distributedPairs[friday] = [];
+
+      for (let i = 0; i < pairsPerFriday; i++) {
+        if (pairIndex < pairs.length) {
+          distributedPairs[friday].push(pairs[pairIndex]);
+          pairIndex++;
+        } else {
+          break;
+        }
+      }
+    }
+
+    console.log("Distributed Pairs:", distributedPairs);
+
+    return distributedPairs;
+  }
+
+  const distributedPairs = distributePairsOverYear();
+
   return (
     <CalendarTable>
       <Header>
@@ -74,17 +100,17 @@ export function Calendar({ pairs }) {
                 >
                   {d > 0 && d <= (isLeapYear(year) ? endOfMonth(new Date(year, month, 1)).getDate() : endOfMonth(new Date(year, month, 1)).getDate()) && (
                     <>
-                      {fridays.includes(d) && pairs && pairs.length > 0 && (
+                      {fridays.includes(d) && pairs && pairs.length > 0 && distributedPairs[d] && (
                         <Dupla>
-                          {pairs[fridays.indexOf(d)] && (
-                            <>
-                              {pairs[fridays.indexOf(d)][0]?.name}
-                              {pairs[fridays.indexOf(d)][1]?.name &&
-                                <span> {pairs[fridays.indexOf(d)][1].name}</span>}
-                            </>
-                          )}
+                          {distributedPairs[d].map((pair, index) => (
+                            <div key={index}>
+                              {pair && pair[0]?.name}
+                              {pair && pair[1] && <span>{pair[1].name}</span>}
+                            </div>
+                          ))}
                         </Dupla>
                       )}
+
                       <Day>{d}</Day>
                     </>
                   )}
