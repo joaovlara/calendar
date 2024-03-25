@@ -15,7 +15,6 @@ export function Calendar({ pairs }) {
   const [year, setYear] = useState(date.getFullYear());
   const [startDay, setStartDay] = useState(startOfMonth(date).getDay());
   const [fridays, setFridays] = useState([]);
-  const [remainingPairs, setRemainingPairs] = useState([]);
 
   useEffect(() => {
     setDay(date.getDate());
@@ -23,31 +22,14 @@ export function Calendar({ pairs }) {
     setYear(date.getFullYear());
     setStartDay(startOfMonth(date).getDay());
     setFridays(findFridaysInMonth(date));
-    updateRemainingPairs(date);
   }, [date]);
 
   useEffect(() => {
-    updateRemainingPairs(startOfMonth(new Date(year, month, 1)));
+    setFridays(findFridaysInMonth(new Date(year, month, 1)));
   }, [month, year]);
 
   function changeMonth(amount) {
     setDate(prevDate => addMonths(prevDate, amount));
-  }
-
-  function updateRemainingPairs(date) {
-    const remaining = [];
-    const daysInMonth = isLeapYear(date.getFullYear()) ? endOfMonth(date).getDate() : endOfMonth(date).getDate();
-    const monthFridays = findFridaysInMonth(date);
-
-    if (pairs && pairs.length > monthFridays.length) {
-      const usedIndices = new Set(monthFridays);
-      for (let i = 1; i <= daysInMonth; i++) {
-        if (!usedIndices.has(i)) {
-          remaining.push(i);
-        }
-      }
-    }
-    setRemainingPairs(remaining);
   }
 
   function findFridaysInMonth(date) {
@@ -90,7 +72,7 @@ export function Calendar({ pairs }) {
                   key={index}
                   isToday={isToday(new Date(year, month, d))}
                 >
-                  {d > 0 && d <= (isLeapYear(year) ? endOfMonth(new Date(year, month, 1)).getDate() : endOfMonth(new Date(year, month, 1)).getDate()) ? (
+                  {d > 0 && d <= (isLeapYear(year) ? endOfMonth(new Date(year, month, 1)).getDate() : endOfMonth(new Date(year, month, 1)).getDate()) && (
                     <>
                       {fridays.includes(d) && pairs && pairs.length > 0 && (
                         <Dupla>
@@ -103,18 +85,9 @@ export function Calendar({ pairs }) {
                           )}
                         </Dupla>
                       )}
-                      {!fridays.includes(d) && remainingPairs && remainingPairs.length > 0 && (
-                        <Dupla>
-                          {remainingPairs[remainingPairs.indexOf(d)] && (
-                            <>
-                              {remainingPairs[remainingPairs.indexOf(d)]?.name}
-                            </>
-                          )}
-                        </Dupla>
-                      )}
                       <Day>{d}</Day>
                     </>
-                  ) : null}
+                  )}
                 </DayCard>
               );
             })}
