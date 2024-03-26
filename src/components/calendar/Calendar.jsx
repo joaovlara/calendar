@@ -64,7 +64,13 @@ export function Calendar({ pairs }) {
       }
     }
 
-    console.log("Distributed Pairs:", distributedPairs);
+    console.log("Distributed Pairs:");
+    for (const friday in distributedPairs) {
+      console.log(`Friday ${friday}:`);
+      for (const pair of distributedPairs[friday]) {
+        console.log(`   - ${pair[0].name}, ${pair[1].name}`);
+      }
+    }
 
     return distributedPairs;
   }
@@ -100,17 +106,17 @@ export function Calendar({ pairs }) {
                 >
                   {d > 0 && d <= (isLeapYear(year) ? endOfMonth(new Date(year, month, 1)).getDate() : endOfMonth(new Date(year, month, 1)).getDate()) && (
                     <>
-                      {fridays.includes(d) && pairs && pairs.length > 0 && distributedPairs[d] && (
+                      {fridays.includes(d) && pairs && pairs.length > 0 && (
                         <Dupla>
-                          {distributedPairs[d].map((pair, index) => (
-                            <div key={index}>
-                              {pair && pair[0]?.name}
-                              {pair && pair[1] && <span>{pair[1].name}</span>}
-                            </div>
-                          ))}
+                          {pairs[fridays.indexOf(d)] && (
+                            <>
+                              {pairs[fridays.indexOf(d)][0]?.name}
+                              {pairs[fridays.indexOf(d)][1]?.name &&
+                                <span> {pairs[fridays.indexOf(d)][1].name}</span>}
+                            </>
+                          )}
                         </Dupla>
                       )}
-
                       <Day>{d}</Day>
                     </>
                   )}
