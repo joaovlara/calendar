@@ -46,29 +46,26 @@ export function Calendar({ pairs }) {
   }
 
   function distributePairsOverYear() {
-    const year = new Date().getFullYear();
-    const pairsPerFriday = Math.ceil(pairs.length / fridays.length);
     const distributedPairs = {};
 
-    let pairIndex = 0;
     for (const friday of fridays) {
-      distributedPairs[friday] = [];
+      const monthKey = MONTHS[date.getMonth()]; // Chave do mês
+      if (!distributedPairs[monthKey]) {
+        distributedPairs[monthKey] = {}; // Inicializar o objeto do mês, se ainda não existir
+      }
 
-      for (let i = 0; i < pairsPerFriday; i++) {
-        if (pairIndex < pairs.length) {
-          distributedPairs[friday].push(pairs[pairIndex]);
-          pairIndex++;
-        } else {
-          break;
-        }
+      if (pairs.length > 0) {
+        // Verificar se há duplas disponíveis
+        const pairIndex = (friday - 1) % pairs.length; // Calcular o índice da dupla com base no dia
+        distributedPairs[monthKey][friday] = pairs[pairIndex]; // Atribuir a dupla correspondente ao dia
       }
     }
 
     console.log("Distributed Pairs:");
-    for (const friday in distributedPairs) {
-      console.log(`Friday ${friday}:`);
-      for (const pair of distributedPairs[friday]) {
-        console.log(`   - ${pair[0].name}, ${pair[1].name}`);
+    for (const month in distributedPairs) {
+      console.log(`${month}:`);
+      for (const friday in distributedPairs[month]) {
+        console.log(`   - ${friday}, ${distributedPairs[month][friday][0].name}, ${distributedPairs[month][friday][1].name}`);
       }
     }
 
@@ -108,11 +105,11 @@ export function Calendar({ pairs }) {
                     <>
                       {fridays.includes(d) && pairs && pairs.length > 0 && (
                         <Dupla>
-                          {pairs[fridays.indexOf(d)] && (
+                          {distributedPairs[MONTHS[month]] && distributedPairs[MONTHS[month]][d] && (
                             <>
-                              {pairs[fridays.indexOf(d)][0]?.name}
-                              {pairs[fridays.indexOf(d)][1]?.name &&
-                                <span> {pairs[fridays.indexOf(d)][1].name}</span>}
+                              {distributedPairs[MONTHS[month]][d][0]?.name}
+                              {distributedPairs[MONTHS[month]][d][1]?.name &&
+                                <span> {distributedPairs[MONTHS[month]][d][1].name}</span>}
                             </>
                           )}
                         </Dupla>

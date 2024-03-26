@@ -47,7 +47,16 @@ function DrawGrid({ toggleTheme, setPairs }) {
         }
 
         setPairs(shuffledPairs);
-        console.log('Pares sorteados:', shuffledPairs);
+
+        
+        console.log('Pares sorteados:');
+        shuffledPairs.forEach(pair => {
+            if (pair.length === 2) {
+                console.log(`${pair[0].name} e ${pair[1].name}`);
+            } else {
+                console.log(`${pair[0].name}`);
+            }
+        });
     };
 
     // Atualiza o localStorage sempre que houver mudanças na lista de membros
