@@ -9,6 +9,7 @@ export function Calendar({ pairs }) {
   const MONTHS = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
 
   const today = new Date();
+  const currentMonth = today.getMonth();
   const [date, setDate] = useState(today);
   const [day, setDay] = useState(date.getDate());
   const [month, setMonth] = useState(date.getMonth());
@@ -44,25 +45,33 @@ export function Calendar({ pairs }) {
 
   function distributePairsOverYear() {
     const distributedPairs = {};
+    const nextFridayIndex = fridays.findIndex(friday => friday > today); // Encontrar o índice da próxima sexta-feira após hoje
 
-    for (const friday of fridays) {
-      const monthKey = MONTHS[friday.getMonth()]; // Chave do mês
-      if (!distributedPairs[monthKey]) {
-        distributedPairs[monthKey] = {}; // Inicializar o objeto do mês, se ainda não existir
+    if (nextFridayIndex !== -1) {
+      const nextFriday = fridays[nextFridayIndex];
+      const nextFridayMonthKey = MONTHS[nextFriday.getMonth()]; // Chave do mês da próxima sexta-feira
+
+      for (let i = nextFridayIndex; i < fridays.length; i++) {
+        const friday = fridays[i];
+        const monthKey = MONTHS[friday.getMonth()]; // Chave do mês
+
+        if (!distributedPairs[monthKey]) {
+          distributedPairs[monthKey] = {}; // Inicializar o objeto do mês, se ainda não existir
+        }
+
+        if (pairs.length > 0) {
+          const pairIndex = i % pairs.length; // Calcular o índice da dupla com base no índice da sexta-feira
+          const dayOfMonth = friday.getDate();
+          distributedPairs[monthKey][dayOfMonth] = pairs[pairIndex]; // Atribuir a dupla correspondente ao dia
+        }
       }
 
-      if (pairs.length > 0) {
-        const pairIndex = fridays.indexOf(friday) % pairs.length; // Calcular o índice da dupla com base no dia
-        const dayOfMonth = friday.getDate();
-        distributedPairs[monthKey][dayOfMonth] = pairs[pairIndex]; // Atribuir a dupla correspondente ao dia
-      }
-    }
-
-    console.log("Distributed Pairs:");
-    for (const month in distributedPairs) {
-      console.log(`${month}:`);
-      for (const dayOfMonth in distributedPairs[month]) {
-        console.log(`   - ${dayOfMonth}, ${distributedPairs[month][dayOfMonth][0].name}, ${distributedPairs[month][dayOfMonth][1].name}`);
+      console.log("Distributed Pairs:");
+      for (const month in distributedPairs) {
+        console.log(`${month}:`);
+        for (const dayOfMonth in distributedPairs[month]) {
+          console.log(`   - ${dayOfMonth}, ${distributedPairs[month][dayOfMonth][0].name}, ${distributedPairs[month][dayOfMonth][1].name}`);
+        }
       }
     }
 
