@@ -21,25 +21,22 @@ export function Calendar({ pairs }) {
     setMonth(date.getMonth());
     setYear(date.getFullYear());
     setStartDay(startOfMonth(date).getDay());
-    setFridays(findFridaysInMonth(date));
+    setFridays(findFridaysInYear(date.getFullYear()));
   }, [date]);
-
-  useEffect(() => {
-    setFridays(findFridaysInMonth(new Date(year, month, 1)));
-  }, [month, year]);
 
   function changeMonth(amount) {
     setDate(prevDate => addMonths(prevDate, amount));
   }
 
-  function findFridaysInMonth(date) {
+  function findFridaysInYear(year) {
     const fridays = [];
-    const daysInMonth = isLeapYear(date.getFullYear()) ? endOfMonth(date).getDate() : endOfMonth(date).getDate();
-
-    for (let i = 1; i <= daysInMonth; i++) {
-      const currentDate = new Date(date.getFullYear(), date.getMonth(), i);
-      if (isFriday(currentDate)) {
-        fridays.push(i);
+    for (let month = 0; month < 12; month++) {
+      const daysInMonth = isLeapYear(year) ? endOfMonth(new Date(year, month, 1)).getDate() : endOfMonth(new Date(year, month, 1)).getDate();
+      for (let day = 1; day <= daysInMonth; day++) {
+        const currentDate = new Date(year, month, day);
+        if (isFriday(currentDate)) {
+          fridays.push(currentDate);
+        }
       }
     }
     return fridays;
@@ -49,23 +46,23 @@ export function Calendar({ pairs }) {
     const distributedPairs = {};
 
     for (const friday of fridays) {
-      const monthKey = MONTHS[date.getMonth()]; // Chave do mês
+      const monthKey = MONTHS[friday.getMonth()]; // Chave do mês
       if (!distributedPairs[monthKey]) {
         distributedPairs[monthKey] = {}; // Inicializar o objeto do mês, se ainda não existir
       }
 
       if (pairs.length > 0) {
-        // Verificar se há duplas disponíveis
-        const pairIndex = (friday - 1) % pairs.length; // Calcular o índice da dupla com base no dia
-        distributedPairs[monthKey][friday] = pairs[pairIndex]; // Atribuir a dupla correspondente ao dia
+        const pairIndex = fridays.indexOf(friday) % pairs.length; // Calcular o índice da dupla com base no dia
+        const dayOfMonth = friday.getDate();
+        distributedPairs[monthKey][dayOfMonth] = pairs[pairIndex]; // Atribuir a dupla correspondente ao dia
       }
     }
 
     console.log("Distributed Pairs:");
     for (const month in distributedPairs) {
       console.log(`${month}:`);
-      for (const friday in distributedPairs[month]) {
-        console.log(`   - ${friday}, ${distributedPairs[month][friday][0].name}, ${distributedPairs[month][friday][1].name}`);
+      for (const dayOfMonth in distributedPairs[month]) {
+        console.log(`   - ${dayOfMonth}, ${distributedPairs[month][dayOfMonth][0].name}, ${distributedPairs[month][dayOfMonth][1].name}`);
       }
     }
 
@@ -103,7 +100,7 @@ export function Calendar({ pairs }) {
                 >
                   {d > 0 && d <= (isLeapYear(year) ? endOfMonth(new Date(year, month, 1)).getDate() : endOfMonth(new Date(year, month, 1)).getDate()) && (
                     <>
-                      {fridays.includes(d) && pairs && pairs.length > 0 && (
+                      {fridays.find(friday => friday.getDate() === d) && pairs && pairs.length > 0 && (
                         <Dupla>
                           {distributedPairs[MONTHS[month]] && distributedPairs[MONTHS[month]][d] && (
                             <>
