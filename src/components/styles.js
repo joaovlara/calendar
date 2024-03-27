@@ -26,16 +26,32 @@ export const Content = styled.div`
     display: flex;
     flex-direction: row;
     background-color: ${(props) => props.theme.black};
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        height: 200vh;
+        width: 100vw;}
 `;
 export const LeftContainer = styled.div`
     border-right: outset 1px;
     display:flex;
     width: 30vw;
     justify-content: center;
+
+    @media (max-width: 768px) {
+        height:100vh;
+        width:100vw;
+}
 `;
 export const RightContainer = styled.div`
     height: 100vh;
     width: 70vw;
+
+    @media (max-width: 768px) {
+        flex-direction:column;
+        height:100vh;
+        width:100vw;
+}
 `;
 
 /* Separação contaiter esquerdo com formulario e botoes */
@@ -128,6 +144,11 @@ export const ListaMemb = styled.li`
 export const CalendarTable = styled.div`
     height: 70vh;
     width: 70vw;
+
+    @media (max-width: 768px) {
+    height:70vh;
+    width: 100vw;
+}
 `;
 export const Header = styled.div`
     font-family: 'Montserrat';
@@ -155,6 +176,10 @@ export const DayWeek = styled.div`
     border: solid 1px;    
     border-color: ${(props) => props.theme.lines};
     cursor: pointer;
+
+    @media (max-width: 768px) {
+        width:13.6vw;
+}
 `;
 export const TextWeek = styled.strong`
     font-family: 'Montserrat';
@@ -179,10 +204,15 @@ export const DayCard = styled.div`
   cursor: pointer;
 
   ${(props) =>
-    props.isToday &&
-    css`
+        props.isToday &&
+        css`
       border-color: #B73625;
     `}
+
+    @media (max-width: 768px) {
+        height:10vh;
+        width:13.6vw;
+}
 `;
 
 
@@ -207,6 +237,7 @@ export const CoffeeContainer = styled.div`
     flex-direction:column;
     margin: 3%;
 `;
+
 export const TextCoffee = styled.strong`
     font-family: 'Montserrat';
     font-size: 20px;
@@ -217,6 +248,12 @@ export const CoffeeWeek = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+
+    @media (max-width: 768px) {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
 `;
 export const CoffeeDiv = styled.div`
     ${props =>
@@ -224,6 +261,11 @@ export const CoffeeDiv = styled.div`
         css`
         border-top: solid 3px #B73625;
         `}
+
+        @media (max-width: 768px) { 
+            padding: 1%;
+            
+        }
 `;
 export const CardCoffee = styled.span`
     display: flex;
@@ -235,6 +277,11 @@ export const CardCoffee = styled.span`
     width: 12vw;
     height: 12vh;
     background-color: ${(props) => props.theme.card};
+
+        @media (max-width: 768px) {
+            height: 5vh;
+            width: 30vw;    
+        }
 `;
 export const DayCoffee = styled.span`
     display: flex;
