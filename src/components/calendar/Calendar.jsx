@@ -51,6 +51,8 @@ export function Calendar({ pairs }) {
       const nextFriday = fridays[nextFridayIndex];
       const nextFridayMonthKey = MONTHS[nextFriday.getMonth()]; // Chave do mês da próxima sexta-feira
 
+      let totalPairsToDistribute = pairs.length; // Número total de duplas a serem distribuídas
+
       for (let i = nextFridayIndex; i < fridays.length; i++) {
         const friday = fridays[i];
         const monthKey = MONTHS[friday.getMonth()]; // Chave do mês
@@ -59,10 +61,19 @@ export function Calendar({ pairs }) {
           distributedPairs[monthKey] = {}; // Inicializar o objeto do mês, se ainda não existir
         }
 
+        if (totalPairsToDistribute === 0) {
+          // Todas as duplas já foram distribuídas, sair do loop
+          break;
+        }
+
         if (pairs.length > 0) {
           const pairIndex = i % pairs.length; // Calcular o índice da dupla com base no índice da sexta-feira
           const dayOfMonth = friday.getDate();
-          distributedPairs[monthKey][dayOfMonth] = pairs[pairIndex]; // Atribuir a dupla correspondente ao dia
+          if (!distributedPairs[monthKey][dayOfMonth]) {
+            // Verificar se a dupla ainda não foi atribuída
+            distributedPairs[monthKey][dayOfMonth] = pairs[pairIndex]; // Atribuir a dupla correspondente ao dia
+            totalPairsToDistribute--; // Reduzir o número total de duplas restantes para distribuir
+          }
         }
       }
 
