@@ -29,7 +29,7 @@ export const Content = styled.div`
 
     @media (max-width: 768px) {
         flex-direction: column;
-        height: 200vh;
+        height: 210vh;
         width: 100vw;}
 `;
 export const LeftContainer = styled.div`
@@ -144,10 +144,8 @@ export const ListaMemb = styled.li`
 export const CalendarTable = styled.div`
     height: 70vh;
     width: 70vw;
-
     @media (max-width: 768px) {
-    height:70vh;
-    width: 100vw;
+        width: 100vw;
 }
 `;
 export const Header = styled.div`
@@ -162,23 +160,32 @@ export const Header = styled.div`
 `;
 export const MonthP = styled.p`
     font-family: 'Montserrat';
-    
 `;
 export const Body = styled.div`
+    display:flex;
+    flex-direction:column;
     height: 95%;
+    width: 70vw;
+    @media (max-width: 768px) {
+        width: 100vw;
+}
 `;
 export const WeekContainer = styled.div`
     display: flex;
+    @media (max-width: 768px) {
+}
+
 `;
 export const DayWeek = styled.div`
     font-family: 'Montserrat';
-    width: 14%;
+    height: 4vh;
+    width: 10vw;
     border: solid 1px;    
     border-color: ${(props) => props.theme.lines};
     cursor: pointer;
 
     @media (max-width: 768px) {
-        width:13.6vw;
+        width: 14vw;
 }
 `;
 export const TextWeek = styled.strong`
@@ -197,7 +204,7 @@ export const DayCard = styled.div`
   align-items: flex-end;
   font-family: 'Montserrat';
   height: 10vh;
-  width: 14%;
+  width: 9.86vw;
   border: solid 1px;
   border-color: ${(props) => props.theme.lines};
   color: ${(props) => props.theme.withe};
@@ -208,10 +215,8 @@ export const DayCard = styled.div`
         css`
       border-color: #B73625;
     `}
-
     @media (max-width: 768px) {
-        height:10vh;
-        width:13.6vw;
+        width: 14vw;
 }
 `;
 
@@ -236,6 +241,12 @@ export const CoffeeContainer = styled.div`
     display: flex;
     flex-direction:column;
     margin: 3%;
+
+    @media (max-width: 768px) {
+        margin: 1%;
+
+    }
+
 `;
 
 export const TextCoffee = styled.strong`
@@ -263,7 +274,7 @@ export const CoffeeDiv = styled.div`
         `}
 
         @media (max-width: 768px) { 
-            padding: 1%;
+            margin: 1%;
             
         }
 `;
@@ -279,8 +290,11 @@ export const CardCoffee = styled.span`
     background-color: ${(props) => props.theme.card};
 
         @media (max-width: 768px) {
-            height: 5vh;
-            width: 30vw;    
+            padding-top: 0%;
+            height: 6.5vh;
+            width: 45vw;  
+            justify-content: space-around;
+            flex-direction:row;  
         }
 `;
 export const DayCoffee = styled.span`
@@ -288,17 +302,33 @@ export const DayCoffee = styled.span`
     justify-content: center;
     font-family: 'Montserrat';
     color: ${(props) => props.theme.withe};
+
+    @media (max-width: 768px) {
+        font-weight: 20px;
+        align-items:center;
+        justify-content: start;
+    }
 `;
-export const MemberName = styled.div`
+export const MemberName = styled.span`
     display:flex;
     padding-top: 8%;
     flex-wrap: wrap;
     justify-content: space-around;
     color: ${(props) => props.theme.withe};
+
+    @media (max-width: 768px) {
+        align-items:center;
+        justify-content:center;
+        padding-top: 0%;
+        flex-direction:column;
+    }
 `;
 
-export const EditableText = styled.p`
+export const EditableText = styled.span`
     margin: 1%;
     font-size: 15px;
     font-family: 'Montserrat';
+    @media (max-width: 768px) {
+        font-size: 12px;
+    }
 `;

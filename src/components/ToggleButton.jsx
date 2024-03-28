@@ -53,6 +53,10 @@ const Slider = styled.span`
     ${InputSlider}:checked + &::before {
     transform: translateX(25px);
     };
+
+    @media (max-width: 768px) {
+        height: 2em;
+}
 `;
 
 export default ToggleButton;
