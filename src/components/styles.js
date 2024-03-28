@@ -31,17 +31,20 @@ export const Content = styled.div`
         flex-direction: column;
         height: 210vh;
         width: 100vw;}
+
+    @media (max-width: 450px) {
+        height: 200vh;
+    };
 `;
 export const LeftContainer = styled.div`
     border-right: outset 1px;
     display:flex;
     width: 30vw;
     justify-content: center;
-
     @media (max-width: 768px) {
         height:100vh;
         width:100vw;
-}
+    };
 `;
 export const RightContainer = styled.div`
     height: 100vh;
@@ -51,7 +54,7 @@ export const RightContainer = styled.div`
         flex-direction:column;
         height:100vh;
         width:100vw;
-}
+    };
 `;
 
 /* Separação contaiter esquerdo com formulario e botoes */
@@ -104,7 +107,7 @@ export const BtnAdd = styled.button`
     width: 100px;
     &:hover {
         box-shadow: 4px 4px 0px 0px #772419;
-  }
+  };
 `;
 export const BtnSort = styled.button`
     font-family: 'Montserrat';
@@ -116,7 +119,7 @@ export const BtnSort = styled.button`
     border-radius: 5px;
     &:hover {
         box-shadow: 4px 4px 0px 0px #772419;
-  }
+  };
 `;
 export const MainH1 = styled.h1`
     font-family: 'Montserrat';
@@ -146,7 +149,7 @@ export const CalendarTable = styled.div`
     width: 70vw;
     @media (max-width: 768px) {
         width: 100vw;
-}
+    };
 `;
 export const Header = styled.div`
     font-family: 'Montserrat';
@@ -168,25 +171,26 @@ export const Body = styled.div`
     width: 70vw;
     @media (max-width: 768px) {
         width: 100vw;
-}
+    };
 `;
+
 export const WeekContainer = styled.div`
     display: flex;
     @media (max-width: 768px) {
-}
+    };
 
 `;
 export const DayWeek = styled.div`
     font-family: 'Montserrat';
     height: 4vh;
-    width: 10vw;
+    width: 9.83vw;
     border: solid 1px;    
     border-color: ${(props) => props.theme.lines};
     cursor: pointer;
 
     @media (max-width: 768px) {
         width: 14vw;
-}
+    };
 `;
 export const TextWeek = styled.strong`
     font-family: 'Montserrat';
@@ -204,7 +208,7 @@ export const DayCard = styled.div`
   align-items: flex-end;
   font-family: 'Montserrat';
   height: 10vh;
-  width: 9.86vw;
+  width: 9.83vw;
   border: solid 1px;
   border-color: ${(props) => props.theme.lines};
   color: ${(props) => props.theme.withe};
@@ -215,11 +219,26 @@ export const DayCard = styled.div`
         css`
       border-color: #B73625;
     `}
+
+    /*regras de midia*/
+
+    @media (width: 1024px) {
+        width: 9.8vw;
+    };
     @media (max-width: 768px) {
         width: 14vw;
-}
+    };
+    
+    @media (max-width: 450px) {
+            width: 13.8vw;
+    };
+    @media (max-width: 375px) {
+        width:13.75vw;
+    };
+    @media (max-width: 320px) {
+        width:13.6vw;
+    };
 `;
-
 
 export const Dupla = styled.p`
     display: flex;
@@ -244,9 +263,7 @@ export const CoffeeContainer = styled.div`
 
     @media (max-width: 768px) {
         margin: 1%;
-
-    }
-
+    };
 `;
 
 export const TextCoffee = styled.strong`
@@ -263,8 +280,7 @@ export const CoffeeWeek = styled.div`
     @media (max-width: 768px) {
         flex-wrap: wrap;
         justify-content: center;
-    }
-
+    };
 `;
 export const CoffeeDiv = styled.div`
     ${props =>
@@ -275,8 +291,7 @@ export const CoffeeDiv = styled.div`
 
         @media (max-width: 768px) { 
             margin: 1%;
-            
-        }
+        };
 `;
 export const CardCoffee = styled.span`
     display: flex;
@@ -295,7 +310,7 @@ export const CardCoffee = styled.span`
             width: 45vw;  
             justify-content: space-around;
             flex-direction:row;  
-        }
+        };
 `;
 export const DayCoffee = styled.span`
     display: flex;
@@ -307,7 +322,7 @@ export const DayCoffee = styled.span`
         font-weight: 20px;
         align-items:center;
         justify-content: start;
-    }
+    };
 `;
 export const MemberName = styled.span`
     display:flex;
@@ -321,7 +336,7 @@ export const MemberName = styled.span`
         justify-content:center;
         padding-top: 0%;
         flex-direction:column;
-    }
+    };
 `;
 
 export const EditableText = styled.span`
@@ -330,5 +345,5 @@ export const EditableText = styled.span`
     font-family: 'Montserrat';
     @media (max-width: 768px) {
         font-size: 12px;
-    }
+    };
 `;
