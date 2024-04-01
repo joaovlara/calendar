@@ -28,27 +28,32 @@ function DrawGrid({ toggleTheme, setPairs }) {
     };
 
     const sortPairs = () => {
+        const originalMembers = [...members];
         const shuffledMembers = [...members];
-        const shuffledPairs = [];
-
+    
+        // Se a quantidade de membros for ímpar, duplicar um membro aleatório
+        if (shuffledMembers.length % 2 !== 0) {
+            const randomIndex = Math.floor(Math.random() * shuffledMembers.length);
+            const randomMember = shuffledMembers[randomIndex];
+            const duplicateMember = { ...randomMember }; // Duplicar o membro aleatório
+            shuffledMembers.push(duplicateMember);
+        }
+    
+        // Embaralhar os membros
         for (let i = shuffledMembers.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [shuffledMembers[i], shuffledMembers[j]] = [shuffledMembers[j], shuffledMembers[i]];
         }
-
+    
+        // Formar pares de membros consecutivos, garantindo que cada par seja composto por membros diferentes
+        const shuffledPairs = [];
         for (let i = 0; i < shuffledMembers.length; i += 2) {
             const pair = [shuffledMembers[i], shuffledMembers[i + 1]];
             shuffledPairs.push(pair);
         }
-
-        if (shuffledMembers.length % 2 !== 0) {
-            const lastPair = [shuffledMembers[shuffledMembers.length - 1]];
-            shuffledPairs.push(lastPair);
-        }
-
+    
         setPairs(shuffledPairs);
-
-        
+    
         console.log('Pares sorteados:');
         shuffledPairs.forEach(pair => {
             if (pair.length === 2) {
@@ -58,7 +63,7 @@ function DrawGrid({ toggleTheme, setPairs }) {
             }
         });
     };
-
+    
     // Atualiza o localStorage sempre que houver mudanças na lista de membros
     useEffect(() => {
         localStorage.setItem('members', JSON.stringify(members));
