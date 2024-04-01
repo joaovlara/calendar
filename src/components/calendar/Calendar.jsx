@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { CalendarTable, Header, MonthP, Body, DayCard, Day, DayWeek, TextWeek, WeekContainer, DaysContainer, Dupla } from '../styles';
+import { CalendarTable, Header, MonthP, Body, DayCard, Day, DayWeek, TextWeek, WeekContainer, DaysContainer, Dupla } from './styles.calendar';
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 import { isToday, addMonths, startOfMonth, endOfMonth, isFriday, isLeapYear } from 'date-fns';
 

@@ -17,7 +17,7 @@ function App() {
         <ThemeProvider theme={theme === 'dark' ? darkTheme : lightTheme}>
             <Content>
                 <LeftContainer>
-                    <DrawGrid toggleTheme={toggleTheme} setPairs={setPairs} />
+                <DrawGrid toggleTheme={toggleTheme} setPairs={setPairs} />
                 </LeftContainer>
                 <RightContainer>
                     <Calendar pairs={pairs} />
