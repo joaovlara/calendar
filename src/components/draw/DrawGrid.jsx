@@ -1,8 +1,8 @@
 import React from 'react';
 import ToggleButton from "../ToggleButton";
 import { MdClose } from "react-icons/md";
-import { ContainerDraw, MainH1, TextLeft, FormAdd, InputText, BtnAdd, SortArea, SortList, ListaMemb, BtnSort } from "./styles.draw";
-import { useMemberFunctions } from './useMemberFunctions';
+import { ContainerDraw, MainH1, TextLeft, FormAdd, InputText, BtnAdd, SortArea, BtnSort, SortList, ListaMemb } from "./styles.draw";
+import useMemberFunctions from './useMemberFunctions';
 
 function DrawGrid({ toggleTheme, setPairs }) {
     const { inputValue, setInputValue, members, addMember, deleteMember, sortPairs } = useMemberFunctions();
@@ -31,7 +31,7 @@ function DrawGrid({ toggleTheme, setPairs }) {
 
             <SortArea>
                 <TextLeft>Lista de participantes</TextLeft>
-                <BtnSort onClick={sortPairs}>Sortear</BtnSort>
+                <BtnSort onClick={() => sortPairs(setPairs)}>Sortear</BtnSort>
             </SortArea>
             <SortList>
                 {members.map((member, index) => (
