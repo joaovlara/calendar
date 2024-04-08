@@ -65,10 +65,6 @@ function useMemberFunctions() {
         });
     };
 
-    useEffect(() => {
-        localStorage.setItem('members', JSON.stringify(members));
-    }, [members]);
-
     return { inputValue, setInputValue, members, addMember, deleteMember, sortPairs };
 }
 
