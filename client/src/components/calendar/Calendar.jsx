@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { CalendarTable, Header, MonthP, Body, DayCard, Day, DayWeek, TextWeek, WeekContainer, DaysContainer, Dupla } from './styles.calendar';
+import React, { useState, useEffect } from "react";
+import { CalendarTable, Header, MonthP, Body, DayCard, Day, DayWeek, TextWeek, WeekContainer, DaysContainer, Dupla } from "..//../styles/styles.calendar";
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
-import { isToday, addMonths, startOfMonth, endOfMonth, isFriday, isLeapYear } from 'date-fns';
+import { isToday, addMonths, startOfMonth, endOfMonth, isFriday, isLeapYear } from "date-fns";
 
 export function Calendar({ pairs }) {
   const GRID_DAYS = Array(42);

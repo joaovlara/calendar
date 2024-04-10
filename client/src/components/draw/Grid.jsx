@@ -1,29 +1,29 @@
-// import React, { useState } from "react";
-// import axios from "axios";
-// import { TextLeft, SortArea, BtnSort, SortList, ListaMemb } from "./styles.draw";
-// import { MdClose } from "react-icons/md";
-// import { toast } from "react-toastify";
-// import useMemberFunctions from './useMemberFunctions';
+import React from 'react';
+import { MdClose } from "react-icons/md";
+import { Grid, TextLeft, SortArea, BtnSort, SortList, ListaMemb } from "../../styles/styles.draw";
+import useMemberFunctions from './useMemberFunctions';
 
-// const Grid = () => {
-//     const { members } = useMemberFunctions();
+const GridConteiner = ( setPairs ) => {
+    const { members, deleteMember, sortPairs } = useMemberFunctions();
+    return (
+        <Grid>
+            <SortArea>
+                <TextLeft>Lista de participantes</TextLeft>
+                <BtnSort onClick={() => sortPairs(setPairs)}>Sortear</BtnSort>
+            </SortArea>
+            <SortList>
+                {members.map((member, index) => (
+                    <ListaMemb key={index}>
+                        {member.name}
+                        <MdClose onClick={() => deleteMember(index)} />
+                    </ListaMemb>
+                ))}
+            </SortList>
+        </Grid>
+    )
+}
 
-//     return (
-//         <div>
-//             <SortArea>
-//                 <TextLeft>Lista de participantes</TextLeft>
-//                 <BtnSort >Sortear</BtnSort>
-//             </SortArea>
-//             <SortList>
-//                 {members.map((member, index) => (
-//                     <ListaMemb key={index}>
-//                         {member.name}
-//                         <MdClose />
-//                     </ListaMemb>
-//                 ))}
-//             </SortList>
-//         </div>
-//     );
-// };
+export default GridConteiner;
 
-// export default Grid;
+
+

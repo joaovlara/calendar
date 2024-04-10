@@ -1,27 +1,29 @@
-// import axios from "axios";
-// import React, { useEffect, useRef, useState } from "react";
-// import { toast } from "react-toastify";
-// import { FormAdd, InputText, BtnAdd } from "./styles.draw";
-// import useMemberFunctions from './useMemberFunctions';
+import React from 'react';
+import { FormAdd, InputText, BtnAdd } from "../../styles/styles.draw";
+import useMemberFunctions from './useMemberFunctions';
 
-// function Form( { members }) {
+const Form = () => {
+    const { inputValue, setInputValue, addMember } = useMemberFunctions();
 
-//     return (
-//         <FormAdd onSubmit={handleAddEmployee}>
-//             <InputText
-//                 placeholder='Ex. João'
-//                 value={inputValue}
-//                 onChange={(e) => setInputValue(e.target.value)}
-//                 onKeyPress={(e) => {
-//                     if (e.key === 'Enter') {
-//                         setInputValue(""); 
-//                         handleAddEmployee(e);
-//                     }
-//                 }}
-//             />
-//             <BtnAdd type="submit">Adicionar</BtnAdd> 
-//         </FormAdd>
-//     )
-// }
+    return (
+        <FormAdd onSubmit={(e) => {
+            e.preventDefault();
+            addMember(inputValue);
+        }}>
+            <InputText
+                placeholder='Ex. João'
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                onKeyPress={(e) => {
+                    if (e.key === 'Enter') {
+                        addMember(inputValue);
+                    }
+                }}
+            />
+            <BtnAdd onClick={() => addMember(inputValue)}>Adicionar</BtnAdd>
+        </FormAdd>
+    )
+}
 
-// export default Form;
+export default Form
+
