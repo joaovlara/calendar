@@ -1,5 +1,5 @@
 import React from 'react';
-import ToggleButton from "../toggle=button/ToggleButton"
+import ToggleButton from "../toggle-button/ToggleButton"
 import { ContainerDraw, MainH1, TextLeft } from "..//../styles/styles.draw";
 import Form from './Form';
 import Grid from './Grid';
