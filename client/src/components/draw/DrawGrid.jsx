@@ -16,7 +16,7 @@ function DrawGrid({ toggleTheme }) {
             <TextLeft>Insira o nome</TextLeft>
             <FormAdd onSubmit={(e) => {
                 e.preventDefault();
-                addMember(inputValue);
+                addMember(e); // Passa o evento como argumento
             }}>
                 <InputText
                     placeholder='Ex. João'
@@ -24,11 +24,11 @@ function DrawGrid({ toggleTheme }) {
                     onChange={(e) => setInputValue(e.target.value)}
                     onKeyPress={(e) => {
                         if (e.key === 'Enter') {
-                            addMember(inputValue);
+                            addMember(e); // Passa o evento como argumento
                         }
                     }}
                 />
-                <BtnAdd onClick={() => addMember(inputValue)}>Adicionar</BtnAdd>
+                <BtnAdd type="submit">Adicionar</BtnAdd> 
             </FormAdd>
 
             <SortArea>
@@ -36,10 +36,10 @@ function DrawGrid({ toggleTheme }) {
                 <BtnSort>Sortear</BtnSort>
             </SortArea>
             <SortList>
-                {members.map((member, index) => (
-                    <ListaMemb key={index}>
-                        {member.name}
-                        <MdClose onClick={() => deleteMember(index)} />
+                {members.map((member) => (
+                    <ListaMemb key={member.nome}>
+                        {member.nome}
+                        <MdClose onClick={() => deleteMember(member.id)} />
                     </ListaMemb>
                 ))}
             </SortList>

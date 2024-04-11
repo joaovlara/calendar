@@ -23,7 +23,7 @@ export const TextLeft = styled.p`
     color: ${(props) => props.theme.withe};
 `;
 
-export const FormAdd = styled.div`
+export const FormAdd = styled.form`
     display: flex;
     flex-direction: column;
     align-items: center;

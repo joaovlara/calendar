@@ -12,10 +12,9 @@ export const getFuncionario = (_, res) => {
 
 export const addFuncionario = (req, res) => {
   const q =
-    "INSERT INTO smar0081_calendar.funcionarios(`id`, `name`) VALUES(?)";
+    "INSERT INTO smar0081_calendar.funcionarios(`name`) VALUES(?)";
 
   const values = [
-    req.body.id,
     req.body.name,
   ];
 
