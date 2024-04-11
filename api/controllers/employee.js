@@ -1,7 +1,7 @@
 import { db } from "../db.js";
 
-export const getMember = (_, res) => {
-  const q = "SELECT * FROM Employees";
+export const getFuncionario = (_, res) => {
+  const q = "SELECT * FROM funcionarios";
 
   db.query(q, (err, data) => {
     if (err) return res.json(err);
@@ -10,9 +10,9 @@ export const getMember = (_, res) => {
   });
 };
 
-export const addMember = (req, res) => {
+export const addFuncionario = (req, res) => {
   const q =
-    "INSERT INTO Employees(`id`, `name`) VALUES(?)";
+    "INSERT INTO funcionarios(`id`, `name`) VALUES(?)";
 
   const values = [
     req.body.id,
@@ -26,9 +26,8 @@ export const addMember = (req, res) => {
   });
 };
 
-
-export const deleteMember = (req, res) => {
-  const q = "DELETE FROM Employees WHERE `id` = ?";
+export const deleteFuncionario = (req, res) => {
+  const q = "DELETE FROM funcionarios WHERE `id` = ?";
 
   db.query(q, [req.params.id], (err) => {
     if (err) return res.json(err);
