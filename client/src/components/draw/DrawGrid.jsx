@@ -4,9 +4,11 @@ import ToggleButton from "../toggle-button/ToggleButton";
 import { MdClose } from "react-icons/md";
 import { ContainerDraw, MainH1, TextLeft, FormAdd, InputText, BtnAdd, SortArea, BtnSort, SortList, ListaMemb } from "..//../styles/styles.draw";
 import useMemberFunctions from './useMemberFunctions';
+import useSortPairs from './useSortPairs';
 
-function DrawGrid({ toggleTheme }) {
+function DrawGrid({ toggleTheme, setPairs }) {
     const { inputValue, setInputValue, members, addMember, deleteMember } = useMemberFunctions();
+    const sortPairs = useSortPairs(); // Aqui você chama o hook e recebe a função sortPairs
 
     return (
         <ContainerDraw>
@@ -16,7 +18,7 @@ function DrawGrid({ toggleTheme }) {
             <TextLeft>Insira o nome</TextLeft>
             <FormAdd onSubmit={(e) => {
                 e.preventDefault();
-                addMember(e); // Passa o evento como argumento
+                addMember(e);
             }}>
                 <InputText
                     placeholder='Ex. João'
@@ -24,16 +26,16 @@ function DrawGrid({ toggleTheme }) {
                     onChange={(e) => setInputValue(e.target.value)}
                     onKeyPress={(e) => {
                         if (e.key === 'Enter') {
-                            addMember(e); // Passa o evento como argumento
+                            addMember(e);
                         }
                     }}
                 />
-                <BtnAdd type="submit">Adicionar</BtnAdd> 
+                <BtnAdd type="submit">Adicionar</BtnAdd>
             </FormAdd>
 
             <SortArea>
                 <TextLeft>Lista de participantes</TextLeft>
-                <BtnSort>Sortear</BtnSort>
+                <BtnSort onClick={() => sortPairs(members, setPairs)}>Sortear</BtnSort>
             </SortArea>
             <SortList>
                 {members.map((member) => (

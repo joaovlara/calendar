@@ -81,7 +81,7 @@ export function Calendar({ pairs }) {
       for (const month in distributedPairs) {
         console.log(`${month}:`);
         for (const dayOfMonth in distributedPairs[month]) {
-          console.log(`   - ${dayOfMonth}, ${distributedPairs[month][dayOfMonth][0].name}, ${distributedPairs[month][dayOfMonth][1].name}`);
+          console.log(`   - ${dayOfMonth}, ${distributedPairs[month][dayOfMonth][0].nome}, ${distributedPairs[month][dayOfMonth][1].nome}`);
         }
       }
     }
@@ -124,9 +124,9 @@ export function Calendar({ pairs }) {
                         <Dupla>
                           {distributedPairs[MONTHS[month]] && distributedPairs[MONTHS[month]][d] && (
                             <>
-                              {distributedPairs[MONTHS[month]][d][0]?.name}
-                              {distributedPairs[MONTHS[month]][d][1]?.name &&
-                                <span> {distributedPairs[MONTHS[month]][d][1].name}</span>}
+                              {distributedPairs[MONTHS[month]][d][0]?.nome}
+                              {distributedPairs[MONTHS[month]][d][1]?.nome &&
+                                <span> {distributedPairs[MONTHS[month]][d][1].nome}</span>}
                             </>
                           )}
                         </Dupla>
