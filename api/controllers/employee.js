@@ -11,14 +11,12 @@ export const getFuncionario = (_, res) => {
 };
 
 export const addFuncionario = (req, res) => {
-  const q =
-    "INSERT INTO smar0081_calendar.funcionarios(`name`) VALUES(?)";
-
+  const q = "INSERT INTO `smar0081_calendar`.`funcionarios` (`nome`) VALUES (?)";
   const values = [
-    req.body.name,
+    req.body.nome,
   ];
 
-  db.query(q, [values], (err) => {
+  db.query(q, values, (err) => {
     if (err) return res.json(err);
 
     return res.status(200).json("Funcionário criado com sucesso.");
@@ -26,7 +24,7 @@ export const addFuncionario = (req, res) => {
 };
 
 export const deleteFuncionario = (req, res) => {
-  const q = "DELETE FROM smar0081_calendar.funcionarios WHERE `id` = ?";
+  const q = "DELETE FROM `smar0081_calendar`.`funcionarios` WHERE (`id` = ?)";
 
   db.query(q, [req.params.id], (err) => {
     if (err) return res.json(err);
@@ -34,3 +32,4 @@ export const deleteFuncionario = (req, res) => {
     return res.status(200).json("Funcionário deletado com sucesso.");
   });
 };
+
