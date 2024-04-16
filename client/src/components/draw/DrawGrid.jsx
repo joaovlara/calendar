@@ -3,12 +3,12 @@ import { ToastContainer } from "react-toastify";
 import ToggleButton from "../toggle-button/ToggleButton";
 import { MdClose } from "react-icons/md";
 import { ContainerDraw, MainH1, TextLeft, FormAdd, InputText, BtnAdd, SortArea, BtnSort, SortList, ListaMemb } from "..//../styles/styles.draw";
-import useMemberFunctions from './useMemberFunctions';
-import useSortPairs from './useSortPairs';
+import useMemberFunctions from '../hooks/useMemberFunctions';
+import useSortPairs from '../hooks/useSortPairs';
 
 function DrawGrid({ toggleTheme, setPairs }) {
     const { inputValue, setInputValue, members, addMember, deleteMember } = useMemberFunctions();
-    const sortPairs = useSortPairs(); // Aqui você chama o hook e recebe a função sortPairs
+    const sortPairs = useSortPairs();
 
     return (
         <ContainerDraw>
