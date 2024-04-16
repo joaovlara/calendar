@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { CalendarTable, Header, MonthP, Body, DayCard, Day, DayWeek, TextWeek, WeekContainer, DaysContainer, Dupla } from "..//../styles/styles.calendar";
+import { CalendarTable, Header, MonthP, Body, DayCard, Day, DaysContainer, Dupla } from "..//../styles/styles.calendar";
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 import { isToday, addMonths, startOfMonth, endOfMonth, isFriday, isLeapYear } from "date-fns";
+import WeekContainer from "./Week";
 
 export function Calendar({ pairs }) {
   const GRID_DAYS = Array(42);
-  const DAYS_OF_THE_WEEK = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'];
   const MONTHS = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
-
   const today = new Date();
   const currentMonth = today.getMonth();
   const [date, setDate] = useState(today);
@@ -100,13 +99,7 @@ export function Calendar({ pairs }) {
       </Header>
 
       <Body>
-        <WeekContainer>
-          {DAYS_OF_THE_WEEK.map(d => (
-            <DayWeek key={d}>
-              <TextWeek>{d}</TextWeek>
-            </DayWeek>
-          ))}
-        </WeekContainer>
+        <WeekContainer />
         <DaysContainer>
           {GRID_DAYS
             .fill(null)
