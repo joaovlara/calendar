@@ -7,9 +7,10 @@ import useMemberFunctions from "../../hooks/useMemberFunctions";
 function GridList() {
     const { members, deleteMember } = useMemberFunctions();
     const [sortClicked, setSortClicked] = useState(false);
+    const [distributeFridayPairs, sortPairsForFridays] = useSortPairs(members, new Date().getFullYear());
 
-    useSortPairs(members, new Date().getFullYear());
     const handleSortPairs = () => {
+        sortPairsForFridays();
         setSortClicked(true);
     };
 

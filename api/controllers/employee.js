@@ -33,3 +33,25 @@ export const deleteFuncionario = (req, res) => {
   });
 };
 
+//Limpeza
+
+export const getLimpeza = (_, res) => {
+  const q = "SELECT * FROM smar0081_calendar.limpeza";
+
+  db.query(q, (err, data) => {
+    if (err) return res.json(err);
+
+    return res.status(200).json(data);
+  });
+};
+
+export const saveFridayPairs = (req, res) => {
+  const q = "INSERT INTO `smar0081_calendar`.`limpeza` (`data`, `funcionario1`, `funcionario2`) VALUES (?, ?, ?)";
+  const values = req.body.map(pair => [pair.date, pair.pair[0], pair.pair[1]]);
+
+  db.query(q, values, (err) => {
+    if (err) return res.json(err);
+
+    return res.status(200).json("Duplas salvas com sucesso.");
+  });
+};

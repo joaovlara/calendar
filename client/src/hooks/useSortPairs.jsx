@@ -1,50 +1,56 @@
-import { useEffect } from 'react';
-import { findFridaysInYear } from '../components/calendar/Calendar'; // Importe findFridaysInYear diretamente
+import { useState } from 'react';
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import { findFridaysInYear } from '../components/calendar/Calendar';
 
 function useSortPairs(members, year) {
-    const sortPairsForFridays = (fridays) => {
-        fridays.forEach(friday => {
-            const shuffledMembers = [...members];
+    const [distributeFridayPairs, setDistributeFridayPairs] = useState([]);
+    // const getLimpeza = async () => {}
 
-            // Se a quantidade de membros for ímpar, duplicar um membro aleatório
-            if (shuffledMembers.length % 2 !== 0) {
-                const randomIndex = Math.floor(Math.random() * shuffledMembers.length);
-                const randomMember = shuffledMembers[randomIndex];
-                const duplicateMember = { ...randomMember };  // Duplicar o membro aleatório
-                shuffledMembers.push(duplicateMember);
-            }
-
-            // Embaralhar os membros
-            for (let i = shuffledMembers.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [shuffledMembers[i], shuffledMembers[j]] = [shuffledMembers[j], shuffledMembers[i]];
-            }
-
-            // Inicializa um array para armazenar os pares sorteados
-            const shuffledPairs = [];
-            for (let i = 0; i < shuffledMembers.length; i += 2) {
-                const pair = [shuffledMembers[i], shuffledMembers[i + 1]];
-                shuffledPairs.push(pair);
-            }
-
-            console.log(`Pares sorteados para ${friday}:`);
-            shuffledPairs.forEach(pair => {
-                if (pair.length === 2) {
-                    console.log(`${pair[0].nome} e ${pair[1].nome}`);
-                } else {
-                    console.log(`${pair[0].nome}`);
-                }
-            });
-        });
-    };
-
-    useEffect(() => {
-        // Obter sextas-feiras do ano
+    function sortPairsForFridays() {
         const fridays = findFridaysInYear(year);
-        sortPairsForFridays(fridays);
-    }, [members, year]);
+        const remainingMembers = [...members];
+        const sortedPairs = [];
 
-    return sortPairsForFridays; // Se não precisar retornar nada do hook
+        // Sorteio das duplas
+        while (remainingMembers.length > 1) {
+            const randomIndex1 = Math.floor(Math.random() * remainingMembers.length);
+            const member1 = remainingMembers[randomIndex1];
+            remainingMembers.splice(randomIndex1, 1);
+
+            const randomIndex2 = Math.floor(Math.random() * remainingMembers.length);
+            const member2 = remainingMembers[randomIndex2];
+            remainingMembers.splice(randomIndex2, 1);
+
+            sortedPairs.push([member1.nome, member2.nome]);
+        }
+
+        // Distribuição das duplas para sextas-feiras
+        const distributedPairs = fridays.map((friday, index) => {
+            const pair = sortedPairs[index % sortedPairs.length]; // Seleciona uma dupla do array de duplas sorteadas
+            console.log(`Sexta: ${friday} - Dupla: ${pair[0]} e ${pair[1]}`); // Adiciona console.log para exibir a data e a dupla sorteada
+            return { date: friday, pair };
+        });
+
+        setDistributeFridayPairs(distributedPairs);
+
+        const saveFridayPairs = async (e) => {
+            try {
+                await axios.post("http://localhost:8800/saveFridayPairs", distributedPairs);
+                toast.info("Equipes sorteadas!!");
+                console.log('Dados inseridos com sucesso no banco de dados!');
+            } catch (error) {
+                console.error('Erro ao inserir dados no banco de dados:', error);
+            }
+        }
+
+    }
+
+
+    return [distributeFridayPairs, sortPairsForFridays];
+
+
+
 }
 
 export default useSortPairs;

@@ -1,6 +1,5 @@
 import express from "express";
-import { getFuncionario, addFuncionario, deleteFuncionario } from "../controllers/employee.js";
-import { saveFridayPairs } from "../controllers/limpeza.js";
+import { getFuncionario, addFuncionario, deleteFuncionario, saveFridayPairs } from "../controllers/employee.js";
 
 const router = express.Router()
 
@@ -10,6 +9,6 @@ router.post("/", addFuncionario)
 
 router.delete("/:id", deleteFuncionario)
 
-router.post("/", saveFridayPairs)
+router.post("/saveFridayPairs", saveFridayPairs); 
 
 export default router

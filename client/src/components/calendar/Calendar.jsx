@@ -47,12 +47,16 @@ export default function Calendar() {
   );
 };
 
-export function findFridaysInYear(year) {
+export function findFridaysInYear() {
+  const currentDate = new Date();
+  const currentYear = currentDate.getFullYear();
+  const currentMonth = currentDate.getMonth();
+
   const fridays = [];
-  for (let month = 0; month < 12; month++) {
-    const daysInMonth = endOfMonth(new Date(year, month)).getDate();
+  for (let month = currentMonth; month < 12; month++) {
+    const daysInMonth = endOfMonth(new Date(currentYear, month)).getDate();
     for (let day = 1; day <= daysInMonth; day++) {
-      const currentDate = new Date(year, month, day);
+      const currentDate = new Date(currentYear, month, day);
       if (isFriday(currentDate)) {
         fridays.push(format(currentDate, 'yyyy MM dd')); 
       }
