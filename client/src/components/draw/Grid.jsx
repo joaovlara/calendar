@@ -2,16 +2,18 @@ import React, { useState } from 'react';
 import { MdClose } from "react-icons/md";
 import { Grid, TextLeft, SortArea, BtnSort, SortList, ListaMemb } from "..//../styles/styles.draw";
 import useMemberFunctions from "../../hooks/useMemberFunctions";
+import useSortPairs from '../../hooks/useSortPairs';
 import useSavePairs from '../../hooks/useSavePairs'; // Importe useSavePairs
 
 function GridList() {
     const { members, deleteMember } = useMemberFunctions();
+    const [distributeFridayPairs, sortPairsForFridays] = useSortPairs(members, new Date().getFullYear());
     const [sortClicked, setSortClicked] = useState(false);
-    const saveFridayPairs = useSavePairs(); // Use useSavePairs para obter a função saveFridayPairs
+    const saveFridayPairs = useSavePairs(); 
 
     const handleSortPairs = () => {
-        // Não é necessário chamar sortPairsForFridays aqui, pois useSortPairs já retorna a função sortPairsForFridays
-        saveFridayPairs(members, new Date().getFullYear()); // Chame saveFridayPairs com os argumentos necessários
+        sortPairsForFridays();
+        saveFridayPairs(members.name, new Date().getFullYear());
         setSortClicked(true);
     };
 
