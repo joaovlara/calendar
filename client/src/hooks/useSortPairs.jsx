@@ -20,7 +20,7 @@ function useSortPairs(members, year) {
             const member2 = remainingMembers[randomIndex2];
             remainingMembers.splice(randomIndex2, 1);
 
-            sortedPairs.push([member1.nome, member2.nome]);
+            sortedPairs.push([member1.id, member2.id]);
         }
 
         // Distribuição das duplas para sextas-feiras

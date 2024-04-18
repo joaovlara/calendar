@@ -2,7 +2,6 @@ import React from 'react';
 import ToggleButton from "../toggle-button/ToggleButton";
 import { ContainerDraw, MainH1, TextLeft } from "..//../styles/styles.draw";
 import { ToastContainer } from "react-toastify";
-import useMemberFunctions from '../../hooks/useMemberFunctions';
 import Form from "./Form";
 import Grid from "./Grid"
 

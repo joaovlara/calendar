@@ -10,15 +10,19 @@ function useMemberFunctions() {
         try {
             const res = await axios.get("http://localhost:8800/");
             setMembers(res.data);
+            for(let i = 0; members.lenght > i; i++){
+                console.log(`res.data[${i}].id dentro do useMember: ` , res.data[i].id)
+
+            }
         }
         catch (error) {
             console.error("Erro ao obter funcionários:", error);
         }
     };
 
-    useEffect(() => {
-        getFuncionario();
-    }, []);
+    // useEffect(() => {
+    //     getFuncionario();
+    // }, [members]); vazio qqr coisa que altera
 
     const addMember = async (e) => {
         e.preventDefault();
