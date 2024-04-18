@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { MdClose } from "react-icons/md";
 import { Grid, TextLeft, SortArea, BtnSort, SortList, ListaMemb } from "..//../styles/styles.draw";
-import useSortPairs from '../../hooks/useSortPairs'; // Importe o hook useSortPairs
+import useSortPairs from '../../hooks/useSortPairs';
 import useMemberFunctions from "../../hooks/useMemberFunctions";
 
 function GridList() {

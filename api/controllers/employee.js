@@ -33,7 +33,7 @@ export const deleteFuncionario = (req, res) => {
   });
 };
 
-//Limpeza
+//Duplas da limpeza
 
 export const getLimpeza = (_, res) => {
   const q = "SELECT * FROM smar0081_calendar.limpeza";
@@ -46,12 +46,16 @@ export const getLimpeza = (_, res) => {
 };
 
 export const saveFridayPairs = (req, res) => {
-  const q = "INSERT INTO `smar0081_calendar`.`limpeza` (`data`, `funcionario1`, `funcionario2`) VALUES (?, ?, ?)";
-  const values = req.body.map(pair => [pair.date, pair.pair[0], pair.pair[1]]);
+  const q = "INSERT INTO `smar0081_calendar`.`limpeza` (`data`, `funcionario1_id`, `funcionario2_id`) VALUES (?, ?, ?)";
+  const values = [
+    req.body.data,
+    req.body.funcionario1_id,
+    req.body.funcionario2_id
+  ];
 
   db.query(q, values, (err) => {
     if (err) return res.json(err);
 
-    return res.status(200).json("Duplas salvas com sucesso.");
+    return res.status(200).json("Dados de limpeza adicionados com sucesso.");
   });
 };
