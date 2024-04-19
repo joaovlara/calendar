@@ -1,13 +1,22 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { CoffeeWeek, DayCoffee, TextCoffee, CoffeeContainer, CoffeeDiv, CardCoffee, EditableText, MemberName } from "..//../styles/styles.CoffeeDay"
 
 const DAYS_OF_THE_WEEK = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex'];
 
 export function CoffeeDay() {
-  const initialTexts = DAYS_OF_THE_WEEK.map(() => ({ member1: 'Membro 1', member2: 'Membro 2' }));
+  const [texts, setTexts] = useState(() => {
+    const storedTexts = localStorage.getItem('coffeeTexts');
+    return storedTexts ? JSON.parse(storedTexts) : DAYS_OF_THE_WEEK.map(() => ({ member1: 'Membro 1', member2: 'Membro 2' }));
+  });
+
+  useEffect(() => {
+    localStorage.setItem('coffeeTexts', JSON.stringify(texts));
+  }, [texts]);
 
   const handleTextChange = (index, member, newText) => {
-    console.log(`Alterando texto ${member} no dia ${index + 1} para:`, newText);
+    const newtexts = [...texts];
+    newtexts[index][member] = newText;
+    setTexts(newtexts);
   };
 
   return (
@@ -25,13 +34,13 @@ export function CoffeeDay() {
                     contentEditable
                     onBlur={(event) => handleTextChange(index, 'member1', event.target.innerText)}
                   >
-                    Membro 1
+                    {texts[index].member1}
                   </EditableText>
                   <EditableText
                     contentEditable
                     onBlur={(event) => handleTextChange(index, 'member2', event.target.innerText)}
                   >
-                    Membro 2
+                    {texts[index].member2}
                   </EditableText>
                 </MemberName>
               </CardCoffee>
