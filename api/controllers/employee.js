@@ -13,7 +13,7 @@ export const getFuncionario = (_, res) => {
 export const addFuncionario = (req, res) => {
   const q = "INSERT INTO `smar0081_calendar`.`funcionarios` (`nome`) VALUES (?)";
   const values = [
-    req.body.nome,
+    req.nome,
   ];
 
   db.query(q, values, (err) => {
@@ -39,37 +39,29 @@ export const getLimpeza = (_, res) => {
   const q = "SELECT * FROM smar0081_calendar.limpeza";
 
   db.query(q, (err, data) => {
-    if (err) return res.json(err);
-
+    if (err) return res.status(500).json(err);
     return res.status(200).json(data);
   });
 };
 
-
 export const saveFridayPairs = (req, res) => {
-  console.log("req: " , req)
+  const { data, funcionario1, funcionario2 } = req.body;
+  const q = "INSERT INTO `smar0081_calendar`.`limpeza` (`data`, `funcionario1`, `funcionario2`) VALUES (?, ?, ?)";
+  const values = [data, funcionario1, funcionario2];
 
-  const q = "INSERT INTO `smar0081_calendar`.`limpeza` (`data`, `funcionario1_id`, `funcionario2_id`) VALUES (?, ?, ?)";
-  const values = [
-    req.body.data,
-    req.body.funcionario1_id,
-    req.body.funcionario2_id
-  ];
-
-  if (
-    !req.body.data ||
-    !req.body.funcionario1_id ||
-    !req.body.funcionario2_id) {
+  if (!data || !funcionario1 || !funcionario2) {
     return res.status(400).json({ error: 'Dados incompletos para inserção na limpeza.' });
   }
 
-  db.query(q, values, (err, result) => {
+  // Convertendo a data para o formato YYYY-MM-DD
+  const formattedDate = new Date(data).toISOString().split('T')[0];
+
+  db.query(q, [formattedDate, funcionario1, funcionario2], (err, result) => {
     if (err) {
       console.error('Erro ao inserir dados:', err);
       return res.status(500).json({ error: 'Erro ao salvar os pares de sexta-feira.' });
-    } else {
-      console.log('Dados inseridos com sucesso!');
-      return res.status(200).json("Dados de limpeza adicionados com sucesso.");
     }
+    console.log('Dados inseridos com sucesso!');
+    return res.status(200).json("Dados de limpeza adicionados com sucesso.");
   });
 };

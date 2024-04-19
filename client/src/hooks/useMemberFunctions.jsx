@@ -6,18 +6,17 @@ import "react-toastify/dist/ReactToastify.css";
 function useMemberFunctions() {
     const [inputValue, setInputValue] = useState('');
     const [members, setMembers] = useState([]);
+
+    //Faz a requisição dos dados do banco e insere no array members
     const getFuncionario = async () => {
         try {
             const res = await axios.get("http://localhost:8800/");
             setMembers(res.data);
-            for(let i = 0; members.lenght > i; i++){
-                console.log(`res.data[${i}].id dentro do useMember: ` , res.data[i].id)
-
+            for (let i = 0; members.lenght > i; i++) {
+                console.log(`res.data[${i}].id dentro do useMember: `, res.data[i].id)
             }
         }
-        catch (error) {
-            console.error("Erro ao obter funcionários:", error);
-        }
+        catch (error) { console.error("Erro ao obter funcionários:", error); }
     };
 
     // useEffect(() => {

@@ -25,7 +25,7 @@ function GridList() {
             </SortArea>
             <SortList>
                 {members.map((member) => (
-                    <ListaMemb key={member.nome}>
+                    <ListaMemb key={member.id}>
                         {member.nome} <MdClose onClick={() => deleteMember(member.id)} />
                     </ListaMemb>
                 ))}

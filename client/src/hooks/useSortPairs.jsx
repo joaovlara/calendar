@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import axios from 'axios';
 import { findFridaysInYear } from '../components/calendar/Calendar';
 
 function useSortPairs(members, year) {
@@ -9,6 +8,8 @@ function useSortPairs(members, year) {
         const fridays = findFridaysInYear(year);
         const remainingMembers = [...members];
         const sortedPairs = [];
+        console.log("PARES SORTEADOS sortedPairs: ", sortedPairs)
+        console.log("PARES DAS SEXTAS distributeFridayPairs ", distributeFridayPairs)
 
         // Sorteio das duplas
         while (remainingMembers.length > 1) {
@@ -20,13 +21,14 @@ function useSortPairs(members, year) {
             const member2 = remainingMembers[randomIndex2];
             remainingMembers.splice(randomIndex2, 1);
 
-            sortedPairs.push([member1.id, member2.id]);
+            sortedPairs.push([member1.id, member2.id]);       
         }
 
         // Distribuição das duplas para sextas-feiras
         const distributedPairs = fridays.map((friday, index) => {
             const pair = sortedPairs[index % sortedPairs.length];
-            console.log(`Sexta: ${friday} - Dupla: ${pair[0]} e ${pair[1]}`);
+            console.log( "DATA DA SEXTA-friday: ", friday, "DUPLAS pair ",  pair)
+            // console.log(`Sexta: ${friday} - Dupla: ${pair[0]} e ${pair[1]}`);
             return { date: friday, pair };
         });
 
