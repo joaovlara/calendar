@@ -3,17 +3,16 @@ import { MdClose } from "react-icons/md";
 import { Grid, TextLeft, SortArea, BtnSort, SortList, ListaMemb } from "..//../styles/styles.draw";
 import useMemberFunctions from "../../hooks/useMemberFunctions";
 import useSortPairs from '../../hooks/useSortPairs';
-import useSavePairs from '../../hooks/useSavePairs'; // Importe useSavePairs
 
 function GridList() {
+
+    const year = new Date().getFullYear(); 
     const { members, deleteMember } = useMemberFunctions();
     const [distributeFridayPairs, sortPairsForFridays] = useSortPairs(members, new Date().getFullYear());
     const [sortClicked, setSortClicked] = useState(false);
-    const saveFridayPairs = useSavePairs(); 
 
     const handleSortPairs = () => {
         sortPairsForFridays();
-        saveFridayPairs(members.name, new Date().getFullYear());
         setSortClicked(true);
     };
 

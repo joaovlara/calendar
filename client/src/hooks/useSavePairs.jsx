@@ -1,35 +1,43 @@
-import { useEffect } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
-import { toast } from 'react-toastify';
 import { findFridaysInYear } from '../components/calendar/Calendar';
-import useSortPairs from './useSortPairs'
-function useSavePairs(year, index) {
+import { toast } from 'react-toastify';
+
+function useSavePairs(year) {
     const fridays = findFridaysInYear(year);
-    const friday = fridays[index % fridays.length];
-    const { sortedPairs } = useSortPairs();
-    // const pair = sortedPairs[index % sortedPairs.length];
+    const [duplasLimpeza, setDuplasLimpeza] = useState([]);
 
-    const saveFridayPairs = async (data, funcionario1, funcionario2) => {
+    // Faz a requisição das duplas já existentes no banco
+    const getLimpeza = async () => {
         try {
-            // Verifica se os dados estão definidos
-            if (!data || !funcionario1 || !funcionario2) {
-                console.error('Dados ausentes para salvar pares de sexta-feira.');
-                return;
-            }
-            await axios.post("http://localhost:8800/saveFridayPairs", {
-                data,
-                funcionario1,
-                funcionario2
-            });
-
-            toast.info("Equipes sorteadas!!");
-            console.log(`Sexta: ${data} - Dupla: ${funcionario1} e ${funcionario2}`);
+            const res = await axios.get("http://localhost:8800/getLimpeza");
+            setDuplasLimpeza(res.data);
         } catch (error) {
-            console.error('Erro ao inserir dados no banco de dados:', error);
+            console.error("Erro ao obter duplas:", error);
         }
     };
 
-    return saveFridayPairs;
+    // Salva as duplas no banco
+    const saveFridayPairs = async (distributeFridayPairs) => {
+        console.log("saveFridayPairs (distributeFridayPairs) :", distributeFridayPairs )
+        
+        try {
+            await Promise.all(distributeFridayPairs.map(async (pairData) => {
+                await axios.post("http://localhost:8800/saveFridayPairs", {
+                    data: pairData.date,
+                    funcionario1: pairData.pair[0],
+                    funcionario2: pairData.pair[1],
+                });
+            }));
+
+            toast.success("Duplas sorteadas com sucesso!");
+        } catch (error) {
+            toast.error("Erro ao salvar duplas sorteadas");
+            console.error("Erro ao salvar duplas sorteadas:", error);
+        }
+    }
+
+    return { getLimpeza, saveFridayPairs };
 }
 
 export default useSavePairs;

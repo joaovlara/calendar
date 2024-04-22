@@ -13,7 +13,7 @@ export const getFuncionario = (_, res) => {
 export const addFuncionario = (req, res) => {
   const q = "INSERT INTO `smar0081_calendar`.`funcionarios` (`nome`) VALUES (?)";
   const values = [
-    req.nome,
+    req.body.nome,
   ];
 
   db.query(q, values, (err) => {
@@ -35,7 +35,7 @@ export const deleteFuncionario = (req, res) => {
 
 //Duplas da limpeza
 
-export const getLimpeza = (_, res) => {
+export const getFridayPairs = (_, res) => {
   const q = "SELECT * FROM smar0081_calendar.limpeza";
 
   db.query(q, (err, data) => {
@@ -46,21 +46,28 @@ export const getLimpeza = (_, res) => {
 
 export const saveFridayPairs = (req, res) => {
   const { data, funcionario1, funcionario2 } = req.body;
-  const q = "INSERT INTO `smar0081_calendar`.`limpeza` (`data`, `funcionario1`, `funcionario2`) VALUES (?, ?, ?)";
-  const values = [data, funcionario1, funcionario2];
 
-  if (!data || !funcionario1 || !funcionario2) {
+  if (
+    !data ||
+    !funcionario1 ||
+    !funcionario2
+  ) {
     return res.status(400).json({ error: 'Dados incompletos para inserção na limpeza.' });
   }
 
-  // Convertendo a data para o formato YYYY-MM-DD
-  const formattedDate = new Date(data).toISOString().split('T')[0];
+  const q = "INSERT INTO `smar0081_calendar`.`limpeza` (`data`, `funcionario1`, `funcionario2`) VALUES (?, ?, ?)";
+  const values = [
+      req.body.data,
+      req.body.funcionario1,
+      req.body.funcionario2
+    ];
 
-  db.query(q, [formattedDate, funcionario1, funcionario2], (err, result) => {
+  db.query(q, values, (err) => {
     if (err) {
       console.error('Erro ao inserir dados:', err);
       return res.status(500).json({ error: 'Erro ao salvar os pares de sexta-feira.' });
     }
+
     console.log('Dados inseridos com sucesso!');
     return res.status(200).json("Dados de limpeza adicionados com sucesso.");
   });

@@ -7,21 +7,22 @@ function useMemberFunctions() {
     const [inputValue, setInputValue] = useState('');
     const [members, setMembers] = useState([]);
 
-    //Faz a requisição dos dados do banco e insere no array members
+    useEffect(() => {
+        getFuncionario();
+    }, []); // Chamada apenas na montagem do componente
+
     const getFuncionario = async () => {
         try {
             const res = await axios.get("http://localhost:8800/");
             setMembers(res.data);
-            for (let i = 0; members.lenght > i; i++) {
-                console.log(`res.data[${i}].id dentro do useMember: `, res.data[i].id)
+            for (let i = 0; i < res.data.length; i++) {
+                // console.log(`res.data[${i}].id dentro do useMember: `, res.data[i].id);
             }
+        } catch (error) {
+            console.error("Erro ao obter funcionários:", error);
+            toast.error("Erro ao obter funcionários");
         }
-        catch (error) { console.error("Erro ao obter funcionários:", error); }
     };
-
-    // useEffect(() => {
-    //     getFuncionario();
-    // }, [members]); vazio qqr coisa que altera
 
     const addMember = async (e) => {
         e.preventDefault();
@@ -34,13 +35,12 @@ function useMemberFunctions() {
             await axios.post("http://localhost:8800/", { nome: inputValue });
             setInputValue("");
             toast.success("Funcionário adicionado com sucesso");
+            getFuncionario(); // Atualiza a lista de membros após adicionar um novo membro
         } catch (error) {
             toast.error("Erro ao adicionar funcionário");
             console.error("Erro ao adicionar funcionário:", error);
         }
     };
-
-    getFuncionario(); // Atualiza a lista de membros após adicionar um novo membro
 
     const deleteMember = async (id) => {
         try {
@@ -55,7 +55,7 @@ function useMemberFunctions() {
         }
     };
 
-    return { inputValue, setInputValue, members, addMember, deleteMember, getFuncionario };
+    return { inputValue, setInputValue, members, addMember, deleteMember };
 }
 
 export default useMemberFunctions;

@@ -1,5 +1,5 @@
 import express from "express";
-import { getFuncionario, addFuncionario, deleteFuncionario, saveFridayPairs, getLimpeza } from "../controllers/employee.js";
+import { getFuncionario, addFuncionario, deleteFuncionario, saveFridayPairs, getFridayPairs } from "../controllers/employee.js";
 
 const router = express.Router()
 
@@ -11,8 +11,8 @@ router.delete("/:id", deleteFuncionario)
 
 //Duplas da limpeza
 
-router.get("/getLimpeza", getLimpeza)
+router.get("/getLimpeza", getFridayPairs)
 
-router.post("/saveFridayPairs", saveFridayPairs); 
+router.post("/saveLimpeza", saveFridayPairs); 
 
 export default router
