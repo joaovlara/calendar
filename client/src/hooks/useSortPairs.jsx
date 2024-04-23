@@ -44,11 +44,11 @@ function useSortPairs(members, year) {
         }
 
         // Distribuição das duplas para sextas-feiras
-        const distributedPairs = fridays.map((friday, index) => {
-            const pair = sortedPairs[index % sortedPairs.length];
+        const distributedPairs = fridays.slice(0, sortedPairs.length).map((friday, index) => {
+            const pair = sortedPairs[index];
             console.log("DATA DA SEXTA-friday: ", friday, "DUPLAS pair -> ", pair)
             return { date: friday, pair };
-        });
+        })
 
         setDistributeFridayPairs(distributedPairs);
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { CalendarTable, Header, MonthP, Body, DayCard, Day, DaysContainer, Dupla } from "..//../styles/styles.calendar";
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
@@ -12,9 +12,7 @@ export default function Calendar() {
   const [date, setDate] = useState(today);
   const [fridaysData, setFridaysData] = useState([]);
 
-  useEffect(() => {
-    fetchDataFromAPI(); // Chamada à função para buscar os dados do banco de dados
-  }, []); // chamadaapenas apenas ao montar o componente
+  fetchDataFromAPI();
 
   function fetchDataFromAPI() {
     axios.get('http://localhost:8800/getLimpeza')
@@ -74,8 +72,9 @@ export function findFridaysInYear() {
 
   const fridays = [];
   for (let month = currentMonth; month < 12; month++) {
+    const startDay = (month === currentMonth) ? currentDate.getDate() : 1; // Começa a partir do dia atual no mês atual
     const daysInMonth = endOfMonth(new Date(currentYear, month)).getDate();
-    for (let day = 1; day <= daysInMonth; day++) {
+    for (let day = startDay; day <= daysInMonth; day++) {
       const currentDate = new Date(currentYear, month, day);
       if (isFriday(currentDate)) {
         fridays.push(format(currentDate, 'yyyy MM dd'));
