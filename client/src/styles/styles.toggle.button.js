@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const Switch = styled.label`
     font-size: 15px;
     position: relative;
-    display: inline-block;
     width: 3.5em;
     height: 2em;
 `;

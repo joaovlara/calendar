@@ -79,7 +79,6 @@ export const MemberName = styled.span`
         align-items:center;
         justify-content:center;
         padding-top: 0%;
-        flex-direction:column;
     };
 `;
 
@@ -87,7 +86,9 @@ export const EditableText = styled.span`
     margin: 1%;
     font-size: 15px;
     font-family: 'Montserrat';
+
     @media (max-width: 768px) {
+        flex-direction:column;
         font-size: 12px;
     };
 `;

@@ -63,6 +63,11 @@ export const SortArea = styled.div`
     justify-content: space-between;
     padding: 10% 0% 10% 0%;
     width: 90%;
+
+    @media (max-width: 768px) {
+        padding: 2% 0% 2% 0%;
+    };
+
 `;
 export const BtnSort = styled.button`
     font-family: 'Montserrat';
@@ -82,6 +87,15 @@ export const SortList = styled.ul`
     margin-bottom: 8%;
     height: 50vh;
     color: ${(props) => props.theme.withe};
+
+    @media (max-width: 768px) {
+        height:30vh;
+    };
+
+    @media (max-width: 425px) {
+        height:80vh;
+    };
+
 `;
 
 export const ListaMemb = styled.li`

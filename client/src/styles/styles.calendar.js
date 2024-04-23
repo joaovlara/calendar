@@ -1,7 +1,6 @@
 import styled, { css } from 'styled-components';
 
 export const CalendarTable = styled.div`
-    height: 70vh;
     width: 70vw;
     @media (max-width: 768px) {
         width: 100vw;

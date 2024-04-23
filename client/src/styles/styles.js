@@ -22,7 +22,7 @@ export const SvgIcon = styled.svg`
 /* Separação divisões da tela*/
 
 export const Content = styled.div`
-    height: 100vh;
+    /* height: 100vh; */
     display: flex;
     flex-direction: row;
     background-color: ${(props) => props.theme.black};
@@ -37,8 +37,10 @@ export const Content = styled.div`
     };
 `;
 export const LeftContainer = styled.div`
-    border-right: outset 1px;
+    border-right: solid 1px;    
+    border-color: ${(props) => props.theme.lines};
     display:flex;
+    height: 100vh;
     width: 30vw;
     justify-content: center;
     @media (max-width: 768px) {
