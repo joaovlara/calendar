@@ -13,7 +13,7 @@ function useMemberFunctions() {
 
     const getFuncionario = async () => {
         try {
-            const res = await axios.get("http://localhost:8800/");
+            const res = await axios.get("http://192.168.18.32:8800/");
             setMembers(res.data);
             for (let i = 0; i < res.data.length; i++) {
                 // console.log(`res.data[${i}].id dentro do useMember: `, res.data[i].id);
@@ -32,7 +32,7 @@ function useMemberFunctions() {
         }
 
         try {
-            await axios.post("http://localhost:8800/", { nome: inputValue });
+            await axios.post("http://192.168.18.32:8800/", { nome: inputValue });
             setInputValue("");
             toast.success("Funcionário adicionado com sucesso");
             getFuncionario(); // Atualiza a lista de membros após adicionar um novo membro
@@ -44,7 +44,7 @@ function useMemberFunctions() {
 
     const deleteMember = async (id) => {
         try {
-            await axios.delete(`http://localhost:8800/${id}`);
+            await axios.delete(`http://192.168.18.32:8800/${id}`);
             const updatedMembers = members.filter(member => member.id !== id);
             setMembers(updatedMembers);
             toast.success("Funcionário excluído com sucesso.");

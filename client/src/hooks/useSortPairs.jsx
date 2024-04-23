@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { findFridaysInYear } from '../components/calendar/Calendar';
@@ -10,7 +10,7 @@ function useSortPairs(members, year) {
         try {
             await Promise.all(distributedPairs.map(async (pairData) => {
                 const date = new Date(pairData.date).toISOString().split('T')[0];
-                await axios.post("http://localhost:8800/saveFridayPairs", {
+                await axios.post("http://192.168.18.32:8800/saveFridayPairs", {
                     data: date,
                     funcionario1: pairData.pair[0],
                     funcionario2: pairData.pair[1],

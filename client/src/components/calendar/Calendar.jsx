@@ -15,7 +15,7 @@ export default function Calendar() {
   fetchDataFromAPI();
 
   function fetchDataFromAPI() {
-    axios.get('http://localhost:8800/getLimpeza')
+    axios.get('http://192.168.18.32:8800/getLimpeza')
       .then(response => {
         setFridaysData(response.data);
       })
