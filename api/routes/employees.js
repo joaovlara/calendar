@@ -13,6 +13,6 @@ router.delete("/:id", deleteFuncionario)
 
 router.get("/getLimpeza", getFridayPairs)
 
-router.post("/saveLimpeza", saveFridayPairs); 
+router.post("/saveFridayPairs", saveFridayPairs); 
 
 export default router
