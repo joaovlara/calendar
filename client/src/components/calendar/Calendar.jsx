@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { CalendarTable, Header, MonthP, Body, DayCard, Day, DaysContainer } from "..//../styles/styles.calendar";
+import axios from "axios";
+import { CalendarTable, Header, MonthP, Body, DayCard, Day, DaysContainer, Dupla } from "..//../styles/styles.calendar";
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
-import { isToday, addMonths, startOfMonth, endOfMonth, isFriday, format, isLeapYear } from "date-fns";
+import { isToday, addMonths, startOfMonth, endOfMonth, isFriday, format } from "date-fns";
 import WeekContainer from "./Week";
 
 export default function Calendar() {
@@ -9,35 +10,54 @@ export default function Calendar() {
   const MONTHS = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
   const today = new Date();
   const [date, setDate] = useState(today);
-  const [month, setMonth] = useState(date.getMonth());
-  const [year, setYear] = useState(date.getFullYear());
-  const [startDay, setStartDay] = useState(startOfMonth(date).getDay());
+  const [fridaysData, setFridaysData] = useState([]);
 
   useEffect(() => {
-    setMonth(date.getMonth());
-    setYear(date.getFullYear());
-    setStartDay(startOfMonth(date).getDay());
-  }, [date]);
+    fetchDataFromAPI(); // Chamada à função para buscar os dados do banco de dados
+  }, []); // chamadaapenas apenas ao montar o componente
+
+  function fetchDataFromAPI() {
+    axios.get('http://localhost:8800/getLimpeza')
+      .then(response => {
+        setFridaysData(response.data);
+      })
+      .catch(error => {
+        console.error('Erro ao buscar os dados do banco:', error);
+      });
+  }
 
   function changeMonth(amount) {
     setDate(prevDate => addMonths(prevDate, amount));
   }
+
   return (
     <CalendarTable>
       <Header>
         <SlArrowLeft onClick={() => changeMonth(-1)}></SlArrowLeft>
-        <MonthP> {MONTHS[month]} </MonthP>
+        <MonthP> {MONTHS[date.getMonth()]} </MonthP>
         <SlArrowRight onClick={() => changeMonth(1)}></SlArrowRight>
       </Header>
       <Body>
         <WeekContainer />
         <DaysContainer>
           {GRID_DAYS.map((_, index) => {
-            const d = index - (startDay - 1);
-            const isValidDay = d > 0 && d <= endOfMonth(date).getDate() && isLeapYear(new Date(year, month));
+            const d = new Date(date.getFullYear(), date.getMonth(), index + 1 - startOfMonth(date).getDay());
+            const isValidDay = d.getMonth() === date.getMonth();
+            const isFridayInYear = isValidDay && isFriday(d);
+            const fridayData = fridaysData.find(item => format(new Date(item.data), 'yyyy MM dd') === format(d, 'yyyy MM dd'));
+
             return (
-              <DayCard key={index} isToday={isToday(new Date(year, month, d))}>
-                {isValidDay && <Day>{d}</Day>}
+              <DayCard
+                key={index}
+                isToday={isToday(d)}
+                isFriday={isFridayInYear}>
+
+                {isFridayInYear && fridayData && (
+                  <Dupla>
+                    {`${fridayData.funcionario1} e ${fridayData.funcionario2}`}
+                  </Dupla>
+                )}
+                {isValidDay && <Day>{d.getDate()}</Day>}
               </DayCard>
             );
           })}
@@ -45,7 +65,7 @@ export default function Calendar() {
       </Body>
     </CalendarTable>
   );
-};
+}
 
 export function findFridaysInYear() {
   const currentDate = new Date();
@@ -58,9 +78,9 @@ export function findFridaysInYear() {
     for (let day = 1; day <= daysInMonth; day++) {
       const currentDate = new Date(currentYear, month, day);
       if (isFriday(currentDate)) {
-        fridays.push(format(currentDate, 'yyyy MM dd')); 
+        fridays.push(format(currentDate, 'yyyy MM dd'));
       }
     }
   }
-  return fridays; 
+  return fridays;
 }
