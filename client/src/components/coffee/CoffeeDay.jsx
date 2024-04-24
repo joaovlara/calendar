@@ -1,47 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { CoffeeWeek, DayCoffee, TextCoffee, CoffeeContainer, CoffeeDiv, CardCoffee, EditableText, MemberName } from "..//../styles/styles.CoffeeDay"
+import useCoffee from '../../hooks/useCoffee';
 
-const DAYS_OF_THE_WEEK = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex'];
-
-export function CoffeeDay() {
-  const [texts, setTexts] = useState(() => {
-    const storedTexts = localStorage.getItem('coffeeTexts');
-    return storedTexts ? JSON.parse(storedTexts) : DAYS_OF_THE_WEEK.map(() => ({ member1: 'Membro 1', member2: 'Membro 2' }));
-  });
-
-  useEffect(() => {
-    localStorage.setItem('coffeeTexts', JSON.stringify(texts));
-  }, [texts]);
-
-  const handleTextChange = (index, member, newText) => {
-    const newtexts = [...texts];
-    newtexts[index][member] = newText;
-    setTexts(newtexts);
-  };
+function CoffeeDay() {
+  const DAYS_OF_THE_WEEK = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta'];
+  const coffeeData = useCoffee();
 
   return (
     <CoffeeContainer>
       <TextCoffee>Dia do Café</TextCoffee>
       <CoffeeWeek>
-        {DAYS_OF_THE_WEEK.map((day, index) => {
+        {DAYS_OF_THE_WEEK.map((dayWeek, index) => {
           const isToday = new Date().getDay() === index + 1;
+          const member = coffeeData[dayWeek] || []; // Verifica se há dados para este dia
           return (
-            <CoffeeDiv key={index} isToday={isToday}>
+            <CoffeeDiv key={dayWeek} isToday={isToday}>
               <CardCoffee>
-                <DayCoffee>{day}</DayCoffee>
+                <DayCoffee>{dayWeek}</DayCoffee>
                 <MemberName>
-                  <EditableText
-                    contentEditable
-                    onBlur={(event) => handleTextChange(index, 'member1', event.target.innerText)}
-                  >
-                    {texts[index].member1}
-                  </EditableText>
-                  <EditableText
-                    contentEditable
-                    onBlur={(event) => handleTextChange(index, 'member2', event.target.innerText)}
-                  >
-                    {texts[index].member2}
-                  </EditableText>
+                  {member.map((employee, index) => (
+                    <EditableText key={index}>{employee.nome}</EditableText>
+                  ))}
                 </MemberName>
               </CardCoffee>
             </CoffeeDiv>

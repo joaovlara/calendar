@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { CalendarTable, Header, MonthP, Body, DayCard, Day, DaysContainer, Dupla } from "..//../styles/styles.calendar";
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
@@ -12,7 +12,9 @@ export default function Calendar() {
   const [date, setDate] = useState(today);
   const [fridaysData, setFridaysData] = useState([]);
 
-  fetchDataFromAPI();
+  useEffect(() => {
+    fetchDataFromAPI();
+  }, []);
 
   function fetchDataFromAPI() {
     axios.get('http://192.168.18.32:8800/getLimpeza')

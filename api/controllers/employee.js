@@ -57,10 +57,10 @@ export const saveFridayPairs = (req, res) => {
 
   const q = "INSERT INTO `smar0081_calendar`.`limpeza` (`data`, `funcionario1`, `funcionario2`) VALUES (?, ?, ?)";
   const values = [
-      req.body.data,
-      req.body.funcionario1,
-      req.body.funcionario2
-    ];
+    req.body.data,
+    req.body.funcionario1,
+    req.body.funcionario2
+  ];
 
   db.query(q, values, (err) => {
     if (err) {
@@ -70,5 +70,34 @@ export const saveFridayPairs = (req, res) => {
 
     console.log('Dados inseridos com sucesso!');
     return res.status(200).json("Dados de limpeza adicionados com sucesso.");
+  });
+};
+
+
+// Café
+
+export const getCafe = (_, res) => {
+  const q = "SELECT * FROM smar0081_calendar.cafe";
+
+  db.query(q, (err, data) => {
+    if (err) return res.json(err);
+
+    return res.status(200).json(data);
+  });
+};
+
+export const addCafe = (req, res) => {
+  const q = "INSERT INTO `smar0081_calendar`.`cafe` (`nome`, `dia_da_semana`) VALUES (?,?)";
+  const values = [
+
+    req.body.nome,
+    req.body.dia_da_semana,
+
+  ];
+
+  db.query(q, values, (err) => {
+    if (err) return res.json(err);
+
+    return res.status(200).json("Dia do café criado com sucesso.");
   });
 };
