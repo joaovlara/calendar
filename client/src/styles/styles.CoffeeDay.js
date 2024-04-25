@@ -1,4 +1,6 @@
 import styled, { css } from 'styled-components';
+import { FaRegSave } from "react-icons/fa";
+import { MdOutlineCancel } from "react-icons/md";
 
 export const CoffeeContainer = styled.div`
     display: flex;
@@ -91,4 +93,52 @@ export const EditableText = styled.span`
         flex-direction:column;
         font-size: 12px;
     };
+`;
+
+//modal
+
+export const Modal = styled.div`
+    display:flex;
+    justify-content: space-around;
+    width: 50%;
+    margin-top: 1%;
+    font-family: 'Montserrat';
+    border: lightblue 1px;
+    box-shadow: 0px 2px 2px 2px ${(props) => props.theme.shadow};;
+    background-color: ${(props) => props.theme.card};
+
+        @media (max-width: 768px) {
+            padding-top: 0%;
+            height: 6.5vh;
+            justify-content: space-around;
+            flex-direction:row;  
+        };
+`
+
+export const EditName = styled.p`
+    font-family: 'Montserrat';
+    font-size: 15px;
+    color: ${(props) => props.theme.withe};
+
+`
+
+export const BtnCancel = styled(MdOutlineCancel)`
+    width: 2vw;
+    color: ${(props) => props.theme.withe};
+
+    cursor: pointer;  
+    &:hover {
+        transform: scale(1.2);
+    }
+
+`;
+
+export const BtnSave = styled(FaRegSave)`
+    width: 2vw;
+    color: ${(props) => props.theme.withe};
+    cursor: pointer;  
+    &:hover {
+        transform: scale(1.2);
+    }
+
 `;

@@ -101,3 +101,23 @@ export const addCafe = (req, res) => {
     return res.status(200).json("Dia do café criado com sucesso.");
   });
 };
+
+export const updateCafe = (req, res) => {
+  console.log('req: ', req)
+  console.log('res: ', res)
+  
+  const { id } = req.params;
+  const { nome } = req.body.nome;
+
+  console.log('id: ', id)
+  console.log('nome: ', nome)
+
+  db.query(`UPDATE smart0081_calendar.cafe SET nome = ${nome} WHERE  (id = ${id})`, (err) => {
+    if (err) {
+      console.error('Erro ao editar o nome:', err); 
+      res.status(500).send('Erro ao editar o nome');
+    } else {
+      res.status(200).send('Nome editado com sucesso');
+    }
+  });
+}

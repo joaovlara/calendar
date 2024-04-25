@@ -1,5 +1,5 @@
 import express from "express";
-import { getFuncionario, addFuncionario, deleteFuncionario, saveFridayPairs, getFridayPairs, getCafe, addCafe } from "../controllers/employee.js";
+import { getFuncionario, addFuncionario, deleteFuncionario, saveFridayPairs, getFridayPairs, getCafe, addCafe, updateCafe } from "../controllers/employee.js";
 
 const router = express.Router()
 
@@ -20,5 +20,7 @@ router.post("/saveFridayPairs", saveFridayPairs);
 router.get("/getCafe", getCafe)
 
 router.post("/addCafe", addCafe); 
+
+router.put("/:id", updateCafe);
 
 export default router
