@@ -103,14 +103,14 @@ export const addCafe = (req, res) => {
 };
 
 export const updateCafe = (req, res) => {
-  console.log('req: ', req)
-  console.log('res: ', res)
+  console.log('req: ', req.body)
+  // console.log('res: ', res)
   
-  const { id } = req.params;
-  const { nome } = req.body.nome;
+  const id = req.body.id;
+  const nome = req.body.nome;
 
-  console.log('id: ', id)
-  console.log('nome: ', nome)
+  console.log('id: ', req.body.id)
+  console.log('nome: ', req.body.nome)
 
   db.query(`UPDATE smart0081_calendar.cafe SET nome = ${nome} WHERE  (id = ${id})`, (err) => {
     if (err) {

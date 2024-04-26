@@ -21,6 +21,6 @@ router.get("/getCafe", getCafe)
 
 router.post("/addCafe", addCafe); 
 
-router.put("/:id", updateCafe);
+router.put("/editUser", updateCafe);
 
 export default router
