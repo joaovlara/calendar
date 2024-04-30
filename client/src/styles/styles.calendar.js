@@ -32,6 +32,7 @@ export const Body = styled.div`
 export const WeekContainer = styled.div`
     display: flex;
     @media (max-width: 768px) {
+        width: 99.3%;
     };
 
 `;

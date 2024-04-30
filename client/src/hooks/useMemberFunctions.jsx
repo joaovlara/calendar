@@ -9,7 +9,7 @@ function useMemberFunctions() {
 
     useEffect(() => {
         getFuncionario();
-    }, []); // Chamada apenas na montagem do componente
+    }, [members]); // Chamada apenas na montagem do componente
 
     const getFuncionario = async () => {
         try {

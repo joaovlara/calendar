@@ -1,5 +1,5 @@
 import express from "express";
-import { getFuncionario, addFuncionario, deleteFuncionario, saveFridayPairs, getFridayPairs, getCafe, addCafe, updateCafe } from "../controllers/employee.js";
+import { getFuncionario, addFuncionario, deleteFuncionario, saveFridayPairs, getFridayPairs, getCafe, editarNomeCafe } from "../controllers/employee.js";
 
 const router = express.Router()
 
@@ -15,12 +15,10 @@ router.get("/getLimpeza", getFridayPairs)
 
 router.post("/saveFridayPairs", saveFridayPairs); 
 
-//Café
+//Cafe
 
 router.get("/getCafe", getCafe)
 
-router.post("/addCafe", addCafe); 
-
-router.put("/editUser", updateCafe);
+router.put('/editarNome', editarNomeCafe);
 
 export default router

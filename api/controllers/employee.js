@@ -73,8 +73,7 @@ export const saveFridayPairs = (req, res) => {
   });
 };
 
-
-// Café
+// Cafe
 
 export const getCafe = (_, res) => {
   const q = "SELECT * FROM smar0081_calendar.cafe";
@@ -86,38 +85,17 @@ export const getCafe = (_, res) => {
   });
 };
 
-export const addCafe = (req, res) => {
-  const q = "INSERT INTO `smar0081_calendar`.`cafe` (`nome`, `dia_da_semana`) VALUES (?,?)";
-  const values = [
+export const editarNomeCafe = (req, res) => {
+  const { id, nomeNovo } = req.body;
 
-    req.body.nome,
-    req.body.dia_da_semana,
+  const sql = 'UPDATE `smar0081_calendar`.`cafe` SET `nome` = ? WHERE (`id` = ?);';
 
-  ];
-
-  db.query(q, values, (err) => {
-    if (err) return res.json(err);
-
-    return res.status(200).json("Dia do café criado com sucesso.");
-  });
-};
-
-export const updateCafe = (req, res) => {
-  console.log('req: ', req.body)
-  // console.log('res: ', res)
-  
-  const id = req.body.id;
-  const nome = req.body.nome;
-
-  console.log('id: ', req.body.id)
-  console.log('nome: ', req.body.nome)
-
-  db.query(`UPDATE smart0081_calendar.cafe SET nome = ${nome} WHERE  (id = ${id})`, (err) => {
-    if (err) {
-      console.error('Erro ao editar o nome:', err); 
-      res.status(500).send('Erro ao editar o nome');
+  db.query(sql, [nomeNovo, id], (error, results) => {
+    if (error) {
+      console.error('Erro ao editar o nome do funcionário:', error);
+      res.status(500).json({ error: 'Erro interno do servidor' });
     } else {
-      res.status(200).send('Nome editado com sucesso');
+      res.status(200).json({ message: 'Nome do funcionário atualizado com sucesso' });
     }
   });
-}
+};
