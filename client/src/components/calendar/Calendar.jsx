@@ -13,10 +13,10 @@ export default function Calendar() {
   const [fridaysData, setFridaysData] = useState([]);
 
   useEffect(() => {
-    fetchDataFromAPI();
+    getLimpeza();
   }, []);
 
-  function fetchDataFromAPI() {
+  function getLimpeza() {
     axios.get('http://192.168.18.32:8800/getLimpeza')
       .then(response => {
         setFridaysData(response.data);
@@ -28,6 +28,7 @@ export default function Calendar() {
 
   function changeMonth(amount) {
     setDate(prevDate => addMonths(prevDate, amount));
+    getLimpeza();
   }
 
   return (
