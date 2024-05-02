@@ -58,7 +58,7 @@ export const CardCoffee = styled.span`
             flex-direction:row;  
         };
 `;
-export const DayCoffee = styled.span`
+export const DayCoffee = styled.strong`
     display: flex;
     justify-content: center;
     font-family: 'Montserrat';

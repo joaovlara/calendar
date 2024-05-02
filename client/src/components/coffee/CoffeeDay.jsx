@@ -27,7 +27,6 @@ function CoffeeDay() {
 
   const handleEdit = (employee) => {
     setIsModalOpen(true);
-    // setEditingId(employee.id);
     setEditingEmployee(employee.id);
     setEditedEmployeeName(employee.nome); // Preencher o nome no modal
   };
@@ -44,7 +43,7 @@ function CoffeeDay() {
         id: editingEmployee,
         nomeNovo: newName
       });
-  
+
       toast.success("Nome do funcionário atualizado com sucesso.");
       closeModal(); // Fechar o modal após o sucesso
       getCafe(); // Atualizar os dados após a edição
@@ -53,7 +52,7 @@ function CoffeeDay() {
       toast.error("Erro ao editar o nome do funcionário.");
     }
   };
-  
+
   const resetEditingState = () => {
     setEditedEmployeeName({});
   };
@@ -85,7 +84,8 @@ function CoffeeDay() {
                   {member.map((employee, index) => (
                     <EditableText
                       onClick={() => handleEdit(employee)} // Passa o objeto do funcionário para handleEdit
-                      key={index}>{employee.nome}</EditableText>
+                      key={index}>{employee.nome || 'Nome'}
+                    </EditableText>
                   ))}
                 </MemberName>
               </CardCoffee>
