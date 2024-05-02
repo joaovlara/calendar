@@ -23,10 +23,11 @@ function CoffeeDay() {
 
   useEffect(() => {
     getCafe();
-  }, []); // Chamado quando componente é montado
+  }, []);
 
   const handleEdit = (employee) => {
     setIsModalOpen(true);
+    // setEditingId(employee.id);
     setEditingEmployee(employee.id);
     setEditedEmployeeName(employee.nome); // Preencher o nome no modal
   };
@@ -39,33 +40,20 @@ function CoffeeDay() {
 
   const handleSave = async (newName) => {
     try {
-      const response = await axios.put(`http://192.168.18.32:8800/editarNome`, { nome: newName, id: editingEmployee });
-
-      if (response.status === 200) {
-        toast.success("Usuário editado com sucesso.");
-        closeModal();
-
-        // Atualizar os dados do café após a edição
-        const updatedEmployee = { id: editingEmployee, nome: newName };
-        setCoffeeData(prevCoffeeData => {
-          const updatedData = { ...prevCoffeeData };
-          const dayOfWeek = Object.keys(prevCoffeeData).find(day => prevCoffeeData[day].find(employee => employee.id === editingEmployee));
-
-          if (dayOfWeek) {
-            updatedData[dayOfWeek] = prevCoffeeData[dayOfWeek].map(employee => (employee.id === editingEmployee ? updatedEmployee : employee));
-          }
-          return updatedData;
-        });
-
-      } else {
-        toast.error("Erro ao editar o usuário.");
-      }
+      await axios.put("http://192.168.18.32:8800/editarNome", {
+        id: editingEmployee,
+        nomeNovo: newName
+      });
+  
+      toast.success("Nome do funcionário atualizado com sucesso.");
+      closeModal(); // Fechar o modal após o sucesso
+      getCafe(); // Atualizar os dados após a edição
     } catch (error) {
-      console.error("Erro ao editar o usuário:", error);
-      toast.error("Erro ao editar o usuário.");
+      console.error("Erro ao editar o nome do funcionário:", error);
+      toast.error("Erro ao editar o nome do funcionário.");
     }
   };
-
+  
   const resetEditingState = () => {
     setEditedEmployeeName({});
   };
@@ -96,9 +84,8 @@ function CoffeeDay() {
                 <MemberName>
                   {member.map((employee, index) => (
                     <EditableText
-                    onClick={() => handleEdit(employee)} 
-                    key={index}>{employee.nome || 'Nome'}
-                    </EditableText>
+                      onClick={() => handleEdit(employee)} // Passa o objeto do funcionário para handleEdit
+                      key={index}>{employee.nome}</EditableText>
                   ))}
                 </MemberName>
               </CardCoffee>
