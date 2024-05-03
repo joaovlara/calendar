@@ -85,7 +85,7 @@ export const BtnSort = styled.button`
 export const SortList = styled.ul`
     overflow: auto; 
     margin-bottom: 8%;
-    height: 50vh;
+    height: 40vh;
     color: ${(props) => props.theme.withe};
 
     @media (max-width: 768px) {
