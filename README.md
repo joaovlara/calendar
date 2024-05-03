@@ -1,37 +1,33 @@
-## Instalação
+## Calendar (Web App)
 
-Para instalar e executar o projeto, siga as instruções abaixo:
+Esta é uma aplicação desenvolvida em React que permite gerenciar grupos de atividades em determinados dias da semana, realizar sorteios de equipes e exibir o nome dos membros.
 
-1. Clone o repositório do projeto:
-   ```
-   git clone https://github.com/joaovlara/my-calendar.git
-   ```
 
-2. Acesse o diretório do projeto:
-   ```
-   cd my-calendar
-   ```
+## Pré-Visualização
 
-3. Instale e execute as dependências da api:
-   ```
-   cd api
-   yarn install
-   ```
+![Pré-Visualização da interface](/client/public/preview.jpg)
 
-   Execute o servidor Node:
+## Funções
 
-   ```
-   yarn start
-   ```
+- **Adicionar e deletar membros na lista.**
+- **Sortear duplas e distribuir em determinados dias.**
+- **Navegar entre os meses do Ano.**
+- **Editar nomes dos cards de dias da semana.**
+- **Botão Dark Mode e Light Mode.**
 
-4. Instale  e execute as dependências do lado do cliente:
-   ```
-   cd client
-   yarn install
-   ```
+## Recursos 
 
-   Execute a interface:
+- **React**: Biblioteca JavaScript para criar interfaces de usuário.
+- **Date FNS**: Biblioteca JavaScript de datas.
+- **React Scripts**: Scripts para iniciar e construir aplicativos React.
+- **Axios**: Cliente HTTP baseado em Promises para fazer requisições AJAX.
+- **Styled Components**: Biblioteca para escrever CSS em JavaScript.
+- **React Toastify**: Biblioteca para exibir notificações customizáveis.
+- **Responsividade** Interface adaptavel a diferentes tamanhos de tela, smartphones e desktops. 
 
-   ```
-   yarn start
-   ```
+
+## Contato
+
+Se você tiver alguma dúvida ou sugestão sobre o projeto, sinta-se à vontade para entrar em contato comigo em [joaovdelara@gmail.com](joaovdelara@gmail.com) ou através do meu [LinkedIn](https://www.linkedin.com/in/joaovlara/).
+
+---
